@@ -31,7 +31,7 @@ jobs:
 
       - name: Run Python Script
         run: |
-          python3 main.py
+          uv run main.py
 
       - name: Update the Servant Data
         run: |
