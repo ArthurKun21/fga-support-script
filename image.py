@@ -43,10 +43,11 @@ def combine_images(
         return
 
     text_files = [i for i in image_dir.iterdir() if i.is_file() and i.suffix == ".txt"]
+
     if len(text_files) == 0:
-        print(f"No txt file found in {image_dir.name}")
-        return
-    file_name = text_files[0].stem
+        file_name = image_dir.name
+    else:
+        file_name = text_files[0].stem
     print(f"Name: {file_name}\tImages: {len(images)}")
 
     crop_image_list = [crop_file(i) for i in images]
