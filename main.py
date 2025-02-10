@@ -8,6 +8,7 @@ CWD = Path(__file__).parent
 def main():
     other_repository_dir = CWD / "fga-support"
     if not other_repository_dir.exists():
+        print("The other repository was not found.")
         return
 
     # Read the old data and compare with the new data
