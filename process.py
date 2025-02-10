@@ -167,8 +167,10 @@ def download_image_and_save(name: str, id: int, url: str):
 
 
 def compare_and_update(old_data: list[dict], new_data: list[dict]):
+    sorted_new_data = sorted(new_data, key=lambda x: x["servant_id"])
+
     old_data_processed = process_data_for_comparison(old_data)
-    new_data_processed = process_data_for_comparison(new_data)
+    new_data_processed = process_data_for_comparison(sorted_new_data)
 
     for i, new_servant in enumerate(new_data_processed):
         is_new_servant = True
@@ -209,8 +211,6 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
         if i == 2:
             break
 
-    # Update the old data
-    new_data = sorted(new_data, key=lambda x: x["servant_id"])
     write_json(CWD / "servant_data.json", new_data)
 
 
