@@ -1,7 +1,8 @@
+import re
 import time
-from typing import Optional
 import unicodedata
 from pathlib import Path
+from typing import Optional
 
 import httpx
 import orjson
@@ -136,7 +137,12 @@ def process_data_for_comparison(data: list[dict]) -> list[dict]:
 
 def download_image_and_save(name: str, id: int, url: str):
     file_name_from_url = url.split("/")[-1]
-    image_file_path = CWD / "input" / f"{id:03d}_{name}" / file_name_from_url
+
+    # Sanitize the 'name' to ensure it's a valid Windows directory name
+    invalid_chars_pattern = r'[<>:"/\\|?*\x00-\x1f]|\.$'
+    sanitized_name = re.sub(invalid_chars_pattern, "", name)
+
+    image_file_path = CWD / "input" / f"{id:03d}_{sanitized_name}" / file_name_from_url
 
     if not image_file_path.parent.exists():
         image_file_path.parent.mkdir(parents=True, exist_ok=True)
@@ -154,7 +160,7 @@ def download_image_and_save(name: str, id: int, url: str):
             print(f"Error downloading image {retry - i} retries left. {e}")
             continue
 
-    file_name_text = image_file_path.parent / f"{id:03d}_{name}.txt"
+    file_name_text = image_file_path.parent / f"{id:03d}_{sanitized_name}.txt"
     file_name_text.touch(exist_ok=True)
 
 
