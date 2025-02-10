@@ -208,8 +208,6 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
                     id=new_servant_id,
                     url=value,
                 )
-        if i == 2:
-            break
 
     write_json(CWD / "servant_data.json", new_data)
 
