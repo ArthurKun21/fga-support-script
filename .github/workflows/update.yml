@@ -1,0 +1,46 @@
+name: Update Support Repository
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: 'ArthurKun21/fga-support-repository'
+          token: ${{ secrets.UPLOAD_REPO }}
+          fetch-depth: 0
+          path: 'fga-support'
+
+      - uses: actions/setup-python@v5
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Run Python Script
+        run: |
+          python3 main.py
+
+      - name: Commit and Push
+        run: |
+          cd fga-support
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Use ISO-8601 format for consistency
+          CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          git add -A
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update ${CURRENT_DATE_TIME}"
+            git push || exit 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
