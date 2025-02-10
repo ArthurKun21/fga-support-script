@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv pip install .
+          uv sync
 
       - name: Run Python Script
         run: |
