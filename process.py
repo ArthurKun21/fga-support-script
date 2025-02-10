@@ -210,6 +210,7 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
             break
 
     # Update the old data
+    new_data = sorted(new_data, key=lambda x: x["servant_id"])
     write_json(CWD / "servant_data.json", new_data)
 
 
