@@ -29,7 +29,10 @@ def main():
             )
 
     # Move the images to the other repository
-    output_directory.rename(other_repository_dir / "servant")
+    try:
+        output_directory.replace(other_repository_dir / "servant")
+    except FileExistsError:
+        print("The other repository already has the images.")
 
 
 if __name__ == "__main__":
