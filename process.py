@@ -144,8 +144,7 @@ def download_image_and_save(name: str, id: int, url: str):
 
     image_file_path = CWD / "input" / f"{id:03d}_{sanitized_name}" / file_name_from_url
 
-    if not image_file_path.parent.exists():
-        image_file_path.parent.mkdir(parents=True, exist_ok=True)
+    image_file_path.parent.mkdir(parents=True, exist_ok=True)
 
     print(f"Downloading image: {file_name_from_url}")
 
@@ -232,6 +231,9 @@ def download_from_atlas() -> Optional[Path]:
     url = "https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json"
 
     atlas_file_path = CWD / "nice_servant_lang_en.json"
+
+    if atlas_file_path.exists():
+        return atlas_file_path
 
     retry = 3
 
