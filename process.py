@@ -206,7 +206,7 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
                     id=new_servant_id,
                     url=value,
                 )
-        if i == 5:
+        if i == 2:
             break
 
     # Update the old data
