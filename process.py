@@ -142,13 +142,17 @@ def download_image_and_save(name: str, id: int, url: str):
         image_file_path.parent.mkdir(parents=True, exist_ok=True)
 
     print(f"Downloading image: {file_name_from_url}")
-    try:
-        with httpx.stream("GET", url) as response:
-            with open(image_file_path, "wb") as f:
-                for chunk in response.iter_bytes():
-                    f.write(chunk)
-    except Exception as e:
-        print(f"Error downloading image: {e}")
+
+    retry = 3
+    for i in range(retry):
+        try:
+            with httpx.stream("GET", url) as response:
+                with open(image_file_path, "wb") as f:
+                    for chunk in response.iter_bytes():
+                        f.write(chunk)
+        except Exception as e:
+            print(f"Error downloading image {retry - i} retries left. {e}")
+            continue
 
     file_name_text = image_file_path.parent / f"{id:03d}_{name}.txt"
     file_name_text.touch(exist_ok=True)
