@@ -36,7 +36,7 @@ jobs:
       - name: Update the Servant Data
         run: |
           git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
           git add servant_data.json
 
@@ -54,7 +54,7 @@ jobs:
         run: |
           cd fga-support
           git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
           # Use ISO-8601 format for consistency
           CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
