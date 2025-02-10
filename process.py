@@ -171,7 +171,7 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
     old_data_processed = process_data_for_comparison(old_data)
     new_data_processed = process_data_for_comparison(new_data)
 
-    for new_servant in new_data_processed:
+    for i, new_servant in enumerate(new_data_processed):
         is_new_servant = True
 
         new_servant_id = new_servant.get("servant_id", 0)
@@ -207,6 +207,8 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
                     id=new_servant_id,
                     url=value,
                 )
+        if i == 5:
+            break
 
     # Update the old data
     write_json(CWD / "servant_data.json", new_data)
