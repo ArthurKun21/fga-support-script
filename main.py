@@ -1,6 +1,7 @@
 from pathlib import Path
 import process
 import image
+import shutil
 
 CWD = Path(__file__).parent
 
@@ -30,7 +31,8 @@ def main():
 
     # Move the images to the other repository
     try:
-        output_directory.replace(other_repository_dir / "servant")
+        target_directory = other_repository_dir / "servant"
+        shutil.copytree(output_directory, target_directory, dirs_exist_ok=True)
     except FileExistsError:
         print("The other repository already has the images.")
 
