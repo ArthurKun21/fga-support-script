@@ -33,12 +33,15 @@ jobs:
         run: |
           uv run main.py
 
-      - name: Commit and Push
+      # Set git config once for all steps
+      - name: Configure Git
         run: |
-          cd fga-support
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
+      - name: Commit and Push
+        run: |
+          cd fga-support
           # Use ISO-8601 format for consistency
           CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
@@ -50,18 +53,16 @@ jobs:
           else
             git commit -m "Update ${CURRENT_DATE_TIME}"
             git push || exit 1
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
 
       - name: Update the Servant Data
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-
-          git add servant_data.json
-
           # Use ISO-8601 format for consistency
           CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          git add servant_data.json
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then
@@ -69,3 +70,6 @@ jobs:
           else
             git commit -m "Update ${CURRENT_DATE_TIME}"
             git push || exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
