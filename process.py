@@ -160,6 +160,9 @@ def download_image_and_save(name: str, id: int, url: str):
             print(f"Error downloading image {retry - i} retries left. {e}")
             continue
 
+    # To prevent spamming the server
+    time.sleep(0.5)
+
     file_name_text = image_file_path.parent / f"{id:03d}_{sanitized_name}.txt"
     file_name_text.touch(exist_ok=True)
 
