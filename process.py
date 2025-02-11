@@ -316,23 +316,22 @@ def read_the_old_data() -> list[dict]:
         return []
 
 
-def download_servant_data_from_atlas() -> Optional[Path]:
-    url = "https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json"
-
-    atlas_file_path = CWD / "nice_servant_lang_en.json"
-
-    if atlas_file_path.exists():
-        return atlas_file_path
+def download_data_from_atlas(
+    url: str,
+    file_path: Path,
+) -> Optional[Path]:
+    if file_path.exists() and file_path.stat().st_size > 0:
+        return file_path
 
     retry = 3
 
     for i in range(retry):
         try:
             with httpx.stream("GET", url) as response:
-                with open(atlas_file_path, "wb") as f:
+                with open(file_path, "wb") as f:
                     for chunk in response.iter_bytes():
                         f.write(chunk)
-            return atlas_file_path
+            return file_path
         except Exception as e:
             print(f"Error downloading from Atlas {retry - i} retries left.\t{e}.")
             time.sleep(1)
@@ -343,7 +342,10 @@ def download_servant_data_from_atlas() -> Optional[Path]:
 def process_servant_data():
     start_time = time.perf_counter()
 
-    servant_file_path = download_servant_data_from_atlas()
+    servant_file_path = download_data_from_atlas(
+        url="https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json",
+        file_path=CWD / "nice_servant_lang_en.json",
+    )
     if not servant_file_path:
         print("Exiting...")
         exit()
