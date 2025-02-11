@@ -283,6 +283,9 @@ def compare_and_update_servant(old_data: list[dict], new_data: list[dict]):
                             )
 
                 is_new_servant = False
+
+                old_data_processed.remove(old_servant)
+
                 break
 
         if is_new_servant:
