@@ -433,7 +433,7 @@ def process_craft_essence_data():
 
     ce_file_path = download_data_from_atlas(
         url="https://api.atlasacademy.io/export/JP/basic_equip_lang_en.json",
-        file_path=CWD / "nice_servant_lang_en.json",
+        file_path=CWD / "basic_equip_lang_en.json",
     )
     if not ce_file_path:
         print("Exiting...")
