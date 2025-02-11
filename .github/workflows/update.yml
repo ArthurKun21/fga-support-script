@@ -70,6 +70,7 @@ jobs:
           CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           git add servant_data.json
+          git add ce_data.json
 
           # Check if there are changes to commit
           if git diff --staged --quiet; then
