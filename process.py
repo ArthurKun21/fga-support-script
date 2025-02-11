@@ -221,6 +221,7 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
                 with open(image_file_path, "wb") as f:
                     for chunk in response.iter_bytes():
                         f.write(chunk)
+            break
         except Exception as e:
             print(f"Error downloading image {retry - i} retries left. {e}")
             time.sleep(1)
