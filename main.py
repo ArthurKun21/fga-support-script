@@ -13,6 +13,8 @@ def main():
         print("The other repository was not found.")
         return
 
+    alt_repository_dir = CWD / "fga-old-support"
+
     # Read the old data and compare with the new data
     process.process_servant_data()
 
@@ -54,7 +56,6 @@ def main():
         print("The other repository already has the images.")
 
     try:
-        alt_repository_dir = CWD / "fga-old-support"
         if alt_repository_dir.exists():
             alt_target_directory = alt_repository_dir / "servant"
             shutil.copytree(
