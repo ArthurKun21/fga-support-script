@@ -73,7 +73,7 @@ def servant(
                     image_dir=input_servant_dir,
                     output_dir=output_servant_dir,
                     combine=process_types[2],
-                    is_colored="colored" in process_types[1].name,
+                    is_colored="colored" in process_types[0],
                 )
             except Exception as e:
                 print(f"Error combining images: {e}")
