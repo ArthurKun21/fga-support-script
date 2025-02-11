@@ -24,7 +24,7 @@ def crop_servant_file(
 
             box = (x, y, x + width, y + height)
         else:
-            x = 0
+            x = 3
             width = 125
             height = 44
 
