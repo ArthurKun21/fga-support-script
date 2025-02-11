@@ -39,6 +39,7 @@ def servant(
     legacy_dir_path = CWD / "legacy"
 
     servant_dir_path = input_dir_path / "servant"
+    servant_dir_path.mkdir(exist_ok=True, parents=True)
 
     for input_servant_dir in servant_dir_path.iterdir():
         if input_servant_dir.is_dir():
