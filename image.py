@@ -7,16 +7,27 @@ from PIL import Image
 IMAGE_EXTENSIONS = [".png", ".jpg", ".jpeg"]
 
 
-def crop_file(input_file: Path) -> np.ndarray:
+def crop_file(
+    input_file: Path,
+    combine: bool = True,
+) -> np.ndarray:
     with Image.open(input_file) as img:
         img = img.resize(size=(157, 157), resample=Image.Resampling.LANCZOS)
 
-        x = 3
-        y = 47
-        width = 157
-        height = 50
+        if combine:
+            x = 0
+            y = 47
+            width = 157
+            height = 50
 
-        box = (x, y, x + width, y + height)
+            box = (x, y, x + width, y + height)
+        else:
+            x = 3
+            y = 3
+            width = 125
+            height = 44
+
+            box = (x, y, x + width, y + height)
 
         cropped_img = img.crop(box)
 
@@ -51,14 +62,14 @@ def combine_images(
         file_name = text_files[0].stem
     print(f"Name: {file_name}\tImages: {len(images)}")
 
-    crop_image_list = [crop_file(i) for i in images]
-
     if combine:
+        crop_image_list = [crop_file(i) for i in images]
         combined_img = combine_crop_np(crop_image_list)
 
         output_file = output_dir / f"{file_name}.png"
         cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2GRAY))
     else:
+        crop_image_list = [crop_file(i, combine=False) for i in images]
         for i, img in enumerate(crop_image_list):
             output_file = output_dir / f"{file_name}_{i:03d}.png"
             cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
