@@ -59,28 +59,29 @@ def servant(
     legacy_target_directory = alt_repository_dir / dir_name
 
     for input_servant_dir in servant_raw_path.iterdir():
-        if input_servant_dir.is_dir():
-            try:
-                output_servant_dir = new_processed_path / input_servant_dir.name
-                output_servant_dir.mkdir(exist_ok=True, parents=True)
+        if not input_servant_dir.is_dir():
+            continue
+        try:
+            output_servant_dir = new_processed_path / input_servant_dir.name
+            output_servant_dir.mkdir(exist_ok=True, parents=True)
 
-                image.process_servant(
-                    image_dir=input_servant_dir,
-                    output_dir=output_servant_dir,
-                )
-            except Exception as e:
-                print(f"Error combining images: {e}")
+            image.process_servant(
+                image_dir=input_servant_dir,
+                output_dir=output_servant_dir,
+            )
+        except Exception as e:
+            print(f"Error combining images: {e}")
 
-            try:
-                legacy_servant_dir = legacy_processed_path / input_servant_dir.name
-                legacy_servant_dir.mkdir(exist_ok=True, parents=True)
-                image.process_servant(
-                    image_dir=input_servant_dir,
-                    output_dir=legacy_servant_dir,
-                    combine=False,
-                )
-            except Exception as e:
-                print(f"Error combining legacy images: {e}")
+        try:
+            legacy_servant_dir = legacy_processed_path / input_servant_dir.name
+            legacy_servant_dir.mkdir(exist_ok=True, parents=True)
+            image.process_servant(
+                image_dir=input_servant_dir,
+                output_dir=legacy_servant_dir,
+                combine=False,
+            )
+        except Exception as e:
+            print(f"Error combining legacy images: {e}")
 
     # Move the images to the other repository
     try:
@@ -142,26 +143,27 @@ def craft_essence(
     legacy_target_directory = alt_repository_dir / dir_name
 
     for input_ce_dir in ce_raw_path.iterdir():
-        if input_ce_dir.is_dir():
-            try:
-                output_ce_dir = new_processed_path / input_ce_dir.name
-                output_ce_dir.mkdir(exist_ok=True, parents=True)
+        if not input_ce_dir.is_dir():
+            continue
+        try:
+            output_ce_dir = new_processed_path / input_ce_dir.name
+            output_ce_dir.mkdir(exist_ok=True, parents=True)
 
-                image.process_craft_essence(
-                    image_dir=input_ce_dir,
-                    output_dir=output_ce_dir,
-                    is_new=True,
-                )
-            except Exception as e:
-                print(f"Error combining images: {e}")
+            image.process_craft_essence(
+                image_dir=input_ce_dir,
+                output_dir=output_ce_dir,
+                is_new=True,
+            )
+        except Exception as e:
+            print(f"Error combining images: {e}")
 
-            try:
-                image.process_craft_essence(
-                    image_dir=input_ce_dir,
-                    output_dir=legacy_processed_path,
-                )
-            except Exception as e:
-                print(f"Error combining legacy images: {e}")
+        try:
+            image.process_craft_essence(
+                image_dir=input_ce_dir,
+                output_dir=legacy_processed_path,
+            )
+        except Exception as e:
+            print(f"Error combining legacy images: {e}")
 
     # Move the images to the other repository
     try:
