@@ -53,7 +53,7 @@ def servant(
                 output_servant_dir = new_processed_path / input_servant_dir.name
                 output_servant_dir.mkdir(exist_ok=True, parents=True)
 
-                image.combine_images(
+                image.process_servant(
                     image_dir=input_servant_dir,
                     output_dir=output_servant_dir,
                 )
@@ -63,7 +63,7 @@ def servant(
             try:
                 legacy_servant_dir = legacy_processed_path / input_servant_dir.name
                 legacy_servant_dir.mkdir(exist_ok=True, parents=True)
-                image.combine_images(
+                image.process_servant(
                     image_dir=input_servant_dir,
                     output_dir=legacy_servant_dir,
                     combine=False,

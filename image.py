@@ -8,7 +8,7 @@ from PIL import Image
 IMAGE_EXTENSIONS = [".png", ".jpg", ".jpeg"]
 
 
-def crop_file(
+def crop_servant_file(
     input_file: Path,
     combine: bool = True,
 ) -> np.ndarray:
@@ -42,7 +42,7 @@ def combine_crop_np(crop_image_list: list[np.ndarray]) -> np.ndarray:
     return combined_img
 
 
-def combine_images(
+def process_servant(
     image_dir: Path,
     output_dir: Path,
     combine: bool = True,
@@ -64,7 +64,7 @@ def combine_images(
     print(f"Name: {file_name}\tImages: {len(images)}")
 
     if combine:
-        crop_image_list = [crop_file(i) for i in images]
+        crop_image_list = [crop_servant_file(i) for i in images]
         combined_img = combine_crop_np(crop_image_list)
 
         output_file = output_dir / "support.png"
@@ -76,7 +76,7 @@ def combine_images(
         output_file = output_dir / f"{file_name}.txt"
         output_file.touch(exist_ok=True)
     else:
-        crop_image_list = [crop_file(i, combine=False) for i in images]
+        crop_image_list = [crop_servant_file(i, combine=False) for i in images]
         for i, img in enumerate(crop_image_list):
             output_file = output_dir / f"{file_name}_{i:03d}.png"
             cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
