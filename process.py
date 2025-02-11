@@ -32,11 +32,36 @@ def read_json(file_path: Path):
 
 
 def write_json(file_path: Path, data):
-    with open(file_path, "wb") as f:
-        f.write(orjson.dumps(data, option=orjson.OPT_INDENT_2))
+    try:
+        with open(file_path, "wb") as f:
+            f.write(orjson.dumps(data, option=orjson.OPT_INDENT_2))
+    except FileNotFoundError as e:
+        print(f"Error writing JSON file: {e}")
+    except Exception as e:
+        print(f"Error writing JSON file: {e}")
 
 
 def read_servant_json_file_as_list(data) -> list[dict]:
+    """Process and transform servant JSON data into a standardized list format.
+    This function takes raw servant data, sorts it by collection number, and processes
+    each servant entry to create a standardized format with specific naming conventions
+    and asset organization.
+    Args:
+        data (list[dict]): Raw servant data as a list of dictionaries.
+    Returns:
+        list[dict]: A list of processed servant dictionaries containing:
+            - servant_id (int): Collection number of the servant
+            - name (str): Processed name of the servant
+            - className (str): Capitalized class name
+            - rarity (int): Servant rarity
+            - assets (dict): Dictionary of servant face assets
+    Notes:
+        - Filters out non-playable servant types
+        - Handles special cases for certain servants (BB, Hakuno, Ereshkigal)
+        - Standardizes class names (Moon Cancer, Alter Ego)
+        - Adds class name to servant name if duplicate exists
+        - Writes processed data to 'incoming.json'
+    """
     sorted_data = sorted(data, key=lambda x: x["collectionNo"])
 
     append_list = []
