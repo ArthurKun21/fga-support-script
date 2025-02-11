@@ -11,4 +11,6 @@ wheels/
 
 /input/*
 /output/*
+/legacy/*
 nice_servant_lang_en.json
+basic_equip_lang_en.json
