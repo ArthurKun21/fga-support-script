@@ -367,6 +367,24 @@ def process_servant_data():
 
 
 def read_ce_json_file_as_list(data) -> list[dict]:
+    """Process and transform CE (Craft Essence) JSON data into a standardized list format.
+    This function takes raw CE data, sorts it by collection number, and processes each entry
+    to create a simplified data structure with essential CE information.
+    Args:
+        data (list[dict]): Raw CE JSON data containing craft essence information.
+                           Each dict should have 'collectionNo', 'name', 'face', and 'rarity' fields.
+    Returns:
+        list[dict]: List of processed CE dictionaries with the following structure:
+                    - ce_id (int): Collection number/ID of the craft essence
+                    - name (str): Processed name of the craft essence
+                    - face (str): Face/image reference of the craft essence
+                    - rarity (int): Rarity level of the craft essence
+    Side Effects:
+        - Writes the processed data to 'incoming_ce.json' in the current working directory
+    Notes:
+        - Entries with collectionNo = 0 are skipped
+        - Names are preprocessed using the preprocess_name function
+    """
     sorted_data = sorted(data, key=lambda x: x["collectionNo"])
 
     append_list = []
@@ -399,6 +417,25 @@ def read_ce_json_file_as_list(data) -> list[dict]:
 
 
 def compare_and_update_ce(old_data: list[dict], new_data: list[dict]):
+    """
+    Compare old and new craft essence data and update the database with any new entries.
+    This function compares two lists of craft essence dictionaries, identifies new entries,
+    downloads associated images for new craft essences, and updates the database file.
+    Args:
+        old_data (list[dict]): List of dictionaries containing existing craft essence data
+        new_data (list[dict]): List of dictionaries containing new craft essence data to compare against
+    Each dictionary in the lists should contain:
+        - ce_id (int): Unique identifier for the craft essence
+        - name (str): Name of the craft essence
+        - face (str): URL to the craft essence image
+    The function will:
+    1. Check for new craft essences by comparing IDs
+    2. Download images for new craft essences
+    3. Update the ce_data.json file with the new data
+    Note:
+        Requires the download_image_and_save function and write_json function to be defined
+        Assumes CWD (current working directory) is defined as a Path object
+    """
     old_data_copy = old_data.copy()
     new_data_copy = new_data.copy()
 
