@@ -148,6 +148,19 @@ def read_servant_json_file_as_list(data) -> list[dict]:
 
 
 def process_data_for_comparison(data: list[dict]) -> list[dict]:
+    """
+    Processes a list of servant dictionaries to extract specific fields for comparison.
+    Args:
+        data (list[dict]): List of dictionaries containing servant data with at least
+                           'servant_id', 'name', and 'assets' fields.
+    Returns:
+        list[dict]: List of processed servant dictionaries containing only the
+                    'servant_id', 'name', and 'assets' fields.
+    Example:
+        >>> servants = [{'servant_id': 1, 'name': 'Saber', 'assets': {...}, 'other': 'data'}]
+        >>> process_data_for_comparison(servants)
+        [{'servant_id': 1, 'name': 'Saber', 'assets': {...}}]
+    """
     processed_data = []
 
     for servant in data:
@@ -163,6 +176,24 @@ def process_data_for_comparison(data: list[dict]) -> list[dict]:
 
 
 def download_image_and_save(name: str, id: int, url: str, dir_type: str):
+    """Downloads an image from a URL and saves it to a local directory.
+    This function downloads an image from a specified URL, creates a directory with the given name
+    and ID, saves the image in that directory, and creates an accompanying text file. It includes
+    retry logic for failed downloads and implements rate limiting to prevent server overload.
+    Args:
+        name (str): The name to be used for the directory (will be sanitized for Windows compatibility)
+        id (int): Numerical identifier used in directory and file naming
+        url (str): URL of the image to download
+        dir_type (str): Type of directory to organize the downloaded content
+    Raises:
+        Exception: If download fails after all retry attempts
+    Note:
+        - Creates directory structure: CWD/input/dir_type/id_name/
+        - Sanitizes directory names for Windows compatibility
+        - Implements 3 retry attempts with 1 second delay between retries
+        - Includes 0.5 second delay after successful download for rate limiting
+        - Creates an empty text file alongside the downloaded image
+    """
     file_name_from_url = url.split("/")[-1]
 
     # Sanitize the 'name' to ensure it's a valid Windows directory name
@@ -197,6 +228,32 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
 
 
 def compare_and_update_servant(old_data: list[dict], new_data: list[dict]):
+    """
+    Compare old and new servant data to detect and process updates and additions.
+    This function compares two lists of servant dictionaries to identify new servants
+    and servants with new assets. For any changes found, it downloads and saves the
+    new image assets.
+    Args:
+        old_data (list[dict]): List of dictionaries containing previous servant data
+        new_data (list[dict]): List of dictionaries containing current servant data
+    Each servant dictionary is expected to have the following structure:
+        {
+            "servant_id": int,
+            "name": str,
+            "assets": {
+                "asset_key": "url_string"
+            }
+        }
+    Side Effects:
+        - Downloads and saves new servant images to filesystem
+        - Updates servant_data.json with new data
+        - Prints status messages to console for new servants and asset updates
+    Note:
+        This function relies on external functions:
+        - process_data_for_comparison()
+        - download_image_and_save()
+        - write_json()
+    """
     old_data_processed = process_data_for_comparison(old_data)
     new_data_processed = process_data_for_comparison(new_data)
 
