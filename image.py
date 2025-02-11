@@ -67,7 +67,7 @@ def combine_images(
         crop_image_list = [crop_file(i) for i in images]
         combined_img = combine_crop_np(crop_image_list)
 
-        output_file = output_dir / f"{file_name}.png"
+        output_file = output_dir / "support.png"
         cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2GRAY))
 
         if re.search(r"\d{3}_", file_name):
