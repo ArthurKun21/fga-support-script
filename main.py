@@ -144,7 +144,7 @@ def craft_essence(
                     image_dir=input_ce_dir,
                     output_dir=process_types[1],
                     is_new=process_types[2],
-                    is_colored="colored" in process_types[1].name,
+                    is_colored="colored" in process_types[0],
                 )
             except Exception as e:
                 print(f"Error combining images: {e}")
