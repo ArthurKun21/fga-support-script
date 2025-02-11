@@ -175,6 +175,9 @@ def craft_essence(
 def parse_args():
     parser = argparse.ArgumentParser(description="FGO support automation script")
     parser.add_argument("--servant", action="store_true", help="Process servant images")
+    parser.add_argument(
+        "--delete", action="store_true", help="Delete the output Repository"
+    )
     return parser.parse_args()
 
 
@@ -187,6 +190,28 @@ def main():
         return
 
     alt_repository_dir = CWD / "fga-old-support"
+
+    if args.delete:
+        try:
+            for directory in [
+                main_repository_dir_path / "servant",
+                main_repository_dir_path / "servant-colored",
+                main_repository_dir_path / "craft_essence",
+                main_repository_dir_path / "craft_essence-colored",
+                alt_repository_dir / "servant",
+                alt_repository_dir / "servant-colored",
+                alt_repository_dir / "craft_essence",
+                alt_repository_dir / "craft_essence-colored",
+            ]:
+                if directory.exists():
+                    for item in directory.iterdir():
+                        if item.is_file():
+                            item.unlink()
+                        elif item.is_dir():
+                            shutil.rmtree(item)
+        except Exception as e:
+            print(f"Error deleting the output Repository: {e}")
+        return
 
     input_dir_path = CWD / "input"
 
