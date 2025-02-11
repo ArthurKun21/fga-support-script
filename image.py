@@ -106,11 +106,7 @@ def process_servant(
             cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
 
 
-def process_craft_essence(
-    image_dir: Path,
-    output_dir: Path,
-    is_legacy: bool = False,
-):
+def process_craft_essence(image_dir: Path, output_dir: Path, is_new: bool = False):
     images = [
         i for i in image_dir.iterdir() if i.is_file() and i.suffix in IMAGE_EXTENSIONS
     ]
@@ -129,11 +125,14 @@ def process_craft_essence(
 
     crop_image_list = [crop_craft_essence_file(i) for i in images]
     for i, img in enumerate(crop_image_list):
-        output_file = output_dir / f"{file_name}_{i:03d}.png"
+        if is_new:
+            output_file = output_dir / f"{i:03d}_ce.png"
+        else:
+            output_file = output_dir / f"{file_name}_{i:03d}.png"
         cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
 
-    if is_legacy:
-        if re.search(r"\d{3}_", file_name):
+    if is_new:
+        if re.search(r"\d{4}_", file_name):
             file_name = re.sub(r"\d{4}_", "", file_name)
         output_file = output_dir / f"{file_name}.txt"
         output_file.touch(exist_ok=True)

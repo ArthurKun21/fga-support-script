@@ -135,6 +135,7 @@ def craft_essence(
                 image.process_craft_essence(
                     image_dir=input_ce_dir,
                     output_dir=output_ce_dir,
+                    is_new=True,
                 )
             except Exception as e:
                 print(f"Error combining images: {e}")
@@ -145,7 +146,6 @@ def craft_essence(
                 image.process_craft_essence(
                     image_dir=input_ce_dir,
                     output_dir=legacy_ce_dir,
-                    is_legacy=True,
                 )
             except Exception as e:
                 print(f"Error combining legacy images: {e}")
