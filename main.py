@@ -47,6 +47,10 @@ def servant(
         "legacy": legacy_dir_path / dir_name,
         "main": main_repository_dir_path / dir_name,
         "alt": alt_repository_dir / dir_name,
+        "output-colored": output_dir_path / f"{dir_name}-colored",
+        "legacy-colored": legacy_dir_path / f"{dir_name}-colored",
+        "main-colored": main_repository_dir_path / f"{dir_name}-colored",
+        "alt-colored": alt_repository_dir / f"{dir_name}-colored",
     }
     for path in paths.values():
         path.mkdir(exist_ok=True, parents=True)
@@ -58,6 +62,8 @@ def servant(
         for process_types in [
             ("new", paths["output"], True),
             ("legacy", paths["legacy"], False),
+            ("new-colored", paths["output-colored"], True),
+            ("legacy-colored", paths["legacy-colored"], False),
         ]:
             output_servant_dir = process_types[1] / input_servant_dir.name
             output_servant_dir.mkdir(exist_ok=True, parents=True)
@@ -67,6 +73,7 @@ def servant(
                     image_dir=input_servant_dir,
                     output_dir=output_servant_dir,
                     combine=process_types[2],
+                    is_colored="colored" in process_types[1].name,
                 )
             except Exception as e:
                 print(f"Error combining images: {e}")
@@ -74,8 +81,10 @@ def servant(
     for target in [
         ("main", paths["output"], paths["main"]),
         ("alt", paths["legacy"], paths["alt"]),
+        ("main-colored", paths["output-colored"], paths["main-colored"]),
+        ("alt-colored", paths["legacy-colored"], paths["alt-colored"]),
     ]:
-        if target[0] == "alt" and not alt_repository_dir.exists():
+        if "alt" in target[0] and not alt_repository_dir.exists():
             continue
 
         try:
@@ -114,7 +123,6 @@ def craft_essence(
     }
     for path in paths.values():
         path.mkdir(exist_ok=True, parents=True)
-
 
     for input_ce_dir in paths["input"].iterdir():
         if not input_ce_dir.is_dir():
