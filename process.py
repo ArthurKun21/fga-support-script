@@ -303,8 +303,7 @@ def compare_and_update_servant(old_data: list[dict], new_data: list[dict]):
     write_json(CWD / "servant_data.json", new_data)
 
 
-def read_the_old_data() -> list[dict]:
-    file_path = CWD / "servant_data.json"
+def read_the_old_data(file_path: Path) -> list[dict]:
     if not file_path.exists():
         print("Old data not found.")
         return []
@@ -353,9 +352,93 @@ def process_servant_data():
     new_servant_json = read_json(servant_file_path)
     new_servant_data = read_servant_json_file_as_list(new_servant_json)
 
-    old_servant_data = read_the_old_data()
+    old_servant_data = read_the_old_data(file_path=CWD / "servant_data.json")
 
     compare_and_update_servant(old_servant_data, new_servant_data)
+
+    end_time = time.perf_counter()
+
+    print(f"Time taken: {end_time - start_time:.2f} seconds")
+
+
+def read_ce_json_file_as_list(data) -> list[dict]:
+    sorted_data = sorted(data, key=lambda x: x["collectionNo"])
+
+    append_list = []
+
+    json_dict: dict
+    for json_dict in sorted_data:
+        collectionNo = json_dict.get("collectionNo", 0)
+        if collectionNo == 0:
+            continue
+
+        name = json_dict.get("name", "")
+
+        name = preprocess_name(name)
+
+        face = json_dict.get("face", "")
+
+        rarity = json_dict.get("rarity", 1)
+
+        new_data = {
+            "ce_id": collectionNo,
+            "name": name,
+            "face": face,
+            "rarity": rarity,
+        }
+        append_list.append(new_data)
+
+    write_json(CWD / "incoming_ce.json", append_list)
+
+    return append_list
+
+
+def compare_and_update_ce(old_data: list[dict], new_data: list[dict]):
+    old_data_copy = old_data.copy()
+    new_data_copy = new_data.copy()
+
+    for new_ce in new_data_copy:
+        is_new_ce = True
+
+        ce_id = new_ce.get("ce_id", 0)
+        name = new_ce.get("name", "")
+
+        face = new_ce.get("face", "")
+
+        for old_ce in old_data_copy:
+            if new_ce["ce_id"] == old_ce["ce_id"]:
+                is_new_ce = False
+                old_data_copy.remove(old_ce)
+                break
+        if is_new_ce and len(face) > 0:
+            print(f"New craft essence found: {new_ce['name']}")
+
+            download_image_and_save(
+                name=name,
+                id=ce_id,
+                url=face,
+                dir_type="craft_essence",
+            )
+
+    write_json(CWD / "ce_data.json", new_data)
+
+
+def process_craft_essence_data():
+    start_time = time.perf_counter()
+
+    ce_file_path = download_data_from_atlas(
+        url="https://api.atlasacademy.io/export/JP/basic_equip_lang_en.json",
+        file_path=CWD / "nice_servant_lang_en.json",
+    )
+    if not ce_file_path:
+        print("Exiting...")
+        exit()
+    new_ce_json = read_json(ce_file_path)
+    new_ce_data = read_ce_json_file_as_list(new_ce_json)
+
+    old_ce_data = read_the_old_data(file_path=CWD / "ce_data.json")
+
+    compare_and_update_ce(old_ce_data, new_ce_data)
 
     end_time = time.perf_counter()
 
