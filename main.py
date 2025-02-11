@@ -22,7 +22,7 @@ def main():
     # Read the old data and compare with the new data
     process.process_servant_data()
 
-    alternative_dir_path = CWD / "alternative"
+    legacy_dir_path = CWD / "legacy"
 
     servant_dir_path = input_dir_path / "servant"
 
@@ -36,11 +36,11 @@ def main():
                 output_dir=output_servant_dir_path,
             )
 
-            alt_servant_dir = alternative_dir_path / input_servant_dir.name
-            alt_servant_dir.mkdir(exist_ok=True, parents=True)
+            legacy_servant_dir = legacy_dir_path / input_servant_dir.name
+            legacy_servant_dir.mkdir(exist_ok=True, parents=True)
             image.combine_images(
                 image_dir=input_servant_dir,
-                output_dir=alt_servant_dir,
+                output_dir=legacy_servant_dir,
                 combine=False,
             )
 
@@ -59,7 +59,7 @@ def main():
         if alt_repository_dir.exists():
             alt_target_directory = alt_repository_dir / "servant"
             shutil.copytree(
-                alternative_dir_path,
+                legacy_dir_path,
                 alt_target_directory,
                 dirs_exist_ok=True,
             )
