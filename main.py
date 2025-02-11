@@ -200,6 +200,13 @@ def main():
         alt_repository_dir=alt_repository_dir,
     )
 
+    craft_essence(
+        input_dir_path=input_dir_path,
+        output_dir_path=output_dir_path,
+        main_repository_dir_path=main_repository_dir_path,
+        alt_repository_dir=alt_repository_dir,
+    )
+
 
 if __name__ == "__main__":
     main()
