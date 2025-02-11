@@ -102,6 +102,60 @@ def servant(
         print(f"Error moving images to the alternative repository: {e}")
 
 
+def craft_essence(
+    input_dir_path: Path,
+    output_dir_path: Path,
+    main_repository_dir_path: Path,
+    alt_repository_dir: Path,
+):
+    # Read the old data and compare with the new data
+    process.process_craft_essence_data()
+
+    ce_raw_path = input_dir_path / "craft_essence"
+    ce_raw_path.mkdir(exist_ok=True, parents=True)
+
+    new_processed_path = output_dir_path / "craft_essence"
+    new_processed_path.mkdir(exist_ok=True, parents=True)
+
+    for input_ce_dir in ce_raw_path.iterdir():
+        if input_ce_dir.is_dir():
+            try:
+                output_servant_dir = new_processed_path / input_ce_dir.name
+                output_servant_dir.mkdir(exist_ok=True, parents=True)
+            except Exception as e:
+                print(f"Error combining images: {e}")
+
+    # Move the images to the other repository
+    try:
+        target_directory = main_repository_dir_path / "craft_essence"
+        shutil.copytree(
+            new_processed_path,
+            target_directory,
+            dirs_exist_ok=True,
+        )
+    except FileExistsError:
+        print("The other repository already has the images.")
+    except FileNotFoundError:
+        print("The other repository was not found.")
+    except Exception as e:
+        print(f"Error moving images to the other repository: {e}")
+
+    try:
+        if alt_repository_dir.exists():
+            alt_target_directory = alt_repository_dir / "craft_essence"
+            shutil.copytree(
+                new_processed_path,
+                alt_target_directory,
+                dirs_exist_ok=True,
+            )
+    except FileExistsError:
+        print("The alternative repository already has the images.")
+    except FileNotFoundError:
+        print("The alternative repository was not found.")
+    except Exception as e:
+        print(f"Error moving images to the alternative repository: {e}")
+
+
 def main():
     main_repository_dir_path = CWD / "fga-support"
     if not main_repository_dir_path.exists():
