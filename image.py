@@ -44,7 +44,7 @@ def combine_crop_np(crop_image_list: list[np.ndarray]) -> np.ndarray:
 def combine_images(
     image_dir: Path,
     output_dir: Path,
-    combine: bool = False,
+    combine: bool = True,
 ):
     images = [
         i for i in image_dir.iterdir() if i.is_file() and i.suffix in IMAGE_EXTENSIONS
