@@ -56,7 +56,7 @@ def main():
     try:
         alt_repository_dir = CWD / "fga-old-support"
         if alt_repository_dir.exists():
-            alt_target_directory = alt_repository_dir / "alternative"
+            alt_target_directory = alt_repository_dir / "servant"
             shutil.copytree(
                 alternative_dir_path,
                 alt_target_directory,
