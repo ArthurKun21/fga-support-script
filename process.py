@@ -146,10 +146,9 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
     sanitized_name = sanitized_name.strip()
 
     image_dir_path = CWD / "input" / dir_type / f"{id:03d}_{sanitized_name}"
+    image_dir_path.mkdir(parents=True, exist_ok=True)
 
     image_file_path = image_dir_path / file_name_from_url
-
-    image_dir_path.mkdir(parents=True, exist_ok=True)
 
     print(f"Downloading image: {file_name_from_url}")
 
