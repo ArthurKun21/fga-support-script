@@ -14,16 +14,16 @@ def crop_file(
     with Image.open(input_file) as img:
         img = img.resize(size=(157, 157), resample=Image.Resampling.LANCZOS)
 
+        y = 47
+
         if combine:
             x = 0
-            y = 47
             width = 157
             height = 50
 
             box = (x, y, x + width, y + height)
         else:
-            x = 3
-            y = 3
+            x = 0
             width = 125
             height = 44
 
