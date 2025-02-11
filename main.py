@@ -54,6 +54,10 @@ def main():
         )
     except FileExistsError:
         print("The other repository already has the images.")
+    except FileNotFoundError:
+        print("The other repository was not found.")
+    except Exception as e:
+        print(f"Error moving images to the other repository: {e}")
 
     try:
         if alt_repository_dir.exists():
@@ -65,6 +69,10 @@ def main():
             )
     except FileExistsError:
         print("The alternative repository already has the images.")
+    except FileNotFoundError:
+        print("The alternative repository was not found.")
+    except Exception as e:
+        print(f"Error moving images to the alternative repository: {e}")
 
 
 if __name__ == "__main__":
