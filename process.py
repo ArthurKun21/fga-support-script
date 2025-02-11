@@ -144,9 +144,11 @@ def download_image_and_save(name: str, id: int, url: str):
     invalid_chars_pattern = r'[<>:"/\\|?*\x00-\x1f]|\.$'
     sanitized_name = re.sub(invalid_chars_pattern, "", name)
 
-    image_file_path = CWD / "input" / f"{id:03d}_{sanitized_name}" / file_name_from_url
+    image_dir_path = CWD / "input" / f"{id:03d}_{sanitized_name}"
 
-    image_file_path.parent.mkdir(parents=True, exist_ok=True)
+    image_file_path = image_dir_path / file_name_from_url
+
+    image_dir_path.mkdir(parents=True, exist_ok=True)
 
     print(f"Downloading image: {file_name_from_url}")
 
@@ -165,8 +167,8 @@ def download_image_and_save(name: str, id: int, url: str):
     # To prevent spamming the server
     time.sleep(0.5)
 
-    file_name_text = image_file_path.parent / f"{id:03d}_{sanitized_name}.txt"
-    file_name_text.touch(exist_ok=True)
+    file_name_text_path = image_dir_path / f"{id:03d}_{sanitized_name}.txt"
+    file_name_text_path.touch(exist_ok=True)
 
 
 def compare_and_update(old_data: list[dict], new_data: list[dict]):

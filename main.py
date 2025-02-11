@@ -7,31 +7,31 @@ CWD = Path(__file__).parent
 
 
 def main():
-    other_repository_dir = CWD / "fga-support"
-    if not other_repository_dir.exists():
+    other_repository_dir_path = CWD / "fga-support"
+    if not other_repository_dir_path.exists():
         print("The other repository was not found.")
         return
 
     # Read the old data and compare with the new data
     process.process_data()
 
-    input_directory = CWD / "input"
+    input_dir_path = CWD / "input"
 
-    output_directory = CWD / "output"
+    output_dir_path = CWD / "output"
 
-    alternative_directory = CWD / "alternative"
+    alternative_dir_path = CWD / "alternative"
 
-    for servant_dir in input_directory.iterdir():
+    for servant_dir in input_dir_path.iterdir():
         if servant_dir.is_dir():
-            output_servant_dir = output_directory / servant_dir.name
-            output_servant_dir.mkdir(exist_ok=True, parents=True)
+            output_servant_dir_path = output_dir_path / servant_dir.name
+            output_servant_dir_path.mkdir(exist_ok=True, parents=True)
 
             image.combine_images(
                 image_dir=servant_dir,
-                output_dir=output_servant_dir,
+                output_dir=output_servant_dir_path,
             )
 
-            alt_servant_dir = alternative_directory / servant_dir.name
+            alt_servant_dir = alternative_dir_path / servant_dir.name
             alt_servant_dir.mkdir(exist_ok=True, parents=True)
             image.combine_images(
                 image_dir=servant_dir,
@@ -41,9 +41,9 @@ def main():
 
     # Move the images to the other repository
     try:
-        target_directory = other_repository_dir / "servant"
+        target_directory = other_repository_dir_path / "servant"
         shutil.copytree(
-            output_directory,
+            output_dir_path,
             target_directory,
             dirs_exist_ok=True,
         )
@@ -55,7 +55,7 @@ def main():
         if alt_repository_dir.exists():
             alt_target_directory = alt_repository_dir / "alternative"
             shutil.copytree(
-                alternative_directory,
+                alternative_dir_path,
                 alt_target_directory,
                 dirs_exist_ok=True,
             )
