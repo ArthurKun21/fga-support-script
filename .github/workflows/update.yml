@@ -36,7 +36,12 @@ jobs:
         run: |
           uv sync
 
-      - name: Run Python Script
+      - name: Run Python Script for Servant
+        run: |
+          uv run main.py --servant
+
+      - name: Run Python Script for CE
+        if: ${{ always() }}
         run: |
           uv run main.py
 

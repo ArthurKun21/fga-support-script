@@ -1,6 +1,7 @@
 import shutil
 from pathlib import Path
 
+import argparse
 import image
 import process
 
@@ -181,7 +182,15 @@ def craft_essence(
         print(f"Error moving images to the alternative repository: {e}")
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="FGO support automation script")
+    parser.add_argument("--servant", action="store_true", help="Process servant images")
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+
     main_repository_dir_path = CWD / "fga-support"
     if not main_repository_dir_path.exists():
         print("The other repository was not found.")
@@ -193,19 +202,20 @@ def main():
 
     output_dir_path = CWD / "output"
 
-    servant(
-        input_dir_path=input_dir_path,
-        output_dir_path=output_dir_path,
-        main_repository_dir_path=main_repository_dir_path,
-        alt_repository_dir=alt_repository_dir,
-    )
-
-    craft_essence(
-        input_dir_path=input_dir_path,
-        output_dir_path=output_dir_path,
-        main_repository_dir_path=main_repository_dir_path,
-        alt_repository_dir=alt_repository_dir,
-    )
+    if args.servant:
+        servant(
+            input_dir_path=input_dir_path,
+            output_dir_path=output_dir_path,
+            main_repository_dir_path=main_repository_dir_path,
+            alt_repository_dir=alt_repository_dir,
+        )
+    else:
+        craft_essence(
+            input_dir_path=input_dir_path,
+            output_dir_path=output_dir_path,
+            main_repository_dir_path=main_repository_dir_path,
+            alt_repository_dir=alt_repository_dir,
+        )
 
 
 if __name__ == "__main__":
