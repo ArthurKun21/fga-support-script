@@ -212,7 +212,7 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
 
     image_file_path = image_dir_path / file_name_from_url
 
-    print(f"Downloading image: {file_name_from_url}")
+    print(f"Downloading image: {id} {file_name_from_url}")
 
     retry = 3
     for i in range(retry):
