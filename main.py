@@ -41,16 +41,21 @@ def servant(
 
     legacy_dir_path = CWD / "legacy"
 
+    # INPUT
     servant_raw_path = input_dir_path / dir_name
     servant_raw_path.mkdir(exist_ok=True, parents=True)
 
+    # OUTPUT
     new_processed_path = output_dir_path / dir_name
     new_processed_path.mkdir(exist_ok=True, parents=True)
 
+    # LEGACY OUTPUT
     legacy_processed_path = legacy_dir_path / dir_name
     legacy_processed_path.mkdir(exist_ok=True, parents=True)
 
+    # FGA-SUPPORT-PREVIEW
     target_directory = main_repository_dir_path / dir_name
+    # FGA-SUPPORT
     legacy_target_directory = alt_repository_dir / dir_name
 
     for input_servant_dir in servant_raw_path.iterdir():
@@ -119,16 +124,21 @@ def craft_essence(
 
     legacy_dir_path = CWD / "legacy"
 
+    # INPUT
     ce_raw_path = input_dir_path / dir_name
     ce_raw_path.mkdir(exist_ok=True, parents=True)
 
+    # OUTPUT
     new_processed_path = output_dir_path / dir_name
     new_processed_path.mkdir(exist_ok=True, parents=True)
 
+    # LEGACY OUTPUT
     legacy_processed_path = legacy_dir_path / dir_name
     legacy_processed_path.mkdir(exist_ok=True, parents=True)
 
+    # FGA-SUPPORT-PREVIEW
     target_directory = main_repository_dir_path / dir_name
+    # FGA-SUPPORT
     legacy_target_directory = alt_repository_dir / dir_name
 
     for input_ce_dir in ce_raw_path.iterdir():
