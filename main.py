@@ -127,6 +127,9 @@ def craft_essence(
     legacy_processed_path = legacy_dir_path / dir_name
     legacy_processed_path.mkdir(exist_ok=True, parents=True)
 
+    target_directory = main_repository_dir_path / dir_name
+    legacy_target_directory = alt_repository_dir / dir_name
+
     for input_ce_dir in ce_raw_path.iterdir():
         if input_ce_dir.is_dir():
             try:
@@ -153,7 +156,6 @@ def craft_essence(
 
     # Move the images to the other repository
     try:
-        target_directory = main_repository_dir_path / dir_name
         shutil.copytree(
             new_processed_path,
             target_directory,
@@ -168,10 +170,9 @@ def craft_essence(
 
     try:
         if alt_repository_dir.exists():
-            alt_target_directory = alt_repository_dir / dir_name
             shutil.copytree(
                 legacy_processed_path,
-                alt_target_directory,
+                legacy_target_directory,
                 dirs_exist_ok=True,
             )
     except FileExistsError:
