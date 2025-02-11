@@ -38,24 +38,30 @@ def servant(
 
     legacy_dir_path = CWD / "legacy"
 
-    servant_dir_path = input_dir_path / "servant"
-    servant_dir_path.mkdir(exist_ok=True, parents=True)
+    servant_raw_path = input_dir_path / "servant"
+    servant_raw_path.mkdir(exist_ok=True, parents=True)
 
-    for input_servant_dir in servant_dir_path.iterdir():
+    new_processed_path = output_dir_path / "servant"
+    new_processed_path.mkdir(exist_ok=True, parents=True)
+
+    legacy_processed_path = legacy_dir_path / "servant"
+    legacy_processed_path.mkdir(exist_ok=True, parents=True)
+
+    for input_servant_dir in servant_raw_path.iterdir():
         if input_servant_dir.is_dir():
             try:
-                output_servant_dir_path = output_dir_path / input_servant_dir.name
-                output_servant_dir_path.mkdir(exist_ok=True, parents=True)
+                output_servant_dir = new_processed_path / input_servant_dir.name
+                output_servant_dir.mkdir(exist_ok=True, parents=True)
 
                 image.combine_images(
                     image_dir=input_servant_dir,
-                    output_dir=output_servant_dir_path,
+                    output_dir=output_servant_dir,
                 )
             except Exception as e:
                 print(f"Error combining images: {e}")
 
             try:
-                legacy_servant_dir = legacy_dir_path / input_servant_dir.name
+                legacy_servant_dir = legacy_processed_path / input_servant_dir.name
                 legacy_servant_dir.mkdir(exist_ok=True, parents=True)
                 image.combine_images(
                     image_dir=input_servant_dir,
