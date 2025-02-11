@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 import cv2
@@ -68,6 +69,12 @@ def combine_images(
 
         output_file = output_dir / f"{file_name}.png"
         cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2GRAY))
+
+        if re.search(r"\d{3}_", file_name):
+            file_name = re.sub(r"\d{3}_", "", file_name)
+
+        output_file = output_dir / f"{file_name}.txt"
+        output_file.touch(exist_ok=True)
     else:
         crop_image_list = [crop_file(i, combine=False) for i in images]
         for i, img in enumerate(crop_image_list):
