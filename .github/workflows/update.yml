@@ -64,7 +64,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
 
-      - name: Update the Servant Data
+      - name: Commit and Push to legacy
+        run: |
+          cd fga-old-support
+          # Use ISO-8601 format for consistency
+          CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          git add -A
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update ${CURRENT_DATE_TIME}"
+            git push || exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
+
+      - name: Update the Servant and CE Data
         run: |
           # Use ISO-8601 format for consistency
           CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
