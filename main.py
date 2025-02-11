@@ -156,11 +156,9 @@ def craft_essence(
                 print(f"Error combining images: {e}")
 
             try:
-                legacy_ce_dir = legacy_processed_path / input_ce_dir.name
-                legacy_ce_dir.mkdir(exist_ok=True, parents=True)
                 image.process_craft_essence(
                     image_dir=input_ce_dir,
-                    output_dir=legacy_ce_dir,
+                    output_dir=legacy_processed_path,
                 )
             except Exception as e:
                 print(f"Error combining legacy images: {e}")
