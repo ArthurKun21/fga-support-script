@@ -70,6 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
 
       - name: Commit and Push to legacy
+        if: ${{ always() }}
         run: |
           cd fga-old-support
           # Use ISO-8601 format for consistency
