@@ -282,15 +282,13 @@ def compare_and_update_servant(old_data: list[dict], new_data: list[dict]):
                 if len(new_servant_assets) != len(old_servant_assets):
                     print(f"Servant {new_servant['name']} has new assets. Updating...")
 
-                    # Find the new assets
-                    for key, value in new_servant_assets.items():
-                        if key not in old_servant_assets:
-                            download_image_and_save(
-                                name=new_servant_name,
-                                id=new_servant_id,
-                                url=value,
-                                dir_type="servant",
-                            )
+                    for value in new_servant_assets.values():
+                        download_image_and_save(
+                            name=new_servant_name,
+                            id=new_servant_id,
+                            url=value,
+                            dir_type="servant",
+                        )
 
                 is_new_servant = False
 
