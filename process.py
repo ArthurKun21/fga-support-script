@@ -364,7 +364,7 @@ def process_servant_data():
 
     end_time = time.perf_counter()
 
-    print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Time takenfor Servant: {end_time - start_time:.2f} seconds")
 
 
 def read_ce_json_file_as_list(data) -> list[dict]:
@@ -485,4 +485,4 @@ def process_craft_essence_data():
 
     end_time = time.perf_counter()
 
-    print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Time taken for CE: {end_time - start_time:.2f} seconds")
