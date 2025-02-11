@@ -41,7 +41,7 @@ jobs:
           uv run main.py --servant
 
       - name: Run Python Script for CE
-        if: ${{ always() }}
+        if: success() || failure()
         run: |
           uv run main.py
 
