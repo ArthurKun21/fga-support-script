@@ -35,6 +35,12 @@ jobs:
       - name: Install dependencies
         run: |
           uv sync
+      
+      - name: Cache directory
+        uses: actions/cache@v4
+        with:
+          path: input
+          key: ${{ runner.os }}-input-${{ hashFiles('input') }}
 
       - name: Run Python Script for Servant
         run: |
