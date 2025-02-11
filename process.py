@@ -9,6 +9,9 @@ import orjson
 
 CWD = Path(__file__).parent
 
+# Sanitize the 'name' to ensure it's a valid Windows directory name
+INVALID_CHARS_PATTERN = r'[<>:"/\\|?*\x00-\x1f]|\.$'
+
 
 def preprocess_name(input_str) -> str:
     """Removes accents from a string using unicode normalization.
@@ -196,9 +199,7 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
     """
     file_name_from_url = url.split("/")[-1]
 
-    # Sanitize the 'name' to ensure it's a valid Windows directory name
-    invalid_chars_pattern = r'[<>:"/\\|?*\x00-\x1f]|\.$'
-    sanitized_name = re.sub(invalid_chars_pattern, " ", name)
+    sanitized_name = re.sub(INVALID_CHARS_PATTERN, " ", name)
     sanitized_name = sanitized_name.strip()
 
     image_dir_path = CWD / "input" / dir_type / f"{id:03d}_{sanitized_name}"
