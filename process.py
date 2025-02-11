@@ -212,6 +212,9 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
 
     image_file_path = image_dir_path / file_name_from_url
 
+    file_name_text_path = image_dir_path / f"{final_name}.txt"
+    file_name_text_path.touch(exist_ok=True)
+
     print(f"Downloading image: {id} {file_name_from_url}")
 
     retry = 3
@@ -229,9 +232,6 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
 
     # To prevent spamming the server
     time.sleep(0.5)
-
-    file_name_text_path = image_dir_path / f"{final_name}.txt"
-    file_name_text_path.touch(exist_ok=True)
 
 
 def compare_and_update_servant(old_data: list[dict], new_data: list[dict]):
