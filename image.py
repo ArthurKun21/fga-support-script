@@ -106,7 +106,7 @@ def process_servant(
     else:
         crop_image_list = [crop_servant_file(i, combine=False) for i in images]
         for i, img in enumerate(crop_image_list):
-            output_file = output_dir / f"{file_name}_{i:03d}.png"
+            output_file = output_dir / f"{i:03d}.png"
             if is_colored:
                 cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
             else:
