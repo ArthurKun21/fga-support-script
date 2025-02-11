@@ -202,7 +202,12 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
     sanitized_name = re.sub(INVALID_CHARS_PATTERN, " ", name)
     sanitized_name = sanitized_name.strip()
 
-    image_dir_path = CWD / "input" / dir_type / f"{id:03d}_{sanitized_name}"
+    if dir_type.lower() == "servant":
+        final_name = f"{id:03d}_{sanitized_name}"
+    else:
+        final_name = f"{id:04d}_{sanitized_name}"
+
+    image_dir_path = CWD / "input" / dir_type / final_name
     image_dir_path.mkdir(parents=True, exist_ok=True)
 
     image_file_path = image_dir_path / file_name_from_url
@@ -224,7 +229,7 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
     # To prevent spamming the server
     time.sleep(0.5)
 
-    file_name_text_path = image_dir_path / f"{id:03d}_{sanitized_name}.txt"
+    file_name_text_path = image_dir_path / f"{final_name}.txt"
     file_name_text_path.touch(exist_ok=True)
 
 

@@ -115,19 +115,40 @@ def craft_essence(
 
     dir_name = "craft_essence"
 
+    legacy_dir_path = CWD / "legacy"
+
     ce_raw_path = input_dir_path / dir_name
     ce_raw_path.mkdir(exist_ok=True, parents=True)
 
     new_processed_path = output_dir_path / dir_name
     new_processed_path.mkdir(exist_ok=True, parents=True)
 
+    legacy_processed_path = legacy_dir_path / dir_name
+    legacy_processed_path.mkdir(exist_ok=True, parents=True)
+
     for input_ce_dir in ce_raw_path.iterdir():
         if input_ce_dir.is_dir():
             try:
-                output_servant_dir = new_processed_path / input_ce_dir.name
-                output_servant_dir.mkdir(exist_ok=True, parents=True)
+                output_ce_dir = new_processed_path / input_ce_dir.name
+                output_ce_dir.mkdir(exist_ok=True, parents=True)
+
+                image.process_craft_essence(
+                    image_dir=input_ce_dir,
+                    output_dir=output_ce_dir,
+                )
             except Exception as e:
                 print(f"Error combining images: {e}")
+
+            try:
+                legacy_ce_dir = legacy_processed_path / input_ce_dir.name
+                legacy_ce_dir.mkdir(exist_ok=True, parents=True)
+                image.process_craft_essence(
+                    image_dir=input_ce_dir,
+                    output_dir=legacy_ce_dir,
+                    is_legacy=True,
+                )
+            except Exception as e:
+                print(f"Error combining legacy images: {e}")
 
     # Move the images to the other repository
     try:
@@ -148,7 +169,7 @@ def craft_essence(
         if alt_repository_dir.exists():
             alt_target_directory = alt_repository_dir / dir_name
             shutil.copytree(
-                new_processed_path,
+                legacy_processed_path,
                 alt_target_directory,
                 dirs_exist_ok=True,
             )
