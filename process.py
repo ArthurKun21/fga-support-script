@@ -37,6 +37,8 @@ def write_json(file_path: Path, data):
 
 
 def read_servant_json_file_as_list(data) -> list[dict]:
+    sorted_data = sorted(data, key=lambda x: x["collectionNo"])
+
     append_list = []
 
     # To prevent duplicate names
@@ -45,7 +47,7 @@ def read_servant_json_file_as_list(data) -> list[dict]:
     playable_type = ["heroine", "normal"]
 
     json_dict: dict
-    for json_dict in data:
+    for json_dict in sorted_data:
         # print(json_dict)
         new_json_dict = {}
 
@@ -167,10 +169,8 @@ def download_image_and_save(name: str, id: int, url: str):
 
 
 def compare_and_update(old_data: list[dict], new_data: list[dict]):
-    sorted_new_data = sorted(new_data, key=lambda x: x["servant_id"])
-
     old_data_processed = process_data_for_comparison(old_data)
-    new_data_processed = process_data_for_comparison(sorted_new_data)
+    new_data_processed = process_data_for_comparison(new_data)
 
     for new_servant in new_data_processed:
         is_new_servant = True
