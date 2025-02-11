@@ -137,14 +137,14 @@ def process_data_for_comparison(data: list[dict]) -> list[dict]:
     return processed_data
 
 
-def download_image_and_save(name: str, id: int, url: str):
+def download_image_and_save(name: str, id: int, url: str, dir_type: str):
     file_name_from_url = url.split("/")[-1]
 
     # Sanitize the 'name' to ensure it's a valid Windows directory name
     invalid_chars_pattern = r'[<>:"/\\|?*\x00-\x1f]|\.$'
     sanitized_name = re.sub(invalid_chars_pattern, " ", name)
 
-    image_dir_path = CWD / "input" / f"{id:03d}_{sanitized_name}"
+    image_dir_path = CWD / "input" / dir_type / f"{id:03d}_{sanitized_name}"
 
     image_file_path = image_dir_path / file_name_from_url
 
@@ -171,7 +171,7 @@ def download_image_and_save(name: str, id: int, url: str):
     file_name_text_path.touch(exist_ok=True)
 
 
-def compare_and_update(old_data: list[dict], new_data: list[dict]):
+def compare_and_update_servant(old_data: list[dict], new_data: list[dict]):
     old_data_processed = process_data_for_comparison(old_data)
     new_data_processed = process_data_for_comparison(new_data)
 
@@ -197,6 +197,7 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
                                 name=new_servant_name,
                                 id=new_servant_id,
                                 url=value,
+                                dir_type="servant",
                             )
 
                 is_new_servant = False
@@ -210,6 +211,7 @@ def compare_and_update(old_data: list[dict], new_data: list[dict]):
                     name=new_servant_name,
                     id=new_servant_id,
                     url=value,
+                    dir_type="servant",
                 )
 
     write_json(CWD / "servant_data.json", new_data)
@@ -229,7 +231,7 @@ def read_the_old_data() -> list[dict]:
         return []
 
 
-def download_from_atlas() -> Optional[Path]:
+def download_servant_data_from_atlas() -> Optional[Path]:
     url = "https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json"
 
     atlas_file_path = CWD / "nice_servant_lang_en.json"
@@ -253,19 +255,19 @@ def download_from_atlas() -> Optional[Path]:
     return None
 
 
-def process_data():
+def process_servant_data():
     start_time = time.perf_counter()
 
-    file_path = download_from_atlas()
-    if not file_path:
+    servant_file_path = download_servant_data_from_atlas()
+    if not servant_file_path:
         print("Exiting...")
         exit()
-    data = read_json(file_path)
-    new_data = read_servant_json_file_as_list(data)
+    new_servant_json = read_json(servant_file_path)
+    new_servant_data = read_servant_json_file_as_list(new_servant_json)
 
-    old_data = read_the_old_data()
+    old_servant_data = read_the_old_data()
 
-    compare_and_update(old_data, new_data)
+    compare_and_update_servant(old_servant_data, new_servant_data)
 
     end_time = time.perf_counter()
 

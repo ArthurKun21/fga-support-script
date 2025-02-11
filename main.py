@@ -1,7 +1,8 @@
-from pathlib import Path
-import process
-import image
 import shutil
+from pathlib import Path
+
+import image
+import process
 
 CWD = Path(__file__).parent
 
@@ -13,7 +14,7 @@ def main():
         return
 
     # Read the old data and compare with the new data
-    process.process_data()
+    process.process_servant_data()
 
     input_dir_path = CWD / "input"
 
@@ -21,20 +22,22 @@ def main():
 
     alternative_dir_path = CWD / "alternative"
 
-    for servant_dir in input_dir_path.iterdir():
-        if servant_dir.is_dir():
-            output_servant_dir_path = output_dir_path / servant_dir.name
+    servant_dir_path = input_dir_path / "servant"
+
+    for input_servant_dir in servant_dir_path.iterdir():
+        if input_servant_dir.is_dir():
+            output_servant_dir_path = output_dir_path / input_servant_dir.name
             output_servant_dir_path.mkdir(exist_ok=True, parents=True)
 
             image.combine_images(
-                image_dir=servant_dir,
+                image_dir=input_servant_dir,
                 output_dir=output_servant_dir_path,
             )
 
-            alt_servant_dir = alternative_dir_path / servant_dir.name
+            alt_servant_dir = alternative_dir_path / input_servant_dir.name
             alt_servant_dir.mkdir(exist_ok=True, parents=True)
             image.combine_images(
-                image_dir=servant_dir,
+                image_dir=input_servant_dir,
                 output_dir=alt_servant_dir,
                 combine=False,
             )
