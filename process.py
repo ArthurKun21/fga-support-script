@@ -143,6 +143,7 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
     # Sanitize the 'name' to ensure it's a valid Windows directory name
     invalid_chars_pattern = r'[<>:"/\\|?*\x00-\x1f]|\.$'
     sanitized_name = re.sub(invalid_chars_pattern, " ", name)
+    sanitized_name = sanitized_name.strip()
 
     image_dir_path = CWD / "input" / dir_type / f"{id:03d}_{sanitized_name}"
 
