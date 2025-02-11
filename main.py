@@ -120,6 +120,10 @@ def craft_essence(
         "legacy": legacy_dir_path / dir_name,
         "main": main_repository_dir_path / dir_name,
         "alt": alt_repository_dir / dir_name,
+        "output-colored": output_dir_path / f"{dir_name}-colored",
+        "legacy-colored": legacy_dir_path / f"{dir_name}-colored",
+        "main-colored": main_repository_dir_path / f"{dir_name}-colored",
+        "alt-colored": alt_repository_dir / f"{dir_name}-colored",
     }
     for path in paths.values():
         path.mkdir(exist_ok=True, parents=True)
@@ -128,18 +132,19 @@ def craft_essence(
         if not input_ce_dir.is_dir():
             continue
 
-        output_ce_dir = paths["output"] / input_ce_dir.name
-        output_ce_dir.mkdir(exist_ok=True, parents=True)
-
         for process_types in [
-            ("new", output_ce_dir, True),
+            ("new", paths["output"] / input_ce_dir.name, True),
             ("legacy", paths["legacy"], False),
+            ("new-colored", paths["output-colored"] / input_ce_dir.name, True),
+            ("legacy-colored", paths["legacy-colored"], False),
         ]:
+            process_types[1].mkdir(exist_ok=True, parents=True)
             try:
                 image.process_craft_essence(
                     image_dir=input_ce_dir,
                     output_dir=process_types[1],
                     is_new=process_types[2],
+                    is_colored="colored" in process_types[1].name,
                 )
             except Exception as e:
                 print(f"Error combining images: {e}")
@@ -147,8 +152,10 @@ def craft_essence(
     for target in [
         ("main", paths["output"], paths["main"]),
         ("alt", paths["legacy"], paths["alt"]),
+        ("main-colored", paths["output-colored"], paths["main-colored"]),
+        ("alt-colored", paths["legacy-colored"], paths["alt-colored"]),
     ]:
-        if target[0] == "alt" and not alt_repository_dir.exists():
+        if "alt" in target[0] and not alt_repository_dir.exists():
             continue
 
         try:
