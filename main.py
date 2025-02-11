@@ -19,6 +19,8 @@ def main():
 
     output_directory = CWD / "output"
 
+    alternative_directory = CWD / "alternative"
+
     for servant_dir in input_directory.iterdir():
         if servant_dir.is_dir():
             output_servant_dir = output_directory / servant_dir.name
@@ -29,12 +31,36 @@ def main():
                 output_dir=output_servant_dir,
             )
 
+            alt_servant_dir = alternative_directory / servant_dir.name
+            alt_servant_dir.mkdir(exist_ok=True, parents=True)
+            image.combine_images(
+                image_dir=servant_dir,
+                output_dir=alt_servant_dir,
+                combine=False,
+            )
+
     # Move the images to the other repository
     try:
         target_directory = other_repository_dir / "servant"
-        shutil.copytree(output_directory, target_directory, dirs_exist_ok=True)
+        shutil.copytree(
+            output_directory,
+            target_directory,
+            dirs_exist_ok=True,
+        )
     except FileExistsError:
         print("The other repository already has the images.")
+
+    try:
+        alt_repository_dir = CWD / "fga-old-support"
+        if alt_repository_dir.exists():
+            alt_target_directory = alt_repository_dir / "alternative"
+            shutil.copytree(
+                alternative_directory,
+                alt_target_directory,
+                dirs_exist_ok=True,
+            )
+    except FileExistsError:
+        print("The alternative repository already has the images.")
 
 
 if __name__ == "__main__":
