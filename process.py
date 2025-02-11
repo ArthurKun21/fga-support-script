@@ -159,6 +159,7 @@ def download_image_and_save(name: str, id: int, url: str):
                         f.write(chunk)
         except Exception as e:
             print(f"Error downloading image {retry - i} retries left. {e}")
+            time.sleep(1)
             continue
 
     # To prevent spamming the server
@@ -245,6 +246,7 @@ def download_from_atlas() -> Optional[Path]:
             return atlas_file_path
         except Exception as e:
             print(f"Error downloading from Atlas {retry - i} retries left.\t{e}.")
+            time.sleep(1)
             continue
     return None
 
