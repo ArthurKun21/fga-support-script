@@ -15,12 +15,12 @@ def main():
 
     alt_repository_dir = CWD / "fga-old-support"
 
-    # Read the old data and compare with the new data
-    process.process_servant_data()
-
     input_dir_path = CWD / "input"
 
     output_dir_path = CWD / "output"
+
+    # Read the old data and compare with the new data
+    process.process_servant_data()
 
     alternative_dir_path = CWD / "alternative"
 
