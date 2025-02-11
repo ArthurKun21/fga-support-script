@@ -70,6 +70,7 @@ def process_servant(
     image_dir: Path,
     output_dir: Path,
     combine: bool = True,
+    is_colored: bool = False,
 ):
     images = [
         i for i in image_dir.iterdir() if i.is_file() and i.suffix in IMAGE_EXTENSIONS
@@ -92,21 +93,32 @@ def process_servant(
         combined_img = combine_crop_np(crop_image_list)
 
         output_file = output_dir / "support.png"
-        cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2GRAY))
+        if is_colored:
+            cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2BGR))
+        else:
+            cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2GRAY))
 
         if re.search(r"\d{3}_", file_name):
             file_name = re.sub(r"\d{3}_", "", file_name)
 
-        output_file = output_dir / f"{file_name}.txt"
-        output_file.touch(exist_ok=True)
+        text_file = output_dir / f"{file_name}.txt"
+        text_file.touch(exist_ok=True)
     else:
         crop_image_list = [crop_servant_file(i, combine=False) for i in images]
         for i, img in enumerate(crop_image_list):
             output_file = output_dir / f"{file_name}_{i:03d}.png"
-            cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
+            if is_colored:
+                cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
+            else:
+                cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
 
 
-def process_craft_essence(image_dir: Path, output_dir: Path, is_new: bool = False):
+def process_craft_essence(
+    image_dir: Path,
+    output_dir: Path,
+    is_new: bool = False,
+    is_colored: bool = False,
+):
     images = [
         i for i in image_dir.iterdir() if i.is_file() and i.suffix in IMAGE_EXTENSIONS
     ]
@@ -128,13 +140,17 @@ def process_craft_essence(image_dir: Path, output_dir: Path, is_new: bool = Fals
     ce_image = crop_image_list[0]
 
     if is_new:
-        output_file = output_dir / f"ce.png"
+        output_file = output_dir / "ce.png"
     else:
         output_file = output_dir / f"{file_name}.png"
-    cv2.imwrite(str(output_file), cv2.cvtColor(ce_image, cv2.COLOR_RGB2GRAY))
+
+    if is_colored:
+        cv2.imwrite(str(output_file), cv2.cvtColor(ce_image, cv2.COLOR_RGB2BGR))
+    else:
+        cv2.imwrite(str(output_file), cv2.cvtColor(ce_image, cv2.COLOR_RGB2GRAY))
 
     if is_new:
         if re.search(r"\d{4}_", file_name):
             file_name = re.sub(r"\d{4}_", "", file_name)
-        output_file = output_dir / f"{file_name}.txt"
-        output_file.touch(exist_ok=True)
+        text_file = output_dir / f"{file_name}.txt"
+        text_file.touch(exist_ok=True)
