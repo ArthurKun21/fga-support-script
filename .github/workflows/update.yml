@@ -2,6 +2,12 @@ name: Update Support Repository
 
 on:
   workflow_dispatch:
+    inputs:
+      delete:
+        description: 'Delete the old support repository'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -35,12 +41,17 @@ jobs:
       - name: Install dependencies
         run: |
           uv sync
-      
+
       - name: Cache directory
         uses: actions/cache@v4
         with:
           path: input
           key: ${{ runner.os }}-input-${{ hashFiles('input') }}
+
+      - name: Delete old support repository
+        if: ${{ github.event.inputs.delete }}
+        run: |
+          uv run main.py --delete
 
       - name: Run Python Script for Servant
         run: |
