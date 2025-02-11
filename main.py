@@ -75,7 +75,7 @@ def servant(
     try:
         target_directory = main_repository_dir_path / "servant"
         shutil.copytree(
-            output_dir_path,
+            new_processed_path,
             target_directory,
             dirs_exist_ok=True,
         )
@@ -90,7 +90,7 @@ def servant(
         if alt_repository_dir.exists():
             alt_target_directory = alt_repository_dir / "servant"
             shutil.copytree(
-                legacy_dir_path,
+                legacy_processed_path,
                 alt_target_directory,
                 dirs_exist_ok=True,
             )
