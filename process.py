@@ -215,6 +215,9 @@ def download_image_and_save(name: str, id: int, url: str, dir_type: str):
     file_name_text_path = image_dir_path / f"{final_name}.txt"
     file_name_text_path.touch(exist_ok=True)
 
+    if image_file_path.exists() and image_file_path.stat().st_size > 0:
+        return
+
     print(f"Downloading image: {id} {file_name_from_url}")
 
     retry = 3
