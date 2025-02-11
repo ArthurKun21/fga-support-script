@@ -41,75 +41,55 @@ def servant(
 
     legacy_dir_path = CWD / "legacy"
 
-    # INPUT
-    servant_raw_path = input_dir_path / dir_name
-    servant_raw_path.mkdir(exist_ok=True, parents=True)
+    paths = {
+        "input": input_dir_path / dir_name,
+        "output": output_dir_path / dir_name,
+        "legacy": legacy_dir_path / dir_name,
+        "main": main_repository_dir_path / dir_name,
+        "alt": alt_repository_dir / dir_name,
+    }
+    for path in paths.values():
+        path.mkdir(exist_ok=True, parents=True)
 
-    # OUTPUT
-    new_processed_path = output_dir_path / dir_name
-    new_processed_path.mkdir(exist_ok=True, parents=True)
-
-    # LEGACY OUTPUT
-    legacy_processed_path = legacy_dir_path / dir_name
-    legacy_processed_path.mkdir(exist_ok=True, parents=True)
-
-    # FGA-SUPPORT-PREVIEW
-    target_directory = main_repository_dir_path / dir_name
-    # FGA-SUPPORT
-    legacy_target_directory = alt_repository_dir / dir_name
-
-    for input_servant_dir in servant_raw_path.iterdir():
+    for input_servant_dir in paths["input"].iterdir():
         if not input_servant_dir.is_dir():
             continue
-        try:
-            output_servant_dir = new_processed_path / input_servant_dir.name
+
+        for process_types in [
+            ("new", paths["output"], True),
+            ("legacy", paths["legacy"], False),
+        ]:
+            output_servant_dir = process_types[1] / input_servant_dir.name
             output_servant_dir.mkdir(exist_ok=True, parents=True)
 
-            image.process_servant(
-                image_dir=input_servant_dir,
-                output_dir=output_servant_dir,
-            )
-        except Exception as e:
-            print(f"Error combining images: {e}")
+            try:
+                image.process_servant(
+                    image_dir=input_servant_dir,
+                    output_dir=output_servant_dir,
+                    combine=process_types[2],
+                )
+            except Exception as e:
+                print(f"Error combining images: {e}")
+
+    for target in [
+        ("main", paths["output"], paths["main"]),
+        ("alt", paths["legacy"], paths["alt"]),
+    ]:
+        if target[0] == "alt" and not alt_repository_dir.exists():
+            continue
 
         try:
-            legacy_servant_dir = legacy_processed_path / input_servant_dir.name
-            legacy_servant_dir.mkdir(exist_ok=True, parents=True)
-            image.process_servant(
-                image_dir=input_servant_dir,
-                output_dir=legacy_servant_dir,
-                combine=False,
-            )
-        except Exception as e:
-            print(f"Error combining legacy images: {e}")
-
-    # Move the images to the other repository
-    try:
-        shutil.copytree(
-            new_processed_path,
-            target_directory,
-            dirs_exist_ok=True,
-        )
-    except FileExistsError:
-        print("The other repository already has the images.")
-    except FileNotFoundError:
-        print("The other repository was not found.")
-    except Exception as e:
-        print(f"Error moving images to the other repository: {e}")
-
-    try:
-        if alt_repository_dir.exists():
             shutil.copytree(
-                legacy_processed_path,
-                legacy_target_directory,
+                target[1],
+                target[2],
                 dirs_exist_ok=True,
             )
-    except FileExistsError:
-        print("The alternative repository already has the images.")
-    except FileNotFoundError:
-        print("The alternative repository was not found.")
-    except Exception as e:
-        print(f"Error moving images to the alternative repository: {e}")
+        except FileExistsError:
+            print(f"The {target[0]} repository already has the images.")
+        except FileNotFoundError:
+            print(f"The {target[0]} repository was not found.")
+        except Exception as e:
+            print(f"Error moving images to the {target[0]} repository: {e}")
 
 
 def craft_essence(
@@ -162,7 +142,7 @@ def craft_essence(
     ]:
         if target[0] == "alt" and not alt_repository_dir.exists():
             continue
-        
+
         try:
             shutil.copytree(
                 target[1],
