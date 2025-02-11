@@ -124,12 +124,14 @@ def process_craft_essence(image_dir: Path, output_dir: Path, is_new: bool = Fals
     print(f"Name: {file_name}\tImages: {len(images)}")
 
     crop_image_list = [crop_craft_essence_file(i) for i in images]
-    for i, img in enumerate(crop_image_list):
-        if is_new:
-            output_file = output_dir / f"{i:03d}_ce.png"
-        else:
-            output_file = output_dir / f"{file_name}_{i:03d}.png"
-        cv2.imwrite(str(output_file), cv2.cvtColor(img, cv2.COLOR_RGB2GRAY))
+
+    ce_image = crop_image_list[0]
+
+    if is_new:
+        output_file = output_dir / f"ce.png"
+    else:
+        output_file = output_dir / f"{file_name}.png"
+    cv2.imwrite(str(output_file), cv2.cvtColor(ce_image, cv2.COLOR_RGB2GRAY))
 
     if is_new:
         if re.search(r"\d{4}_", file_name):
