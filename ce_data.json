@@ -10453,7 +10453,7 @@
   },
   {
     "ce_id": 1743,
-    "name": "Soul-Festered Mansion",
+    "name": "Spectral Manor",
     "face": "https://static.atlasacademy.io/JP/Faces/f_94068100.png",
     "rarity": 4
   },
@@ -13041,6 +13041,198 @@
     "ce_id": 2174,
     "name": "巡霊の祝祭/玖",
     "face": "https://static.atlasacademy.io/JP/Faces/f_93090000.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2175,
+    "name": "リリー・ショコラ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_94083400.png",
+    "rarity": 5
+  },
+  {
+    "ce_id": 2176,
+    "name": "待ち人の声",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_94083500.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2177,
+    "name": "こみっく・かーる",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_94083600.png",
+    "rarity": 3
+  },
+  {
+    "ce_id": 2178,
+    "name": "スイート・レモン",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_94083700.png",
+    "rarity": 5
+  },
+  {
+    "ce_id": 2179,
+    "name": "小町のメカネ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_93089900.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2180,
+    "name": "いつか見た、あの日々の",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093000.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2181,
+    "name": "似合う帽子",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98092900.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2182,
+    "name": "明日の先",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093200.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2183,
+    "name": "返礼の品",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093100.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2184,
+    "name": "懐かしのアンフレラ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093300.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2185,
+    "name": "冬期清掃対策装備",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093500.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2186,
+    "name": "マイティアー・フライトスター",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093400.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2187,
+    "name": "本日のスフレハンケーキ(限定)",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093600.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2188,
+    "name": "ヒーストフラッシュチョコ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093700.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2189,
+    "name": "スター・クロワッサン",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094000.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2190,
+    "name": "ルキマート!",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093800.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2191,
+    "name": "マスター人形",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98093900.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2192,
+    "name": "マスター・イン・サ・テサートクラス",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094100.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2193,
+    "name": "メモリアル・チョコフレーム",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094200.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2194,
+    "name": "ウィランス・スウィート・ハー",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094300.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2195,
+    "name": "三番目のフレセント",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094500.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2196,
+    "name": "三番目のチョコレート",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094400.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2197,
+    "name": "アトムマクロス・ムリアンスイーツ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094600.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2198,
+    "name": "手作りツタンこはん",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094800.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2199,
+    "name": "チョコレート×63",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094700.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2200,
+    "name": "サルミアッキ・スクラーカック",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98095000.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2201,
+    "name": "アトヘント・チョコホックス",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98094900.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2202,
+    "name": "ムーンUFOチョコ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98095100.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2203,
+    "name": "戦地の狭間にて",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98095200.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2204,
+    "name": "例の紋章チョコ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98095300.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2205,
+    "name": "おさるさんチョコ",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98095400.png",
+    "rarity": 4
+  },
+  {
+    "ce_id": 2206,
+    "name": "少女漫画お気に入りセット",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98095500.png",
     "rarity": 4
   }
 ]

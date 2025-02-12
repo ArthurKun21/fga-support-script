@@ -2269,7 +2269,9 @@
       "ascension_1": "https://static.atlasacademy.io/JP/Faces/f_6031000.png",
       "ascension_2": "https://static.atlasacademy.io/JP/Faces/f_6031001.png",
       "ascension_3": "https://static.atlasacademy.io/JP/Faces/f_6031002.png",
-      "ascension_4": "https://static.atlasacademy.io/JP/Faces/f_6031003.png"
+      "ascension_4": "https://static.atlasacademy.io/JP/Faces/f_6031003.png",
+      "costume_603130": "https://static.atlasacademy.io/JP/Faces/f_6031300.png",
+      "costume_603140": "https://static.atlasacademy.io/JP/Faces/f_6031400.png"
     }
   },
   {
@@ -5217,6 +5219,18 @@
       "ascension_2": "https://static.atlasacademy.io/JP/Faces/f_1062001.png",
       "ascension_3": "https://static.atlasacademy.io/JP/Faces/f_1062002.png",
       "ascension_4": "https://static.atlasacademy.io/JP/Faces/f_1062003.png"
+    }
+  },
+  {
+    "servant_id": 435,
+    "name": "小野小町",
+    "className": "Caster",
+    "rarity": 5,
+    "assets": {
+      "ascension_1": "https://static.atlasacademy.io/JP/Faces/f_5058000.png",
+      "ascension_2": "https://static.atlasacademy.io/JP/Faces/f_5058001.png",
+      "ascension_3": "https://static.atlasacademy.io/JP/Faces/f_5058002.png",
+      "ascension_4": "https://static.atlasacademy.io/JP/Faces/f_5058003.png"
     }
   }
 ]
