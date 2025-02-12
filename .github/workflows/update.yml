@@ -6,8 +6,7 @@ on:
       delete:
         description: 'Delete the old support repository'
         required: false
-        default: false
-        type: boolean
+        default: 'false'
 
 jobs:
   build:
@@ -49,7 +48,7 @@ jobs:
           key: ${{ runner.os }}
 
       - name: Delete old support repository
-        if: ${{ github.event.inputs.delete }}
+        if: ${{ github.event.inputs.delete == 'true' || github.event.inputs.delete == true }}
         run: |
           uv run main.py --delete
 
