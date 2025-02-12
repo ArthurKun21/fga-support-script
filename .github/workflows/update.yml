@@ -7,6 +7,10 @@ on:
         description: 'Delete the old support repository'
         required: false
         default: 'false'
+      delete_data:
+        description: 'Delete the data files'
+        required: false
+        default: 'false'
 
 jobs:
   build:
@@ -46,6 +50,12 @@ jobs:
         with:
           path: input
           key: ${{ runner.os }}
+
+      - name: Delete old data files
+        if: ${{ github.event.inputs.delete_data == 'true' || github.event.inputs.delete_data == true }}
+        run: |
+          rm -f servant_data.json
+          rm -f ce_data.json
 
       - name: Delete old support repository
         if: ${{ github.event.inputs.delete == 'true' || github.event.inputs.delete == true }}
