@@ -46,7 +46,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: input
-          key: ${{ runner.os }}-input-${{ hashFiles('servant_data.json') }}-${{ hashFiles('ce_data.json') }}
+          key: ${{ runner.os }}
 
       - name: Delete old support repository
         if: ${{ github.event.inputs.delete }}
