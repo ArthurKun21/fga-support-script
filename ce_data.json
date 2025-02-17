@@ -13234,5 +13234,11 @@
     "name": "少女漫画お気に入りセット",
     "face": "https://static.atlasacademy.io/JP/Faces/f_98095500.png",
     "rarity": 4
+  },
+  {
+    "ce_id": 2207,
+    "name": "カルテア・ハステルメモリー",
+    "face": "https://static.atlasacademy.io/JP/Faces/f_98095600.png",
+    "rarity": 4
   }
 ]
