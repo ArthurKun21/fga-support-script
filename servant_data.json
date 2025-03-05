@@ -5232,5 +5232,17 @@
       "ascension_3": "https://static.atlasacademy.io/JP/Faces/f_5058002.png",
       "ascension_4": "https://static.atlasacademy.io/JP/Faces/f_5058003.png"
     }
+  },
+  {
+    "servant_id": 437,
+    "name": "タンテ・アリキエーリ",
+    "className": "Pretender",
+    "rarity": 5,
+    "assets": {
+      "ascension_1": "https://static.atlasacademy.io/JP/Faces/f_28010000.png",
+      "ascension_2": "https://static.atlasacademy.io/JP/Faces/f_28010001.png",
+      "ascension_3": "https://static.atlasacademy.io/JP/Faces/f_28010002.png",
+      "ascension_4": "https://static.atlasacademy.io/JP/Faces/f_28010003.png"
+    }
   }
 ]
