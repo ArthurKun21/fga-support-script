@@ -68,10 +68,21 @@ class Assets:
     def update_file_path(self, file_path: Path):
         """
         Update the file path of the asset.
+        This method is called after the asset has been downloaded.
+        It checks if the file exists and if its size is greater than 100 bytes.
+        If the file does not exist or its size is less than or equal to 100 bytes,
 
         Args:
             file_path (Path): The new file path.
         """
+        if not file_path.exists():
+            return
+
+        file_size = file_path.stat().st_size
+
+        if file_size <= 100:
+            return
+
         self.file_path = file_path
 
 
