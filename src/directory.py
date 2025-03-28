@@ -10,7 +10,7 @@ SUPPORT_PREVIEW_PATH = PROJECT_ROOT / "fga-support"
 SUPPORT_OLD_PATH = PROJECT_ROOT / "fga-old-support"
 
 
-def read_craft_essence(directory: Path) -> list[SupportFolder]:
+def _read_craft_essence(directory: Path) -> list[SupportFolder]:
     craft_essence_path = directory / "craft_essence"
     if not craft_essence_path.exists():
         logger.error(f"Craft Essence path does not exist: {craft_essence_path}")
@@ -33,7 +33,7 @@ def read_craft_essence(directory: Path) -> list[SupportFolder]:
     return craft_essence_support_list
 
 
-def read_servant(directory: Path) -> list[SupportFolder]:
+def _read_servant(directory: Path) -> list[SupportFolder]:
     servant_path = directory / "servant"
     if not servant_path.exists():
         logger.error(f"Servant path does not exist: {servant_path}")
@@ -61,8 +61,8 @@ def read_support_preview() -> Tuple[list[SupportFolder], list[SupportFolder]]:
         logger.error(f"Support preview path does not exist: {SUPPORT_PREVIEW_PATH}")
         return [], []
 
-    servant_list = read_servant(SUPPORT_PREVIEW_PATH)
-    craft_essence_list = read_craft_essence(SUPPORT_PREVIEW_PATH)
+    servant_list = _read_servant(SUPPORT_PREVIEW_PATH)
+    craft_essence_list = _read_craft_essence(SUPPORT_PREVIEW_PATH)
 
     return servant_list, craft_essence_list
 
@@ -72,7 +72,7 @@ def read_support_old() -> Tuple[list[SupportFolder], list[SupportFolder]]:
         logger.error(f"Old support path does not exist: {SUPPORT_OLD_PATH}")
         return [], []
 
-    servant_list = read_servant(SUPPORT_OLD_PATH)
-    craft_essence_list = read_craft_essence(SUPPORT_OLD_PATH)
+    servant_list = _read_servant(SUPPORT_OLD_PATH)
+    craft_essence_list = _read_craft_essence(SUPPORT_OLD_PATH)
 
     return servant_list, craft_essence_list
