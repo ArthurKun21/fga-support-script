@@ -6,7 +6,6 @@ from loguru import logger
 CWD = Path(__file__).cwd()
 
 # Set up logging
-logger.remove()
 logger.add(
     sink=CWD / "logs" / "app.log",
     rotation="1 MB",
