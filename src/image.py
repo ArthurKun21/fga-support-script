@@ -96,7 +96,9 @@ def process_servant(
         if is_colored:
             cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2BGR))
         else:
-            cv2.imwrite(str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2GRAY))
+            cv2.imwrite(
+                str(output_file), cv2.cvtColor(combined_img, cv2.COLOR_RGB2GRAY)
+            )
 
         if re.search(r"\d{3}_", file_name):
             file_name = re.sub(r"\d{3}_", "", file_name)
