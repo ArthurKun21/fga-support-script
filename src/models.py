@@ -51,12 +51,37 @@ def _cleanup_name(name: str) -> str:
 
 
 @dataclass
+class Assets:
+    """
+    Class representing an asset.
+
+    After downloading the asset, update the file_path attribute.
+
+    Attributes:
+        url (str): The URL of the asset.
+        file_path (Path | None): The file path of the asset.
+    """
+
+    url: str
+    file_path: Path | None = None
+
+    def update_file_path(self, file_path: Path):
+        """
+        Update the file path of the asset.
+
+        Args:
+            file_path (Path): The new file path.
+        """
+        self.file_path = file_path
+
+
+@dataclass
 class ServantData:
     idx: int
     name: str
     class_name: str
     rarity: int
-    faces: list[str] = field(default_factory=list)
+    faces: list[Assets] = field(default_factory=list)
 
     @property
     def is_empty(self):
@@ -83,7 +108,7 @@ class ServantData:
 class CraftEssenceData:
     idx: int
     name: str
-    faces: str | None = None
+    faces: Assets | None = None
 
     @property
     def is_empty(self):
