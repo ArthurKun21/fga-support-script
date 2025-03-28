@@ -3,7 +3,7 @@ from pathlib import Path
 
 import argparse
 import image
-import process
+import preprocess
 
 CWD = Path(__file__).parent
 
@@ -35,7 +35,7 @@ def servant(
     """
 
     # Read the old data and compare with the new data
-    process.process_servant_data()
+    preprocess.process_servant_data()
 
     dir_name = "servant"
 
@@ -108,7 +108,7 @@ def craft_essence(
     alt_repository_dir: Path,
 ):
     # Read the old data and compare with the new data
-    process.process_craft_essence_data()
+    preprocess.process_craft_essence_data()
 
     dir_name = "craft_essence"
 
