@@ -1,5 +1,4 @@
 from log import logger
-import preprocess
 
 
 def main():
@@ -9,8 +8,6 @@ def main():
     logger.info("Starting the application...")
     # Your application logic goes here
     logger.info("Application finished successfully.")
-
-    preprocess.process()
 
 
 if __name__ == "__main__":
