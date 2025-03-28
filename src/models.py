@@ -1,4 +1,3 @@
-import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -9,20 +8,12 @@ class SupportFolder:
     Attributes:
         path (Path): The path to the folder.
         name (str): The name of the folder.
-        idx (int): The index of the folder, default is 0.
-            This is extracted from the folder name if it contains a number.
+        idx (int): The index of the folder
     """
 
     path: Path
     name: str
-    idx: int = 0
-
-    def __post_init__(self):
-        directory_name = self.path.name
-
-        match = re.search(r"(\d+)", directory_name)
-        if match:
-            self.idx = int(match.group(1))
+    idx: int
 
 
 @dataclass
