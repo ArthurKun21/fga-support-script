@@ -8,7 +8,7 @@ import orjson
 from log import logger
 
 
-def read_json(file_path: Path) -> list[dict]:
+def read_json(file_path: Path):
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             data = orjson.loads(f.read())

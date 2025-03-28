@@ -119,6 +119,7 @@ class ServantData:
 class CraftEssenceData:
     idx: int
     name: str
+    rarity: int
     faces: Assets | None = None
 
     @property

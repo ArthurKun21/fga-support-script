@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from models import CraftEssenceData, Assets
 import constants
 from log import logger
 import utils
@@ -23,7 +24,9 @@ def process_craft_essence():
         return
 
     # Read craft essence data
-    # craft_essence_data = utils.read_json(craft_essence_file_path)
+    raw_data: list[dict] = utils.read_json(craft_essence_file_path)
+
+    _preprocess_ce(raw_data)
 
 
 def process_servant():
@@ -39,4 +42,43 @@ def process_servant():
         return
 
     # Read servant data
-    # servant_data = utils.read_json(servant_file_path)
+    # raw_data:list[dict] = utils.read_json(servant_file_path)
+
+
+def _preprocess_ce(
+    raw_data: list[dict],  # type: ignore[valid-type,assignment]  # noqa: F821
+):
+    sorted_data = sorted(raw_data, key=lambda x: x["collectionNo"])
+
+    ce_data_list: list[CraftEssenceData] = []
+
+    for ce in sorted_data:
+        collectionNo = ce.get("collectionNo", 0)
+        if collectionNo == 0:
+            continue
+
+        name = ce.get("name", "")
+
+        rarity = ce.get("rarity", 1)
+
+        extra_assets = ce.get("extraAssets", {})
+
+        equip_face = extra_assets.get("equipFace", {})
+
+        equip = equip_face.get("equip", {})
+
+        for value in equip.values():
+            if value:
+                face = value
+                break
+        else:
+            face = ""
+
+        new_data = CraftEssenceData(
+            idx=collectionNo,
+            name=name,
+            faces=Assets(url=face) if face else None,
+            rarity=rarity,
+        )
+
+        ce_data_list.append(new_data)
