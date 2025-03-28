@@ -1,15 +1,23 @@
-from pathlib import Path
-from loguru import logger
 import sys
+from pathlib import Path
+
+from loguru import logger
 
 CWD = Path(__file__).cwd()
 
 # Set up logging
 logger.remove()
 logger.add(
-    CWD / "logs" / "app.log", rotation="1 MB", retention="10 days", level="DEBUG"
+    sink=CWD / "logs" / "app.log",
+    rotation="1 MB",
+    level="DEBUG",
 )
-logger.add(sys.stderr, level="INFO")
+logger.add(
+    sys.stderr,
+    colorize=True,
+    format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> <level>{message}</level>",
+    level="INFO",
+)
 
 
 def main():
