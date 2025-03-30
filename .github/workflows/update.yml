@@ -3,10 +3,6 @@ name: Update Support Repository
 on:
   workflow_dispatch:
     inputs:
-      delete:
-        description: 'Delete the old support repository'
-        required: false
-        default: 'false'
       delete_data:
         description: 'Delete the data files'
         required: false
@@ -57,17 +53,7 @@ jobs:
           rm -f servant_data.json
           rm -f ce_data.json
 
-      - name: Delete old support repository
-        if: ${{ github.event.inputs.delete == 'true' || github.event.inputs.delete == true }}
-        run: |
-          uv run main.py --delete
-
-      - name: Run Python Script for Servant
-        run: |
-          uv run main.py --servant
-
-      - name: Run Python Script for CE
-        if: success() || failure()
+      - name: Run Python Script
         run: |
           uv run main.py
 
