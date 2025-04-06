@@ -4,13 +4,14 @@ from loguru import logger
 
 import directory
 from log import setup_logger
-from models import CraftEssenceData
+from models import CraftEssenceData, ServantData
 from preprocess import (
     CraftEssenceDataIndexed,
     ServantDataIndexed,
     fetch_local_ce_data,
     fetch_local_servant_data,
     process_craft_essence,
+    process_servant,
 )
 
 
@@ -24,6 +25,8 @@ async def main(debug: bool):
 
     ce_latest_data: list[CraftEssenceData] = []
     ce_local_data: CraftEssenceDataIndexed = {}
+
+    servant_latest_data: list[ServantData] = []
     servant_local_data: ServantDataIndexed = {}
 
     async def preprocess_ce():
@@ -34,6 +37,10 @@ async def main(debug: bool):
         nonlocal ce_local_data
         ce_local_data = await fetch_local_ce_data()
 
+    async def preprocess_servant():
+        nonlocal servant_latest_data
+        servant_latest_data = await process_servant()
+
     async def fetch_local_servant():
         nonlocal servant_local_data
         servant_local_data = await fetch_local_servant_data()
@@ -42,6 +49,7 @@ async def main(debug: bool):
         tg.start_soon(directory.build_index)
         tg.start_soon(preprocess_ce)
         tg.start_soon(fetch_local_ce)
+        tg.start_soon(preprocess_servant)
         tg.start_soon(fetch_local_servant)
 
 
