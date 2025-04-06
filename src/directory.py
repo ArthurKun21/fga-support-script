@@ -10,6 +10,12 @@ PROJECT_ROOT = Path(__file__).cwd()
 
 SUPPORT_PREVIEW_PATH = PROJECT_ROOT / "fga-support"
 
+SERVANT_DIR = SUPPORT_PREVIEW_PATH / "servant"
+SERVANT_COLOR_DIR = SUPPORT_PREVIEW_PATH / "servant-color"
+
+CE_DIR = SUPPORT_PREVIEW_PATH / "ce"
+CE_COLOR_DIR = SUPPORT_PREVIEW_PATH / "ce-color"
+
 
 async def build_index() -> None:
     logger.info("Building index...")
@@ -18,18 +24,12 @@ async def build_index() -> None:
         logger.error(f"Support repository path does not exist: {SUPPORT_PREVIEW_PATH}")
         exit()
 
-    servant_dir = SUPPORT_PREVIEW_PATH / "servant"
-    servant_color_dir = SUPPORT_PREVIEW_PATH / "servant-color"
-
-    ce_dir = SUPPORT_PREVIEW_PATH / "ce"
-    ce_color_dir = SUPPORT_PREVIEW_PATH / "ce-color"
-
     # Build the index for each directory
     directories: set[tuple[Path, SupportKind]] = {
-        (servant_dir, SupportKind.SERVANT),
-        (servant_color_dir, SupportKind.SERVANT),
-        (ce_dir, SupportKind.CRAFT_ESSENCE),
-        (ce_color_dir, SupportKind.CRAFT_ESSENCE),
+        (SERVANT_DIR, SupportKind.SERVANT),
+        (SERVANT_COLOR_DIR, SupportKind.SERVANT),
+        (CE_DIR, SupportKind.CRAFT_ESSENCE),
+        (CE_COLOR_DIR, SupportKind.CRAFT_ESSENCE),
     }
 
     for target_dir, kind in directories:
