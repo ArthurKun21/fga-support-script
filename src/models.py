@@ -3,6 +3,8 @@ import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from enums import SupportKind
+
 # Sanitize the 'name' to ensure it's a valid Windows directory name
 INVALID_CHARS_PATTERN = r'[<>:"/\\|?*\x00-\x1f]|\.$'
 
@@ -14,11 +16,13 @@ class SupportFolder:
         path (Path): The path to the folder.
         name (str): The name of the folder.
         idx (int): The index of the folder
+        support_type (SupportKind): The type of support.
     """
 
     path: Path
     name: str
     idx: int
+    support_kind: SupportKind
 
 
 def _preprocess_name(input_str) -> str:

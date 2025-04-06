@@ -2,6 +2,7 @@ import click
 from anyio import run
 from loguru import logger
 
+import directory
 from log import setup_logger
 
 
@@ -10,6 +11,7 @@ async def main():
     Main function to run the application.
     """
     logger.info("Starting the application...")
+    directory.build_index()
 
 
 @click.command()
