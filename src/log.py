@@ -3,8 +3,6 @@ from pathlib import Path
 
 from loguru import logger
 
-PROJECT_ROOT = Path(__file__).cwd()
-
 
 def setup_logger(debug: bool = False):
     # Remove default logger
@@ -16,8 +14,8 @@ def setup_logger(debug: bool = False):
         "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
         "<level>{message}</level>"
     )
-
-    logs_dir = PROJECT_ROOT / "logs"
+    root = Path(__file__).cwd()
+    logs_dir = root / "logs"
     logs_dir.mkdir(parents=True, exist_ok=True)
 
     # Set up logging
