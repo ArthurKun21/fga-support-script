@@ -4,7 +4,7 @@ from pathlib import Path
 from loguru import logger
 
 import utils
-from models import Assets, CraftEssenceData
+from models import Assets, CraftEssenceData, ServantData
 
 PROJECT_ROOT = Path(__file__).cwd()
 
@@ -18,35 +18,63 @@ LOCAL_CE_DATA = DATA_DIR / "local_ce.json"
 LOCAL_SERVANT_DATA = DATA_DIR / "local_servant.json"
 
 type CraftEssenceDataIndexed = dict[int, CraftEssenceData]
+type ServantDataIndexed = dict[int, ServantData]
 
 
 async def fetch_local_ce_data() -> CraftEssenceDataIndexed:
-    logger.info("Fetching local craft essence data...")
+    return await _fetch_local_data(
+        name="craft essence",
+        local_data_path=LOCAL_CE_DATA,
+        class_type=CraftEssenceData,
+    )
 
-    if not LOCAL_CE_DATA.exists():
-        logger.warning("Local craft essence data file does not exist.")
+
+async def fetch_local_servant_data() -> ServantDataIndexed:
+    return await _fetch_local_data(
+        name="servant",
+        local_data_path=LOCAL_SERVANT_DATA,
+        class_type=ServantData,
+    )
+
+
+async def _fetch_local_data[T](
+    name: str,
+    local_data_path: Path,
+    class_type: type[T],
+) -> dict[int, T]:
+    """
+    Fetch local data from a JSON file. And then convert it to a dictionary
+    with the index as the key and the class as the value.
+
+    Args:
+        name (str): The name of the data.
+        local_data_path (Path): The path to the local data file.
+        class_type (type[T]): The class type to convert the data to.
+    """
+    logger.info(f"Fetching local {name} data...")
+
+    if not local_data_path.exists():
+        logger.warning(f"Local {name} data file does not exist.")
         return {}
 
     # Read local craft essence data
-    raw_data: list[dict] | None = await utils.read_json(LOCAL_CE_DATA)
+    raw_data: list[dict] | None = await utils.read_json(local_data_path)
     if raw_data is None:
-        logger.error("Failed to read local craft essence data.")
+        logger.error(f"Failed to read local {name} data.")
         return {}
 
     try:
-        data: CraftEssenceDataIndexed = {
-            item["idx"]: CraftEssenceData(**item) for item in raw_data
-        }
+        data = {item["idx"]: class_type(**item) for item in raw_data}
 
         return data
     except KeyError as e:
-        logger.error(f"Key error while processing local craft essence data: {e}")
+        logger.error(f"Key error while processing local {name} data: {e}")
         return {}
     except TypeError as e:
-        logger.error(f"Type error while processing local craft essence data: {e}")
+        logger.error(f"Type error while processing local {name} data: {e}")
         return {}
     except Exception as e:
-        logger.error(f"Unexpected error while processing local craft essence data: {e}")
+        logger.error(f"Unexpected error while processing local {name} data: {e}")
         return {}
 
 

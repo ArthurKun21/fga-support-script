@@ -7,7 +7,9 @@ from log import setup_logger
 from models import CraftEssenceData
 from preprocess import (
     CraftEssenceDataIndexed,
+    ServantDataIndexed,
     fetch_local_ce_data,
+    fetch_local_servant_data,
     process_craft_essence,
 )
 
@@ -22,6 +24,7 @@ async def main(debug: bool):
 
     ce_latest_data: list[CraftEssenceData] = []
     ce_local_data: CraftEssenceDataIndexed = {}
+    servant_local_data: ServantDataIndexed = {}
 
     async def preprocess_ce():
         nonlocal ce_latest_data
@@ -31,10 +34,15 @@ async def main(debug: bool):
         nonlocal ce_local_data
         ce_local_data = await fetch_local_ce_data()
 
+    async def fetch_local_servant():
+        nonlocal servant_local_data
+        servant_local_data = await fetch_local_servant_data()
+
     async with create_task_group() as tg:
         tg.start_soon(directory.build_index)
         tg.start_soon(preprocess_ce)
         tg.start_soon(fetch_local_ce)
+        tg.start_soon(fetch_local_servant)
 
 
 @click.command()
