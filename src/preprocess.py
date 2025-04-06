@@ -181,17 +181,20 @@ async def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
 
         equip = equip_face.get("equip", {})
 
-        for value in equip.values():
+        asset: Assets | None = None
+
+        for key, value in equip.items():
             if value:
-                face = value
+                asset = Assets(
+                    key=key,
+                    url=value,
+                )
                 break
-        else:
-            face = ""
 
         new_data = CraftEssenceData(
             idx=collectionNo,
             name=name,
-            faces=Assets(url=face) if face else None,
+            assets=asset,
             rarity=rarity,
         )
 
@@ -205,32 +208,75 @@ async def _preprocess_servant(raw_data: list[dict]) -> list[ServantData]:
 
     servant_data_list: list[ServantData] = []
 
+    # To prevent duplicate names
+    name_cache = set()
+
+    playable_type = {"heroine", "normal"}
+
     for data in sorted_data:
         collectionNo = data.get("collectionNo", 0)
         if collectionNo == 0:
             continue
 
+        # Skip if not a playable servant
+        servant_type = data.get("type", None)
+        if servant_type not in playable_type or servant_type is None:
+            continue
+
         name = data.get("name", "")
+
+        if "Altria" in name:
+            name = name.replace("Altria", "Artoria")
+
+        gender = data.get("gender", "")
+
         class_name = data.get("className", "")
         rarity = data.get("rarity", 1)
 
-        extra_assets = data.get("extraAssets", {})
+        # Conditionals for special cases
+        if name == "BB" and rarity == 5:
+            name = "BB (Summer)"
 
-        face_data = extra_assets.get("face", {})
-        face_list = []
+        if name == "Kishinami Hakuno" and gender == "female":
+            name = "Kishinami Hakunon"
 
-        for value in face_data.values():
-            if value:
-                face_list.append(value)
+        if name == "Ereshkigal" and class_name == "beastEresh":
+            name = "Ereshkigal (Summer)"
+            class_name = "Beast"
 
-        new_data = ServantData(
+        if class_name.lower() == "mooncancer":
+            class_name = "Moon Cancer"
+
+        if class_name.lower() == "alterego":
+            class_name = "Alter Ego"
+
+        class_name = " ".join([word.capitalize() for word in class_name.split()])
+
+        if name in name_cache:
+            name = f"{name} ({class_name})"
+
+        name_cache.add(name)
+
+        # Assets
+        assets: list[Assets] = []
+        extraAssets = data.get("extraAssets", {})
+
+        faces = extraAssets.get("faces", {})
+        for face_keys, face_values in faces.items():
+            for key, value in face_values.items():
+                new_asset = Assets(
+                    key=f"{face_keys}_{key}",
+                    url=value,
+                )
+                assets.append(new_asset)
+
+        servant_data = ServantData.create(
             idx=collectionNo,
             name=name,
             class_name=class_name,
-            faces=[Assets(url=face) for face in face_list],
             rarity=rarity,
+            faces=assets,
         )
-
-        servant_data_list.append(new_data)
+        servant_data_list.append(servant_data)
 
     return servant_data_list

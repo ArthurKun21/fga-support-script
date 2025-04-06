@@ -62,10 +62,12 @@ class Assets:
     After downloading the asset, update the file_path attribute.
 
     Attributes:
+        key (str): The key of the asset.
         url (str): The URL of the asset.
         file_path (Path | None): The file path of the asset.
     """
 
+    key: str
     url: str
     file_path: Path | None = None
 
@@ -98,6 +100,35 @@ class ServantData:
     rarity: int
     faces: list[Assets] = field(default_factory=list)
 
+    @classmethod
+    def create(
+        cls,
+        idx: int,
+        name: str,
+        class_name: str,
+        rarity: int,
+        faces: list[Assets] | None = None,
+    ) -> "ServantData":
+        """
+        Create a new instance of ServantData.
+
+        Args:
+            idx (int): The index of the servant.
+            name (str): The name of the servant.
+            class_name (str): The class of the servant.
+            rarity (int): The rarity of the servant.
+            faces (list[Assets] | None): The list of assets for the servant.
+
+        Returns:
+            ServantData: A new instance of ServantData.
+        """
+        if faces is None:
+            faces = []
+
+        name = _cleanup_name(name)
+
+        return cls(idx, name, class_name, rarity, faces)
+
     @property
     def is_empty(self):
         """
@@ -124,7 +155,7 @@ class CraftEssenceData:
     idx: int
     name: str
     rarity: int
-    faces: Assets | None = None
+    assets: Assets | None = None
 
     @property
     def is_empty(self):
@@ -134,7 +165,7 @@ class CraftEssenceData:
         Returns:
             bool: True if the craft essence data is empty, False otherwise.
         """
-        return self.faces is None
+        return self.assets is None
 
     @property
     def sanitized_name(self):
