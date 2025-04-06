@@ -21,11 +21,11 @@ async def build_index() -> None:
 
     servant_dir = SUPPORT_PREVIEW_PATH / "servant"
     servant_color_dir = SUPPORT_PREVIEW_PATH / "servant-color"
-    await build_servant_index(servant_dir)
-    await build_servant_index(servant_color_dir)
+    await _build_servant_index(servant_dir)
+    await _build_servant_index(servant_color_dir)
 
 
-async def build_servant_index(target_dir: Path) -> list[SupportFolder]:
+async def _build_servant_index(target_dir: Path) -> list[SupportFolder]:
     """Build the servant index from the given directory."""
 
     if not target_dir.exists():
