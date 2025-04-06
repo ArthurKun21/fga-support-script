@@ -61,4 +61,6 @@ async def build_servant_index() -> list[SupportFolder]:
         logger.error(f"Error accessing directory {servant_dir}: {e}")
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
+    if not entries:
+        logger.debug("No valid servant directories found.")
     return entries
