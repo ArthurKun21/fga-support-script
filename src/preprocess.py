@@ -15,7 +15,7 @@ SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
 CE_URL: str | None = os.getenv("CE_URL", None)
 
 
-def process_craft_essence() -> list[CraftEssenceData]:
+async def process_craft_essence() -> list[CraftEssenceData]:
     logger.info("Processing craft essence data...")
 
     if not CE_URL:
@@ -23,7 +23,7 @@ def process_craft_essence() -> list[CraftEssenceData]:
         return []
 
     # Download craft essence data
-    craft_essence_file_path = utils.download_file(
+    craft_essence_file_path = await utils.download_file(
         url=CE_URL,
         file_path=DATA_DIR / "craft_essence.json",
     )
@@ -32,7 +32,7 @@ def process_craft_essence() -> list[CraftEssenceData]:
         return []
 
     # Read craft essence data
-    raw_data: list[dict] | None = utils.read_json(craft_essence_file_path)
+    raw_data: list[dict] | None = await utils.read_json(craft_essence_file_path)
     if raw_data is None:
         logger.error("Failed to read craft essence data.")
         return []
@@ -46,7 +46,7 @@ def process_craft_essence() -> list[CraftEssenceData]:
     return ce_data
 
 
-def process_servant():
+async def process_servant():
     logger.info("Processing servant data...")
 
     if not SERVANT_URL:
@@ -54,7 +54,7 @@ def process_servant():
         return
 
     # Download servant data
-    servant_file_path = utils.download_file(
+    servant_file_path = await utils.download_file(
         url=SERVANT_URL,
         file_path=DATA_DIR / "servant.json",
     )
@@ -63,7 +63,7 @@ def process_servant():
         return
 
     # Read servant data
-    # raw_data:list[dict] = utils.read_json(servant_file_path)
+    # raw_data: list[dict] | None = await utils.read_json(servant_file_path)
 
 
 def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:

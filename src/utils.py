@@ -1,16 +1,17 @@
-import time
+import asyncio
 from pathlib import Path
 from typing import Any
 
 import httpx
 import orjson
+from anyio import open_file
 from loguru import logger
 
 
-def read_json(file_path: Path) -> Any | None:
+async def read_json(file_path: Path) -> Any | None:
     try:
-        with open(file_path, encoding="utf-8") as f:
-            data = orjson.loads(f.read())
+        async with await open_file(file_path, encoding="utf-8") as f:
+            data = orjson.loads(await f.read())
 
         return data
     except FileNotFoundError as e:
@@ -24,17 +25,17 @@ def read_json(file_path: Path) -> Any | None:
         return None
 
 
-def write_json(file_path: Path, data):
+async def write_json(file_path: Path, data):
     try:
-        with open(file_path, "wb") as f:
-            f.write(orjson.dumps(data, option=orjson.OPT_INDENT_2))
+        async with await open_file(file_path, "wb") as f:
+            await f.write(orjson.dumps(data, option=orjson.OPT_INDENT_2))
     except FileNotFoundError as e:
         logger.error(f"Error writing JSON file: {e}")
     except Exception as e:
         logger.error(f"Error writing JSON file: {e}")
 
 
-def download_file(
+async def download_file(
     url: str,
     file_path: Path,
 ) -> Path | None:
@@ -46,14 +47,18 @@ def download_file(
 
     while retry > 0:
         try:
-            with httpx.stream("GET", url) as response, open(file_path, "wb") as f:
-                for chunk in response.iter_bytes():
-                    f.write(chunk)
+            async with (
+                httpx.AsyncClient() as client,
+                client.stream("GET", url) as response,
+                await open_file(file_path, "wb") as f,
+            ):
+                async for chunk in response.aiter_bytes():
+                    await f.write(chunk)
             return file_path
         except Exception as e:
             file_path.unlink(missing_ok=True)
             logger.error(f"Error downloading from Atlas {retry} retries left.\t{e}.")
-            time.sleep(1)
+            await asyncio.sleep(1)
 
             retry -= 1
 
