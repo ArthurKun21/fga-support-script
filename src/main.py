@@ -6,11 +6,13 @@ import directory
 from log import setup_logger
 
 
-async def main():
+async def main(debug: bool):
     """
     Main function to run the application.
     """
     logger.info("Starting the application...")
+    if debug:
+        logger.debug("Debug mode is enabled.")
     await directory.build_index()
 
 
@@ -18,10 +20,8 @@ async def main():
 @click.option("--debug", is_flag=True, help="Enable debug mode.")
 def app(debug: bool):
     setup_logger(debug=debug)
-    if debug:
-        logger.debug("Debug mode is enabled.")
 
-    run(main)
+    run(main, debug)
 
 
 if __name__ == "__main__":
