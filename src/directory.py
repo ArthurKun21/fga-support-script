@@ -1,5 +1,4 @@
 import os
-import re
 from pathlib import Path
 
 from loguru import logger
@@ -52,8 +51,6 @@ async def _build_index(
 
     entries: list[SupportFolder] = []
 
-    index_regex = re.compile(r"^(\d+)_([\w\-\s]+)$")
-
     try:
         for dirEntry in os.scandir(target_dir):
             dir_entry_path = Path(dirEntry.path)
@@ -61,15 +58,22 @@ async def _build_index(
                 logger.warning(f"Skipping non-directory entry: {dir_entry_path}")
                 continue
 
-            dir_name = dir_entry_path.name
-            match = index_regex.match(str(dir_name))
-
-            if not match:
-                logger.debug(f"Invalid directory name format: {dir_name}")
+            try:
+                index = int(dir_entry_path.name)
+            except ValueError:
+                logger.warning(
+                    f"Skipping invalid directory name: {dir_entry_path.name}"
+                )
                 continue
 
-            index = int(match.group(1))
-            name = match.group(2)
+            txt_files = list(dir_entry_path.glob("*.txt"))
+            if not txt_files:
+                logger.warning(f"No .txt files found in directory: {dir_entry_path}")
+                continue
+            txt_files = sorted(txt_files, key=lambda x: x.stat().st_mtime, reverse=True)
+
+            name = txt_files[0].stem
+
             support_folder = SupportFolder(
                 path=dir_entry_path,
                 name=name,
