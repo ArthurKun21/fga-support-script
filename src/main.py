@@ -11,7 +11,7 @@ async def main():
     Main function to run the application.
     """
     logger.info("Starting the application...")
-    directory.build_index()
+    await directory.build_index()
 
 
 @click.command()
