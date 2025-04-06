@@ -17,9 +17,12 @@ def setup_logger():
         "<level>{message}</level>"
     )
 
+    logs_dir = PROJECT_ROOT / "logs"
+    logs_dir.mkdir(parents=True, exist_ok=True)
+
     # Set up logging
     logger.add(
-        sink=PROJECT_ROOT / "logs" / "app.log",
+        sink=logs_dir / "app.log",
         rotation="1 MB",
         level="DEBUG",
         format=log_format,
