@@ -1,8 +1,8 @@
+import os
 from pathlib import Path
 
 from loguru import logger
 
-import constants
 import utils
 from models import Assets, CraftEssenceData
 
@@ -11,13 +11,20 @@ PROJECT_ROOT = Path(__file__).cwd()
 DATA_DIR = PROJECT_ROOT / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
+SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
+CE_URL: str | None = os.getenv("CE_URL", None)
+
 
 def process_craft_essence():
     logger.info("Processing craft essence data...")
 
+    if not CE_URL:
+        logger.error("Craft essence URL is not set.")
+        return
+
     # Download craft essence data
     craft_essence_file_path = utils.download_file(
-        url=constants.CRAFT_ESSENCE_DATA_URL,
+        url=CE_URL,
         file_path=DATA_DIR / "craft_essence.json",
     )
     if not craft_essence_file_path:
@@ -33,9 +40,13 @@ def process_craft_essence():
 def process_servant():
     logger.info("Processing servant data...")
 
+    if not SERVANT_URL:
+        logger.error("Servant URL is not set.")
+        return
+
     # Download servant data
     servant_file_path = utils.download_file(
-        url=constants.SERVANT_DATA_URL,
+        url=SERVANT_URL,
         file_path=DATA_DIR / "servant.json",
     )
     if not servant_file_path:
