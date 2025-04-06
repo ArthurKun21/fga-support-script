@@ -1,9 +1,8 @@
 from pathlib import Path
 
-from log import setup_logger
-from models import SupportFolder
+from loguru import logger
 
-logger = setup_logger()
+from models import SupportFolder
 
 PROJECT_ROOT = Path(__file__).cwd()
 

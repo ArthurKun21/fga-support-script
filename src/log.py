@@ -6,7 +6,7 @@ from loguru import logger
 PROJECT_ROOT = Path(__file__).cwd()
 
 
-def setup_logger():
+def setup_logger(debug: bool = False):
     # Remove default logger
     logger.remove()
 
@@ -27,11 +27,12 @@ def setup_logger():
         level="DEBUG",
         format=log_format,
     )
+
+    level = "DEBUG" if debug else "INFO"
+
     logger.add(
         sys.stderr,
         colorize=True,
         format=log_format,
-        level="INFO",
+        level=level,
     )
-
-    return logger

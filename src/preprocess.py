@@ -1,11 +1,10 @@
 from pathlib import Path
 
+from loguru import logger
+
 import constants
 import utils
-from log import setup_logger
 from models import Assets, CraftEssenceData
-
-logger = setup_logger()
 
 PROJECT_ROOT = Path(__file__).cwd()
 

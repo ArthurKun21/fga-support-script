@@ -1,8 +1,8 @@
+import click
 from anyio import run
+from loguru import logger
 
 from log import setup_logger
-
-logger = setup_logger()
 
 
 async def main():
@@ -10,9 +10,19 @@ async def main():
     Main function to run the application.
     """
     logger.info("Starting the application...")
-    # Your application logic goes here
-    logger.info("Application finished successfully.")
+
+
+@click.command()
+@click.option("--debug", is_flag=True, help="Enable debug mode.")
+def app(debug: bool):
+    setup_logger(debug=debug)
+    if debug:
+        logger.debug("Debug mode is enabled.")
+    else:
+        logger.info("Debug mode is disabled.")
+
+    run(main)
 
 
 if __name__ == "__main__":
-    run(main)
+    app()

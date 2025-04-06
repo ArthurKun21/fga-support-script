@@ -3,10 +3,7 @@ from pathlib import Path
 
 import httpx
 import orjson
-
-from log import setup_logger
-
-logger = setup_logger()
+from loguru import logger
 
 
 def read_json(file_path: Path):
