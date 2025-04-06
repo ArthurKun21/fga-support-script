@@ -21,19 +21,34 @@ async def build_index() -> None:
 
     servant_dir = SUPPORT_PREVIEW_PATH / "servant"
     servant_color_dir = SUPPORT_PREVIEW_PATH / "servant-color"
-    await _build_servant_index(servant_dir)
-    await _build_servant_index(servant_color_dir)
+
+    ce_dir = SUPPORT_PREVIEW_PATH / "ce"
+    ce_color_dir = SUPPORT_PREVIEW_PATH / "ce-color"
+
+    # Build the index for each directory
+    directories: set[tuple[Path, SupportKind]] = {
+        (servant_dir, SupportKind.SERVANT),
+        (servant_color_dir, SupportKind.SERVANT),
+        (ce_dir, SupportKind.CRAFT_ESSENCE),
+        (ce_color_dir, SupportKind.CRAFT_ESSENCE),
+    }
+
+    for target_dir, kind in directories:
+        await _build_index(target_dir, kind)
 
 
-async def _build_servant_index(target_dir: Path) -> list[SupportFolder]:
-    """Build the servant index from the given directory."""
+async def _build_index(
+    target_dir: Path,
+    kind: SupportKind,
+) -> list[SupportFolder]:
+    """Build the index from the given directory."""
 
     if not target_dir.exists():
         target_dir.mkdir(parents=True, exist_ok=True)
-        logger.info(f"Empty Servant directory created at {target_dir}")
+        logger.info(f"Empty {kind} directory created at {target_dir}")
         return []
 
-    logger.info(f"Building servant index at {target_dir}...")
+    logger.info(f"Building {kind} index at {target_dir}...")
 
     entries: list[SupportFolder] = []
 
@@ -59,9 +74,9 @@ async def _build_servant_index(target_dir: Path) -> list[SupportFolder]:
                 path=dir_entry_path,
                 name=name,
                 idx=index,
-                kind=SupportKind.SERVANT,
+                kind=kind,
             )
-            logger.debug(f"Found valid servant directory: {support_folder}")
+            logger.debug(f"Found valid {kind} directory: {support_folder}")
             entries.append(support_folder)
 
     except OSError as e:
@@ -69,5 +84,5 @@ async def _build_servant_index(target_dir: Path) -> list[SupportFolder]:
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
     if not entries:
-        logger.debug("No valid servant directories found.")
+        logger.debug(f"No valid {kind} directories found.")
     return entries

@@ -5,4 +5,4 @@ class SupportKind(StrEnum):
     """Support kind enum."""
 
     SERVANT = "servant"
-    CRAFT_ESSENCE = "craft_essence"
+    CRAFT_ESSENCE = "ce"
