@@ -66,7 +66,11 @@ async def _build_index(
                 )
                 continue
 
-            txt_files = list(dir_entry_path.glob("*.txt"))
+            txt_files = [
+                file
+                for file in dir_entry_path.iterdir()
+                if file.is_file() and file.suffix == ".txt"
+            ]
             if not txt_files:
                 logger.warning(f"No .txt files found in directory: {dir_entry_path}")
                 continue
