@@ -15,12 +15,12 @@ SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
 CE_URL: str | None = os.getenv("CE_URL", None)
 
 
-def process_craft_essence():
+def process_craft_essence() -> list[CraftEssenceData]:
     logger.info("Processing craft essence data...")
 
     if not CE_URL:
         logger.error("Craft essence URL is not set.")
-        return
+        return []
 
     # Download craft essence data
     craft_essence_file_path = utils.download_file(
@@ -29,15 +29,21 @@ def process_craft_essence():
     )
     if not craft_essence_file_path:
         logger.error("Failed to download craft essence data.")
-        return
+        return []
 
     # Read craft essence data
     raw_data: list[dict] | None = utils.read_json(craft_essence_file_path)
     if raw_data is None:
         logger.error("Failed to read craft essence data.")
-        return
+        return []
 
-    _preprocess_ce(raw_data)
+    ce_data = _preprocess_ce(raw_data)
+    if not ce_data:
+        logger.error("No craft essence data found.")
+        return []
+
+    logger.info("Craft essence data processed successfully.")
+    return ce_data
 
 
 def process_servant():
@@ -60,7 +66,7 @@ def process_servant():
     # raw_data:list[dict] = utils.read_json(servant_file_path)
 
 
-def _preprocess_ce(raw_data: list[dict]):
+def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
     sorted_data = sorted(raw_data, key=lambda x: x["collectionNo"])
 
     ce_data_list: list[CraftEssenceData] = []
@@ -95,3 +101,5 @@ def _preprocess_ce(raw_data: list[dict]):
         )
 
         ce_data_list.append(new_data)
+
+    return ce_data_list
