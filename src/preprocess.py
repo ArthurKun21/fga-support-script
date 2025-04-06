@@ -126,7 +126,18 @@ async def process_servant():
         return
 
     # Read servant data
-    # raw_data: list[dict] | None = await utils.read_json(servant_file_path)
+    raw_data: list[dict] | None = await utils.read_json(servant_file_path)
+    if raw_data is None:
+        logger.error("Failed to read servant data.")
+        return
+
+    servant_data = await _preprocess_servant(raw_data)
+    if not servant_data:
+        logger.error("No servant data found.")
+        return
+
+    logger.info("Servant data processed successfully.")
+    return servant_data
 
 
 async def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
@@ -166,3 +177,39 @@ async def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
         ce_data_list.append(new_data)
 
     return ce_data_list
+
+
+async def _preprocess_servant(raw_data: list[dict]) -> list[ServantData]:
+    sorted_data = sorted(raw_data, key=lambda x: x["collectionNo"])
+
+    servant_data_list: list[ServantData] = []
+
+    for data in sorted_data:
+        collectionNo = data.get("collectionNo", 0)
+        if collectionNo == 0:
+            continue
+
+        name = data.get("name", "")
+        class_name = data.get("className", "")
+        rarity = data.get("rarity", 1)
+
+        extra_assets = data.get("extraAssets", {})
+
+        face_data = extra_assets.get("face", {})
+        face_list = []
+
+        for value in face_data.values():
+            if value:
+                face_list.append(value)
+
+        new_data = ServantData(
+            idx=collectionNo,
+            name=name,
+            class_name=class_name,
+            faces=[Assets(url=face) for face in face_list],
+            rarity=rarity,
+        )
+
+        servant_data_list.append(new_data)
+
+    return servant_data_list
