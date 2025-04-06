@@ -18,8 +18,6 @@ def app(debug: bool):
     setup_logger(debug=debug)
     if debug:
         logger.debug("Debug mode is enabled.")
-    else:
-        logger.info("Debug mode is disabled.")
 
     run(main)
 
