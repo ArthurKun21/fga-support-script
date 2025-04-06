@@ -1,6 +1,5 @@
 import time
 from pathlib import Path
-from typing import Optional
 
 import httpx
 import orjson
@@ -10,7 +9,7 @@ from log import logger
 
 def read_json(file_path: Path):
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             data = orjson.loads(f.read())
 
         return data
@@ -38,7 +37,7 @@ def write_json(file_path: Path, data):
 def download_file(
     url: str,
     file_path: Path,
-) -> Optional[Path]:
+) -> Path | None:
     if file_path.exists() and file_path.stat().st_size > 100:
         logger.info(f"File already exists: {file_path}")
         return file_path
@@ -47,10 +46,9 @@ def download_file(
 
     while retry > 0:
         try:
-            with httpx.stream("GET", url) as response:
-                with open(file_path, "wb") as f:
-                    for chunk in response.iter_bytes():
-                        f.write(chunk)
+            with httpx.stream("GET", url) as response, open(file_path, "wb") as f:
+                for chunk in response.iter_bytes():
+                    f.write(chunk)
             return file_path
         except Exception as e:
             file_path.unlink(missing_ok=True)

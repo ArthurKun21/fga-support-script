@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Tuple
+
 from log import logger
 from models import SupportFolder
 
@@ -56,7 +56,7 @@ def _read_servant(directory: Path) -> list[SupportFolder]:
     return servant_support_list
 
 
-def read_support_preview() -> Tuple[list[SupportFolder], list[SupportFolder]]:
+def read_support_preview() -> tuple[list[SupportFolder], list[SupportFolder]]:
     if not SUPPORT_PREVIEW_PATH.exists():
         logger.error(f"Support preview path does not exist: {SUPPORT_PREVIEW_PATH}")
         return [], []
@@ -67,7 +67,7 @@ def read_support_preview() -> Tuple[list[SupportFolder], list[SupportFolder]]:
     return servant_list, craft_essence_list
 
 
-def read_support_old() -> Tuple[list[SupportFolder], list[SupportFolder]]:
+def read_support_old() -> tuple[list[SupportFolder], list[SupportFolder]]:
     if not SUPPORT_OLD_PATH.exists():
         logger.error(f"Old support path does not exist: {SUPPORT_OLD_PATH}")
         return [], []

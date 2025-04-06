@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from models import CraftEssenceData, Assets
 import constants
-from log import logger
 import utils
+from log import logger
+from models import Assets, CraftEssenceData
 
 PROJECT_ROOT = Path(__file__).cwd()
 
