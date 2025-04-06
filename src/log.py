@@ -31,9 +31,4 @@ def setup_logger():
         level="INFO",
     )
 
-
-# Initialize logger when this module is imported
-setup_logger()
-
-# Export the logger
-__all__ = ["logger"]
+    return logger

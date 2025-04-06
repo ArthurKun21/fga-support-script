@@ -4,7 +4,9 @@ from pathlib import Path
 import httpx
 import orjson
 
-from log import logger
+from log import setup_logger
+
+logger = setup_logger()
 
 
 def read_json(file_path: Path):

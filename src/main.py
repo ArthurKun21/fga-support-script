@@ -1,4 +1,6 @@
-from log import logger
+from log import setup_logger
+
+logger = setup_logger()
 
 
 def main():
