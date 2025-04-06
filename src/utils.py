@@ -40,7 +40,7 @@ async def download_file(
     file_path: Path,
 ) -> Path | None:
     if file_path.exists() and file_path.stat().st_size > 100:
-        logger.info(f"File already exists: {file_path}")
+        logger.debug(f"File already exists: {file_path}")
         return file_path
 
     logger.info(f"Downloading file from url to {file_path}...")
@@ -49,8 +49,8 @@ async def download_file(
 
     while retry > 0:
         try:
+            client = httpx.AsyncClient()
             async with (
-                httpx.AsyncClient() as client,
                 client.stream("GET", url) as response,
                 await open_file(file_path, "wb") as f,
             ):
