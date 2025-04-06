@@ -1,12 +1,13 @@
 import time
 from pathlib import Path
+from typing import Any
 
 import httpx
 import orjson
 from loguru import logger
 
 
-def read_json(file_path: Path):
+def read_json(file_path: Path) -> Any | None:
     try:
         with open(file_path, encoding="utf-8") as f:
             data = orjson.loads(f.read())
@@ -14,13 +15,13 @@ def read_json(file_path: Path):
         return data
     except FileNotFoundError as e:
         logger.error(f"Error reading JSON file: {e}")
-        return []
+        return None
     except orjson.JSONDecodeError as e:
         logger.error(f"Error decoding JSON file: {e}")
-        return []
+        return None
     except Exception as e:
         logger.error(f"Error reading JSON file: {e}")
-        return []
+        return None
 
 
 def write_json(file_path: Path, data):

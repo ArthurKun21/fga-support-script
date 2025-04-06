@@ -32,7 +32,10 @@ def process_craft_essence():
         return
 
     # Read craft essence data
-    raw_data: list[dict] = utils.read_json(craft_essence_file_path)
+    raw_data: list[dict] | None = utils.read_json(craft_essence_file_path)
+    if raw_data is None:
+        logger.error("Failed to read craft essence data.")
+        return
 
     _preprocess_ce(raw_data)
 
@@ -57,9 +60,7 @@ def process_servant():
     # raw_data:list[dict] = utils.read_json(servant_file_path)
 
 
-def _preprocess_ce(
-    raw_data: list[dict],  # type: ignore[valid-type,assignment]  # noqa: F821
-):
+def _preprocess_ce(raw_data: list[dict]):
     sorted_data = sorted(raw_data, key=lambda x: x["collectionNo"])
 
     ce_data_list: list[CraftEssenceData] = []
