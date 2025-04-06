@@ -19,25 +19,28 @@ async def build_index() -> None:
         logger.error(f"Support preview path does not exist: {SUPPORT_PREVIEW_PATH}")
         exit()
 
-    await build_servant_index()
-
-
-async def build_servant_index() -> list[SupportFolder]:
     servant_dir = SUPPORT_PREVIEW_PATH / "servant"
+    servant_color_dir = SUPPORT_PREVIEW_PATH / "servant-color"
+    await build_servant_index(servant_dir)
+    await build_servant_index(servant_color_dir)
 
-    if not servant_dir.exists():
-        servant_dir.mkdir(parents=True, exist_ok=True)
-        logger.info(f"Empty Servant directory created at {servant_dir}")
+
+async def build_servant_index(target_dir: Path) -> list[SupportFolder]:
+    """Build the servant index from the given directory."""
+
+    if not target_dir.exists():
+        target_dir.mkdir(parents=True, exist_ok=True)
+        logger.info(f"Empty Servant directory created at {target_dir}")
         return []
 
-    logger.info(f"Building servant index at {servant_dir}...")
+    logger.info(f"Building servant index at {target_dir}...")
 
     entries: list[SupportFolder] = []
 
     index_regex = re.compile(r"^(\d+)_([\w\-\s]+)$")
 
     try:
-        for dirEntry in os.scandir(servant_dir):
+        for dirEntry in os.scandir(target_dir):
             dir_entry_path = Path(dirEntry.path)
             if not dir_entry_path.is_dir():
                 logger.warning(f"Skipping non-directory entry: {dir_entry_path}")
@@ -62,7 +65,7 @@ async def build_servant_index() -> list[SupportFolder]:
             entries.append(support_folder)
 
     except OSError as e:
-        logger.error(f"Error accessing directory {servant_dir}: {e}")
+        logger.error(f"Error accessing directory {target_dir}: {e}")
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
     if not entries:
