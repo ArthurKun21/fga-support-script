@@ -1,9 +1,11 @@
+from anyio import run
+
 from log import setup_logger
 
 logger = setup_logger()
 
 
-def main():
+async def main():
     """
     Main function to run the application.
     """
@@ -13,4 +15,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run(main)
