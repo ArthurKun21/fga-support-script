@@ -43,6 +43,8 @@ async def download_file(
         logger.info(f"File already exists: {file_path}")
         return file_path
 
+    logger.info(f"Downloading file from url to {file_path}...")
+
     retry = 3
 
     while retry > 0:

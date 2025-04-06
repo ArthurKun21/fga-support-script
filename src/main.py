@@ -1,9 +1,10 @@
 import click
-from anyio import run
+from anyio import create_task_group, run
 from loguru import logger
 
 import directory
 from log import setup_logger
+from preprocess import process_craft_essence
 
 
 async def main(debug: bool):
@@ -13,7 +14,10 @@ async def main(debug: bool):
     logger.info("Starting the application...")
     if debug:
         logger.debug("Debug mode is enabled.")
-    await directory.build_index()
+
+    async with create_task_group() as tg:
+        tg.start_soon(directory.build_index)
+        tg.start_soon(process_craft_essence)
 
 
 @click.command()

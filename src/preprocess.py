@@ -37,7 +37,7 @@ async def process_craft_essence() -> list[CraftEssenceData]:
         logger.error("Failed to read craft essence data.")
         return []
 
-    ce_data = _preprocess_ce(raw_data)
+    ce_data = await _preprocess_ce(raw_data)
     if not ce_data:
         logger.error("No craft essence data found.")
         return []
@@ -66,7 +66,7 @@ async def process_servant():
     # raw_data: list[dict] | None = await utils.read_json(servant_file_path)
 
 
-def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
+async def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
     sorted_data = sorted(raw_data, key=lambda x: x["collectionNo"])
 
     ce_data_list: list[CraftEssenceData] = []
