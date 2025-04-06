@@ -14,6 +14,41 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
 CE_URL: str | None = os.getenv("CE_URL", None)
 
+LOCAL_CE_DATA = DATA_DIR / "local_ce.json"
+LOCAL_SERVANT_DATA = DATA_DIR / "local_servant.json"
+
+type CraftEssenceDataIndexed = dict[int, CraftEssenceData]
+
+
+async def fetch_local_ce_data() -> CraftEssenceDataIndexed:
+    logger.info("Fetching local craft essence data...")
+
+    if not LOCAL_CE_DATA.exists():
+        logger.warning("Local craft essence data file does not exist.")
+        return {}
+
+    # Read local craft essence data
+    raw_data: list[dict] | None = await utils.read_json(LOCAL_CE_DATA)
+    if raw_data is None:
+        logger.error("Failed to read local craft essence data.")
+        return {}
+
+    try:
+        data: CraftEssenceDataIndexed = {
+            item["idx"]: CraftEssenceData(**item) for item in raw_data
+        }
+
+        return data
+    except KeyError as e:
+        logger.error(f"Key error while processing local craft essence data: {e}")
+        return {}
+    except TypeError as e:
+        logger.error(f"Type error while processing local craft essence data: {e}")
+        return {}
+    except Exception as e:
+        logger.error(f"Unexpected error while processing local craft essence data: {e}")
+        return {}
+
 
 async def process_craft_essence() -> list[CraftEssenceData]:
     logger.info("Processing craft essence data...")
