@@ -1,5 +1,7 @@
 import os
+from collections.abc import Callable, Coroutine
 from pathlib import Path
+from typing import Any
 
 from loguru import logger
 
@@ -79,65 +81,84 @@ async def _fetch_local_data[T](
 
 
 async def process_craft_essence() -> list[CraftEssenceData]:
-    logger.info("Processing craft essence data...")
-
     if not CE_URL:
         logger.error("Craft essence URL is not set.")
         return []
 
-    # Download craft essence data
-    craft_essence_file_path = await utils.download_file(
+    ce_data = await _process_data(
+        name="ce",
         url=CE_URL,
-        file_path=DATA_DIR / "craft_essence.json",
+        save_data_path=DATA_DIR / "craft_essence.json",
+        preprocess_func=_preprocess_ce,
     )
-    if not craft_essence_file_path:
-        logger.error("Failed to download craft essence data.")
-        return []
-
-    # Read craft essence data
-    raw_data: list[dict] | None = await utils.read_json(craft_essence_file_path)
-    if raw_data is None:
-        logger.error("Failed to read craft essence data.")
-        return []
-
-    ce_data = await _preprocess_ce(raw_data)
     if not ce_data:
-        logger.error("No craft essence data found.")
+        logger.error("Failed to process craft essence data.")
         return []
 
-    logger.info("Craft essence data processed successfully.")
     return ce_data
 
 
-async def process_servant():
-    logger.info("Processing servant data...")
-
+async def process_servant() -> list[ServantData]:
     if not SERVANT_URL:
         logger.error("Servant URL is not set.")
-        return
+        return []
 
-    # Download servant data
-    servant_file_path = await utils.download_file(
+    servant_data = await _process_data(
+        name="servant",
         url=SERVANT_URL,
-        file_path=DATA_DIR / "servant.json",
+        save_data_path=DATA_DIR / "servant.json",
+        preprocess_func=_preprocess_servant,
     )
-    if not servant_file_path:
-        logger.error("Failed to download servant data.")
-        return
-
-    # Read servant data
-    raw_data: list[dict] | None = await utils.read_json(servant_file_path)
-    if raw_data is None:
-        logger.error("Failed to read servant data.")
-        return
-
-    servant_data = await _preprocess_servant(raw_data)
     if not servant_data:
-        logger.error("No servant data found.")
-        return
+        logger.error("Failed to process servant data.")
+        return []
 
-    logger.info("Servant data processed successfully.")
     return servant_data
+
+
+async def _process_data[T](
+    name: str,
+    url: str,
+    save_data_path: Path,
+    preprocess_func: Callable[[list[dict]], Coroutine[Any, Any, list[T]]],
+) -> list[T]:
+    """
+    Fetch and process data from a URL, and save it to a local file.
+
+    Args:
+        name (str): The name of the data.
+        url (str): The URL to fetch the data from.
+        save_data_path (Path): The path to save the processed data.
+        preprocess_func (Callable): The function to preprocess the data.
+    """
+    logger.info(f"Processing {name} data...")
+
+    if not url:
+        logger.error(f"{name} URL is not set.")
+        return []
+
+    # Download data
+    file_path = await utils.download_file(
+        url=url,
+        file_path=save_data_path,
+    )
+    if not file_path:
+        logger.error(f"Failed to download {name} data.")
+        return []
+
+    # Read data
+    raw_data: list[dict] | None = await utils.read_json(file_path)
+    if raw_data is None:
+        logger.error(f"Failed to read {name} data.")
+        return []
+
+    processed_data = await preprocess_func(raw_data)
+    if not processed_data:
+        logger.error(f"No {name} data found.")
+        return []
+
+    logger.info(f"{name} data processed successfully.")
+    return processed_data
 
 
 async def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
