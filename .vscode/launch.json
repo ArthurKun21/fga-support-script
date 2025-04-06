@@ -9,7 +9,9 @@
             "console": "integratedTerminal",
             "args": [
                 "--debug"
-            ]
+            ],
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
