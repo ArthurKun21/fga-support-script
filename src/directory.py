@@ -34,7 +34,7 @@ async def build_servant_index() -> list[SupportFolder]:
 
     entries: list[SupportFolder] = []
 
-    index_regex = re.compile(r"^\d+_[\w]+$")
+    index_regex = re.compile(r"^(\d+)_([\w\-\s]+)$")
 
     try:
         for dirEntry in os.scandir(servant_dir):
@@ -43,19 +43,23 @@ async def build_servant_index() -> list[SupportFolder]:
                 logger.warning(f"Skipping non-directory entry: {dir_entry_path}")
                 continue
 
-            name = dir_entry_path.name
-            match = index_regex.match(name)
+            dir_name = dir_entry_path.name
+            match = index_regex.match(str(dir_name))
 
-            if match:
-                digits = int(match.group(0))
-                support_folder = SupportFolder(
-                    path=dir_entry_path,
-                    name=name,
-                    idx=digits,
-                    kind=SupportKind.SERVANT,
-                )
-                logger.debug(f"Found valid servant directory: {support_folder}")
-                entries.append(support_folder)
+            if not match:
+                logger.debug(f"Invalid directory name format: {dir_name}")
+                continue
+
+            index = int(match.group(1))
+            name = match.group(2)
+            support_folder = SupportFolder(
+                path=dir_entry_path,
+                name=name,
+                idx=index,
+                kind=SupportKind.SERVANT,
+            )
+            logger.debug(f"Found valid servant directory: {support_folder}")
+            entries.append(support_folder)
 
     except OSError as e:
         logger.error(f"Error accessing directory {servant_dir}: {e}")
