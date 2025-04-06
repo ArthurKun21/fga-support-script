@@ -16,7 +16,7 @@ async def build_index() -> None:
     logger.info("Building index...")
 
     if not SUPPORT_PREVIEW_PATH.exists():
-        logger.error(f"Support preview path does not exist: {SUPPORT_PREVIEW_PATH}")
+        logger.error(f"Support repository path does not exist: {SUPPORT_PREVIEW_PATH}")
         exit()
 
     servant_dir = SUPPORT_PREVIEW_PATH / "servant"
