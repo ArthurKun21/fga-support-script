@@ -16,10 +16,8 @@ def create_support_servant_img(
 ):
     if debug:
         logger.debug("Debug mode is enabled. Assumed to be successful.")
-        with open(dest_file_path, "wb"):
-            pass
-        with open(dest_color_file_path, "wb"):
-            pass
+        dest_file_path.touch(exist_ok=True)
+        dest_color_file_path.touch(exist_ok=True)
         return
 
     image_np_list = _read_images(source_dir)
