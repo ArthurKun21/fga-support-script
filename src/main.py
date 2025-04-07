@@ -48,13 +48,17 @@ async def main(debug: bool):
         nonlocal servant_local_data
         servant_local_data = await fetch_local_servant_data()
 
-    async with create_task_group() as tg:
-        tg.start_soon(directory.build_servant_index)
-        tg.start_soon(directory.build_ce_index)
-        tg.start_soon(preprocess_ce)
-        tg.start_soon(fetch_local_ce)
-        tg.start_soon(preprocess_servant)
-        tg.start_soon(fetch_local_servant)
+    try:
+        async with create_task_group() as tg:
+            tg.start_soon(directory.build_servant_index)
+            tg.start_soon(directory.build_ce_index)
+            tg.start_soon(preprocess_ce)
+            tg.start_soon(fetch_local_ce)
+            tg.start_soon(preprocess_servant)
+            tg.start_soon(fetch_local_servant)
+    except Exception as e:
+        logger.error(f"An error occurred: {e}")
+        exit()
 
 
 @click.command()
