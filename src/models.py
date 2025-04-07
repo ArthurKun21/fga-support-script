@@ -91,6 +91,12 @@ class BaseData:
     rarity: int
     assets: list[Assets] = field(default_factory=list)
 
+    def __post_init__(self):
+        """
+        Post-initialization processing to ensure the name is sanitized.
+        """
+        self.name = _cleanup_name(self.name)
+
     @property
     def sanitized_name(self):
         """
@@ -115,41 +121,6 @@ class BaseData:
 @dataclass
 class ServantData(BaseData):
     class_name: str = ""
-
-    @classmethod
-    def create(
-        cls,
-        idx: int,
-        name: str,
-        class_name: str,
-        rarity: int,
-        assets: list[Assets] | None = None,
-    ) -> "ServantData":
-        """
-        Create a new instance of ServantData.
-
-        Args:
-            idx (int): The index of the servant.
-            name (str): The name of the servant.
-            class_name (str): The class of the servant.
-            rarity (int): The rarity of the servant.
-            assets (list[Assets] | None): The list of assets for the servant.
-
-        Returns:
-            ServantData: A new instance of ServantData.
-        """
-        if assets is None:
-            assets = []
-
-        name = _cleanup_name(name)
-
-        return cls(
-            class_name=class_name,
-            idx=idx,
-            name=name,
-            rarity=rarity,
-            assets=assets,
-        )
 
 
 @dataclass
