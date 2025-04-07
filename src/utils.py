@@ -38,12 +38,22 @@ async def write_json(file_path: Path, data):
 async def download_file(
     url: str,
     file_path: Path,
+    debug: bool = False,
 ) -> Path | None:
     if file_path.exists() and file_path.stat().st_size > 100:
         logger.debug(f"File already exists: {file_path}")
         return file_path
 
     logger.info(f"Downloading file from url to {file_path}...")
+
+    if debug:
+        logger.debug(
+            "Debug mode enabled. Skipping download and "
+            f"Creating empty file {file_path.name}."
+        )
+        async with await open_file(file_path, "wb") as f:
+            pass
+        return file_path
 
     retry = 3
 
