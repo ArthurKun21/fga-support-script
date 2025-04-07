@@ -89,6 +89,7 @@ class BaseData:
     idx: int
     name: str
     rarity: int
+    assets: list[Assets] = field(default_factory=list)
 
     @property
     def sanitized_name(self):
@@ -100,11 +101,20 @@ class BaseData:
         """
         return _cleanup_name(self.name)
 
+    @property
+    def is_empty(self):
+        """
+        Check if the data is empty.
+
+        Returns:
+            bool: True if the data is empty, False otherwise.
+        """
+        return len(self.assets) == 0
+
 
 @dataclass
 class ServantData(BaseData):
-    class_name: str
-    faces: list[Assets] = field(default_factory=list)
+    class_name: str = ""
 
     @classmethod
     def create(
@@ -113,7 +123,7 @@ class ServantData(BaseData):
         name: str,
         class_name: str,
         rarity: int,
-        faces: list[Assets] | None = None,
+        assets: list[Assets] | None = None,
     ) -> "ServantData":
         """
         Create a new instance of ServantData.
@@ -123,45 +133,36 @@ class ServantData(BaseData):
             name (str): The name of the servant.
             class_name (str): The class of the servant.
             rarity (int): The rarity of the servant.
-            faces (list[Assets] | None): The list of assets for the servant.
+            assets (list[Assets] | None): The list of assets for the servant.
 
         Returns:
             ServantData: A new instance of ServantData.
         """
-        if faces is None:
-            faces = []
+        if assets is None:
+            assets = []
 
         name = _cleanup_name(name)
 
         return cls(
+            class_name=class_name,
             idx=idx,
             name=name,
-            class_name=class_name,
             rarity=rarity,
-            faces=faces,
+            assets=assets,
         )
-
-    @property
-    def is_empty(self):
-        """
-        Check if the servant data is empty.
-
-        Returns:
-            bool: True if the servant data is empty, False otherwise.
-        """
-        return len(self.faces) == 0
 
 
 @dataclass
 class CraftEssenceData(BaseData):
-    assets: Assets | None = None
-
     @property
-    def is_empty(self):
+    def asset(self) -> Assets | None:
         """
-        Check if the craft essence data is empty.
+        Get the first asset of the craft essence.
 
         Returns:
-            bool: True if the craft essence data is empty, False otherwise.
+            Assets | None: The first asset of the craft essence or None
+            if no assets are available.
         """
-        return self.assets is None
+        if len(self.assets) > 0:
+            return self.assets[0]
+        return None

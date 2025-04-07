@@ -184,7 +184,7 @@ async def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
 
         equip = equip_face.get("equip", {})
 
-        asset: Assets | None = None
+        assets: list[Assets] = []
 
         for key, value in equip.items():
             if value:
@@ -192,12 +192,13 @@ async def _preprocess_ce(raw_data: list[dict]) -> list[CraftEssenceData]:
                     key=key,
                     url=value,
                 )
+                assets.append(asset)
                 break
 
         new_data = CraftEssenceData(
             idx=collectionNo,
             name=name,
-            assets=asset,
+            assets=assets,
             rarity=rarity,
         )
 
@@ -278,7 +279,7 @@ async def _preprocess_servant(raw_data: list[dict]) -> list[ServantData]:
             name=name,
             class_name=class_name,
             rarity=rarity,
-            faces=assets,
+            assets=assets,
         )
         servant_data_list.append(servant_data)
 
