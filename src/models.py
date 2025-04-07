@@ -94,6 +94,16 @@ class Assets:
 
         self.file_path = file_path
 
+    @property
+    def url_file_name(self) -> str:
+        """
+        Get the file name from the URL.
+
+        Returns:
+            str: The file name extracted from the URL.
+        """
+        return self.url.split("/")[-1]
+
 
 @dataclass
 class ServantData:
