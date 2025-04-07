@@ -28,6 +28,13 @@ class SupportFolder:
     kind: SupportKind
     name: str | None = None
 
+    def __post_init__(self):
+        if isinstance(self.kind, str):
+            try:
+                self.kind = SupportKind(self.kind)
+            except ValueError as err:
+                raise ValueError(f"Invalid support kind: {self.kind}") from err
+
 
 def _preprocess_name(input_str) -> str:
     """Removes accents from a string using unicode normalization.
