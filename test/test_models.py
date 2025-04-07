@@ -85,7 +85,7 @@ class TestAssets:
         asset = Assets(
             key="test_key", url="https://example.com/path/to/image.jpg?param=value"
         )
-        assert asset.url_file_name == "image.jpg?param=value"
+        assert asset.url_file_name == "image.jpg"
 
     def test_url_file_name_no_filename(self):
         asset = Assets(key="test_key", url="https://example.com/")

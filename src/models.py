@@ -2,6 +2,7 @@ import re
 import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
+from urllib.parse import unquote, urlparse
 
 from enums import SupportKind
 
@@ -88,7 +89,8 @@ class Assets:
         Returns:
             str: The file name extracted from the URL.
         """
-        return self.url.split("/")[-1]
+        path = urlparse(self.url).path
+        return unquote(path.split("/")[-1])
 
 
 @dataclass
