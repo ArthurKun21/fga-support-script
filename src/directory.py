@@ -17,12 +17,8 @@ CE_DIR = SUPPORT_PREVIEW_PATH / "ce"
 CE_COLOR_DIR = SUPPORT_PREVIEW_PATH / "ce-color"
 
 
-async def build_index() -> None:
+async def build_servant_index() -> None:
     logger.info("Building index...")
-
-    if not SUPPORT_PREVIEW_PATH.exists():
-        logger.error(f"Support repository path does not exist: {SUPPORT_PREVIEW_PATH}")
-        exit()
 
     # Build the index for each directory
     directories: set[tuple[Path, SupportKind]] = {
@@ -31,6 +27,26 @@ async def build_index() -> None:
         (CE_DIR, SupportKind.CRAFT_ESSENCE),
         (CE_COLOR_DIR, SupportKind.CRAFT_ESSENCE),
     }
+
+    await _build_support_index(directories)
+
+
+async def build_ce_index() -> None:
+    logger.info("Building index...")
+
+    # Build the index for each directory
+    directories: set[tuple[Path, SupportKind]] = {
+        (CE_DIR, SupportKind.CRAFT_ESSENCE),
+        (CE_COLOR_DIR, SupportKind.CRAFT_ESSENCE),
+    }
+
+    await _build_support_index(directories)
+
+
+async def _build_support_index(directories: set[tuple[Path, SupportKind]]):
+    if not SUPPORT_PREVIEW_PATH.exists():
+        logger.error(f"Support repository path does not exist: {SUPPORT_PREVIEW_PATH}")
+        exit()
 
     for target_dir, kind in directories:
         await _build_index(target_dir, kind)
