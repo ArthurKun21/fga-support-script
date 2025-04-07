@@ -8,6 +8,9 @@ from enums import SupportKind
 # Sanitize the 'name' to ensure it's a valid Windows directory name
 INVALID_CHARS_PATTERN = r'[<>:"/\\|?*\x00-\x1f]|\.$'
 
+type CraftEssenceDataIndexed = dict[int, CraftEssenceData]
+type ServantDataIndexed = dict[int, ServantData]
+
 
 @dataclass
 class SupportFolder:

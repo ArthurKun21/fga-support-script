@@ -4,10 +4,13 @@ from loguru import logger
 
 import directory
 from log import setup_logger
-from models import CraftEssenceData, ServantData
-from preprocess import (
+from models import (
+    CraftEssenceData,
     CraftEssenceDataIndexed,
+    ServantData,
     ServantDataIndexed,
+)
+from preprocess import (
     fetch_local_ce_data,
     fetch_local_servant_data,
     process_craft_essence,

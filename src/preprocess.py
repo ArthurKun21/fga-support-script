@@ -6,7 +6,13 @@ from typing import Any
 from loguru import logger
 
 import utils
-from models import Assets, CraftEssenceData, ServantData
+from models import (
+    Assets,
+    CraftEssenceData,
+    CraftEssenceDataIndexed,
+    ServantData,
+    ServantDataIndexed,
+)
 
 PROJECT_ROOT = Path(__file__).cwd()
 
@@ -18,9 +24,6 @@ CE_URL: str | None = os.getenv("CE_URL", None)
 
 LOCAL_CE_DATA = DATA_DIR / "local_ce.json"
 LOCAL_SERVANT_DATA = DATA_DIR / "local_servant.json"
-
-type CraftEssenceDataIndexed = dict[int, CraftEssenceData]
-type ServantDataIndexed = dict[int, ServantData]
 
 
 async def fetch_local_ce_data() -> CraftEssenceDataIndexed:
