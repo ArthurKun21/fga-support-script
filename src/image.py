@@ -34,6 +34,33 @@ def create_support_servant_img(
     logger.info("Images processed and saved successfully.")
 
 
+def create_support_ce_img(
+    source_file_path: Path,
+    dest_file_path: Path,
+    dest_color_file_path: Path,
+    debug: bool = False,
+):
+    if debug:
+        logger.debug("Debug mode is enabled. Assumed to be successful.")
+        with open(dest_file_path, "wb"):
+            pass
+        with open(dest_color_file_path, "wb"):
+            pass
+        return
+
+    image_np = cv2.imread(str(source_file_path))
+
+    if image_np is None or image_np.size == 0:
+        logger.error(f"Failed to read image: {source_file_path.name}")
+        return
+
+    cv2.imwrite(str(dest_color_file_path), image_np)
+
+    image_np_gray = cv2.cvtColor(image_np.copy(), cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(str(dest_file_path), image_np_gray)
+    logger.info("CE Image processed and saved successfully.")
+
+
 def _process_servant_images(
     image_np_list: list[ArrayLike],
 ) -> ArrayLike:
