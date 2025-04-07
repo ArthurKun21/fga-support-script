@@ -31,3 +31,7 @@ select = [
     "SIM", # flake8-simplify
     "I", # isort
 ]
+
+[tool.pytest.ini_options]
+addopts = "-v"
+pythonpath = ["src"]
