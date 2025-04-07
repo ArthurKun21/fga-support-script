@@ -128,8 +128,10 @@ class TestRealImage:
         assert gray_image.shape[0] == 250, "Gray image height should be 250"
         assert gray_image.shape[1] == 154, "Gray image width should be 154"
 
+        # Read the output image
         output_np = cv2.imread(str(output_file), cv2.IMREAD_GRAYSCALE)
 
+        # Template matching the gray and the output image
         result = cv2.matchTemplate(gray_image, output_np, cv2.TM_CCOEFF_NORMED)
 
         assert result is not None, "Template matching result should not be None"
@@ -139,6 +141,7 @@ class TestRealImage:
         assert max_val > 0.8, "Template matching should have a high correlation"
         assert max_val < 1.0, "Template matching should not be perfect (due to noise)"
 
+        # Read the color image as gray
         color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
 
         assert color_image is not None, "Color image should not be None"
@@ -147,6 +150,7 @@ class TestRealImage:
         assert color_image.shape[0] == 250, "Gray image height should be 250"
         assert color_image.shape[1] == 154, "Gray image width should be 154"
 
+        # Template matching the color and the output image
         result_color = cv2.matchTemplate(color_image, output_np, cv2.TM_CCOEFF_NORMED)
 
         assert result_color is not None, "Template matching result should not be None"
