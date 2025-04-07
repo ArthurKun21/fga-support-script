@@ -73,10 +73,15 @@ async def _build_index(
             ]
             if not txt_files:
                 logger.warning(f"No .txt files found in directory: {dir_entry_path}")
-                continue
-            txt_files = sorted(txt_files, key=lambda x: x.stat().st_mtime, reverse=True)
+                name = None
+            else:
+                txt_files = sorted(
+                    txt_files,
+                    key=lambda x: x.stat().st_mtime,
+                    reverse=True,
+                )
 
-            name = txt_files[0].stem
+                name = txt_files[0].stem
 
             support_folder = SupportFolder(
                 path=dir_entry_path,

@@ -17,15 +17,16 @@ class SupportFolder:
     """Class representing a support folder.
     Attributes:
         path (Path): The path to the folder.
-        name (str): The name of the folder.
         idx (int): The index of the folder
         kind (SupportKind): The type of support.
+        name (str | None): The name of the folder.
+            if None, the name will be set later
     """
 
     path: Path
-    name: str
     idx: int
     kind: SupportKind
+    name: str | None = None
 
 
 def _preprocess_name(input_str) -> str:
