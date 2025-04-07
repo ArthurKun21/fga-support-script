@@ -125,15 +125,4 @@ class ServantData(BaseData):
 
 @dataclass
 class CraftEssenceData(BaseData):
-    @property
-    def asset(self) -> Assets | None:
-        """
-        Get the first asset of the craft essence.
-
-        Returns:
-            Assets | None: The first asset of the craft essence or None
-            if no assets are available.
-        """
-        if len(self.assets) > 0:
-            return self.assets[0]
-        return None
+    pass
