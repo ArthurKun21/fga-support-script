@@ -85,11 +85,25 @@ class Assets:
 
 
 @dataclass
-class ServantData:
+class BaseData:
     idx: int
     name: str
-    class_name: str
     rarity: int
+
+    @property
+    def sanitized_name(self):
+        """
+        Get the sanitized name of the craft essence.
+
+        Returns:
+            str: The sanitized name of the craft essence.
+        """
+        return _cleanup_name(self.name)
+
+
+@dataclass
+class ServantData(BaseData):
+    class_name: str
     faces: list[Assets] = field(default_factory=list)
 
     @classmethod
@@ -119,7 +133,13 @@ class ServantData:
 
         name = _cleanup_name(name)
 
-        return cls(idx, name, class_name, rarity, faces)
+        return cls(
+            idx=idx,
+            name=name,
+            class_name=class_name,
+            rarity=rarity,
+            faces=faces,
+        )
 
     @property
     def is_empty(self):
@@ -131,22 +151,9 @@ class ServantData:
         """
         return len(self.faces) == 0
 
-    @property
-    def sanitized_name(self):
-        """
-        Get the sanitized name of the servant.
-
-        Returns:
-            str: The sanitized name of the servant.
-        """
-        return _cleanup_name(self.name)
-
 
 @dataclass
-class CraftEssenceData:
-    idx: int
-    name: str
-    rarity: int
+class CraftEssenceData(BaseData):
     assets: Assets | None = None
 
     @property
@@ -158,13 +165,3 @@ class CraftEssenceData:
             bool: True if the craft essence data is empty, False otherwise.
         """
         return self.assets is None
-
-    @property
-    def sanitized_name(self):
-        """
-        Get the sanitized name of the craft essence.
-
-        Returns:
-            str: The sanitized name of the craft essence.
-        """
-        return _cleanup_name(self.name)
