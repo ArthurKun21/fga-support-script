@@ -113,7 +113,12 @@ def _read_images(
     """
     image_np_list: list[ArrayLike] = []
 
-    for img_path in source_dir.iterdir():
+    images: list[Path] = []
+    for ext in IMG_EXT:
+        images.extend(source_dir.glob(f"**/*{ext}"))
+    images = sorted(images)
+
+    for img_path in images:
         if not img_path.is_file():
             continue
 
