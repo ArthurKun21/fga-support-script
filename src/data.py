@@ -67,10 +67,11 @@ async def _download_and_confirm_asset(
 
 
 async def download_asset_files(
-    assets: list[Assets],
-    download_dir: Path,
+    assets: list[Assets], download_dir: Path, kind: SupportKind
 ) -> list[Assets]:
-    logger.info("Downloading and verifying files...")
+    logger.info(
+        f"{kind.value.upper()} {download_dir.name} - Downloading and verifying files..."
+    )
 
     results: list[Assets | None] = []
 
@@ -182,6 +183,7 @@ async def _process_generic_data(
             downloaded_assets = await download_asset_files(
                 latest_data.assets,  # Use the latest asset list for download
                 temp_download_dir,
+                kind,
             )
             # Update the data object with the successfully downloaded assets
             latest_data.assets = downloaded_assets

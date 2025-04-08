@@ -26,7 +26,7 @@ def create_support_servant_img(
 
     final_image_np = cv2.cvtColor(final_image.copy(), cv2.COLOR_BGR2GRAY)
     cv2.imwrite(str(dest_file_path), final_image_np)
-    logger.info(f"{source_dir.name} - Servant Images processed and saved successfully.")
+    logger.info(f"Servant {source_dir.name} - Images processed and saved successfully.")
 
 
 def create_support_ce_img(
@@ -46,7 +46,7 @@ def create_support_ce_img(
 
     image_np_gray = cv2.cvtColor(image_np.copy(), cv2.COLOR_BGR2GRAY)
     cv2.imwrite(str(dest_file_path), image_np_gray)
-    logger.info(f"{source_dir.name} - CE Image processed and saved successfully.")
+    logger.info(f"CE {source_dir.name} - Image processed and saved successfully.")
 
 
 def _process_servant_images(
