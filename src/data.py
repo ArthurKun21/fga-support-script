@@ -1,6 +1,9 @@
+from concurrent.futures import as_completed
 from pathlib import Path
 
-from anyio import create_task_group, open_file
+import cv2
+from anyio import open_file
+from anyio.from_thread import start_blocking_portal
 from loguru import logger
 
 from enums import SupportKind
@@ -28,21 +31,65 @@ TEMP_CE_DIR = TMP_DIR / CE
 TEMP_CE_DIR.mkdir(exist_ok=True, parents=True)
 
 
-async def download_files(
+async def _download_and_confirm_asset(
+    download_dir: Path, asset: Assets
+) -> Assets | None:
+    """Download and confirm the asset.
+    Args:
+        download_dir (Path): The directory to download the asset to.
+        asset (Assets): The asset to download.
+    Returns:
+        Assets | None: The asset if successful, None otherwise.
+    """
+    file_path = await download_file(
+        asset.url,
+        download_dir / asset.url_file_name,
+    )
+    if file_path is None:
+        logger.error(f"Failed to download asset: {asset.key}")
+        return None
+
+    try:
+        img = cv2.imread(str(file_path))
+        if img is None:
+            logger.error(f"Failed to read image: {file_path}")
+            return None
+
+        # Check if the image is empty
+        if img.size == 0:
+            logger.error(f"Empty image: {file_path}")
+            return None
+
+        return asset
+    except Exception as e:
+        logger.error(f"Error reading image: {file_path} - {e}")
+        return None
+
+
+async def download_asset_files(
     assets: list[Assets],
     download_dir: Path,
-    debug: bool = False,
-):
+) -> list[Assets]:
     logger.info("Downloading files...")
 
-    async with create_task_group() as tg:
-        for asset in assets:
-            tg.start_soon(
-                download_file,
-                asset.url,
-                download_dir / asset.url_file_name,
-                debug,
+    valid_assets: list[Assets] = []
+
+    with start_blocking_portal() as portal:
+        futures = [
+            portal.start_task_soon(
+                _download_and_confirm_asset,
+                download_dir,
+                asset,
             )
+            for asset in assets
+        ]
+
+        for future in as_completed(futures):
+            result = future.result()
+            if result is not None:
+                valid_assets.append(result)
+
+    return valid_assets
 
 
 async def process_servant_data(
@@ -74,10 +121,9 @@ async def process_servant_data(
             logger.info(f"New servant data found: {latest_data.name}")
 
             new_assets_found = True
-            await download_files(
+            await download_asset_files(
                 latest_data.assets,
                 temp_download_dir,
-                debug=debug,
             )
 
         else:
@@ -87,10 +133,9 @@ async def process_servant_data(
             if len(local_entry.assets) != len(latest_data.assets):
                 logger.info("Downloading assets...")
                 new_assets_found = True
-                await download_files(
+                await download_asset_files(
                     latest_data.assets,
                     temp_download_dir,
-                    debug=debug,
                 )
 
         if rename_txt_file:
