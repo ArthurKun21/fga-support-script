@@ -22,7 +22,7 @@ from preprocess import (
 )
 
 
-async def main(debug: bool, dry_run: bool):
+async def main(debug: bool, dry_run: bool, delete: bool):
     """
     Main function to run the application.
     """
@@ -53,6 +53,10 @@ async def main(debug: bool, dry_run: bool):
         servant_local_data = await fetch_local_servant_data()
 
     await directory.check_if_repo_exists()
+
+    if delete:
+        logger.info("Deleting the repository support files...")
+        await directory.delete_repository_support()
 
     try:
         async with create_task_group() as tg:
@@ -100,10 +104,11 @@ async def main(debug: bool, dry_run: bool):
 @click.command()
 @click.option("--debug", is_flag=True, help="Enable debug mode.")
 @click.option("--dry_run", is_flag=True, help="Enable dry run mode.")
-def app(debug: bool, dry_run: bool):
+@click.option("--delete", is_flag=True, help="Delete the repository files.")
+def app(debug: bool, dry_run: bool, delete: bool):
     setup_logger(debug=debug)
 
-    run(main, debug, dry_run)
+    run(main, debug, dry_run, delete)
 
 
 if __name__ == "__main__":

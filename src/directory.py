@@ -1,4 +1,5 @@
 import os
+import shutil
 from pathlib import Path
 
 from anyio import create_task_group
@@ -20,6 +21,36 @@ async def check_if_repo_exists():
         exit()
 
     logger.info(f"Support repository path exists: {REPO_DIR_PATH}")
+
+
+async def delete_repository_support():
+    """Delete the repository support to reset."""
+    if not REPO_DIR_PATH.exists():
+        logger.error(f"Support repository path does not exist: {REPO_DIR_PATH}")
+        return
+
+    directories = [
+        REPO_SERVANT_DIR,
+        REPO_SERVANT_COLOR_DIR,
+        REPO_CE_DIR,
+        REPO_CE_COLOR_DIR,
+    ]
+
+    for dirEntry in directories:
+        if not dirEntry.exists():
+            logger.warning(f"Directory does not exist: {dirEntry}")
+            continue
+
+        for item in dirEntry.iterdir():
+            if item.is_file():
+                item.unlink(missing_ok=True)
+            elif item.is_dir():
+                try:
+                    shutil.rmtree(item, ignore_errors=True)
+                except Exception:
+                    continue
+
+        logger.info(f"Removed files and directories in directory: {dirEntry.name}")
 
 
 async def remove_duplicate_txt_names():
