@@ -62,7 +62,6 @@ async def main(debug: bool):
             tg.start_soon(fetch_local_servant)
     except Exception as e:
         logger.error(f"An error occurred: {e}")
-        exit()
 
     try:
         async with create_task_group() as tg:
