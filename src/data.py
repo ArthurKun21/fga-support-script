@@ -164,13 +164,17 @@ async def _process_generic_data(
         local_entry = local_data.get(latest_data.idx)
 
         if local_entry is None:
-            logger.info(f"New {kind.value} data found: {latest_data.name}")
+            logger.info(
+                f"New {kind.value} data found: {latest_data.idx:04d} {latest_data.name}"
+            )
             new_assets_found = True
         else:
             if local_entry.sanitized_name != latest_data.sanitized_name:
                 rename_txt_file = True
             if len(local_entry.assets) != len(latest_data.assets):
-                logger.info(f"Updating {latest_data.name} assets...")
+                logger.info(
+                    f"Updating {latest_data.idx:04d} {latest_data.name} assets..."
+                )
                 new_assets_found = True
 
         if new_assets_found:
@@ -203,7 +207,7 @@ async def _process_generic_data(
             )
             logger.info(
                 f"{kind.value.capitalize()} images created for: "
-                f"{latest_data.sanitized_name}"
+                f"{latest_data.idx:04d} {latest_data.sanitized_name}"
             )
             await asyncio.sleep(0.5)
 
