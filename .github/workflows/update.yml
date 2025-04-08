@@ -1,0 +1,131 @@
+name: Update Support Repository
+
+on:
+  workflow_dispatch:
+    inputs:
+      delete_repo:
+        description: 'Delete the old support repository'
+        required: false
+        default: 'false'
+      delete_data:
+        description: 'Delete the data files'
+        required: false
+        default: 'false'
+      dry_run:
+        description: 'Run the workflow without saving local data'
+        required: false
+        default: 'false'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: 'ArthurKun21/fga-support'
+          token: ${{ secrets.UPLOAD_REPO }}
+          fetch-depth: 0
+          path: 'fga-support'
+
+      - uses: actions/setup-python@v5
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: |
+          uv sync
+
+      - name: Cache directory
+        uses: actions/cache@v4
+        with:
+          path: tmp
+          key: ${{ runner.os }}
+
+      - name: Delete old data files
+        if: ${{ github.event.inputs.delete_data == 'true' || github.event.inputs.delete_data == true }}
+        run: |
+          rm -f local-servant.json
+          rm -f local-ce.json
+
+      - name: Add env
+        run: |
+          echo "SERVANT_URL=https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json" >> $GITHUB_ENV
+          echo "CE_URL=https://api.atlasacademy.io/export/JP/nice_equip_lang_en.json" >> $GITHUB_ENV
+
+      - name: Run Python Script
+        run: |
+          uv run src/main.py ${{ if(github.event.inputs.dry_run == 'true', '--dry_run', '') }} ${{ if(github.event.inputs.delete_repo == 'true', '--delete', '') }}
+      # Set git config once for all steps
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Commit and Push
+        run: |
+          cd fga-support
+          # Use ISO-8601 format for consistency
+          CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          git add -A
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update ${CURRENT_DATE_TIME}"
+            git push || exit 1
+
+            echo "PREVIEW=true" >> $GITHUB_ENV
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
+
+      - name: Update the Servant and CE Data
+        run: |
+          # Use ISO-8601 format for consistency
+          CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          git add data/local-servant.json
+          git add data/local-ce.json
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update ${CURRENT_DATE_TIME}"
+            git push || exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
+
+      - name: Trigger workflow in Support repository
+        if: env.PREVIEW == 'true'
+        run: |
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.UPLOAD_REPO }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/ArthurKun21/fga-support/dispatches \
+            -d '{"event_type":"release","client_payload":{"unit":false,"integration":true}}'
+
+      - name: Zip directory
+        run: |
+          if [ ! -d "tmp" ]; then
+            mkdir tmp
+          fi
+          zip -r tmp.zip tmp
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: tmp-${{ github.run_number }}
+          path: tmp.zip

@@ -8,3 +8,11 @@ wheels/
 
 # Virtual environments
 .venv
+.env
+
+/logs/*
+/input/*
+/output/*
+/legacy/*
+/data/servant.json
+/data/ce.json
