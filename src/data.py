@@ -2,7 +2,7 @@ from concurrent.futures import as_completed
 from pathlib import Path
 
 import cv2
-from anyio import open_file, to_thread
+from anyio import to_thread
 from anyio.from_thread import start_blocking_portal
 from loguru import logger
 
@@ -125,11 +125,6 @@ async def process_servant_data(
 
         temp_download_dir = TEMP_SERVANT_DIR / servant_directory_name
         temp_download_dir.mkdir(exist_ok=True, parents=True)
-
-        txt_name_file_path = temp_download_dir / f"{latest_data.sanitized_name}.txt"
-        if not txt_name_file_path.exists():
-            async with await open_file(txt_name_file_path, "w", encoding="utf-8"):
-                pass
 
         rename_txt_file = False
         new_assets_found = False
