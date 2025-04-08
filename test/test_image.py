@@ -126,7 +126,7 @@ class TestRealImage:
         assert gray_image.size > 0, "Gray image should not be empty"
 
         assert gray_image.shape[0] == 250, "Gray image height should be 250"
-        assert gray_image.shape[1] == 154, "Gray image width should be 154"
+        assert gray_image.shape[1] == 157, "Gray image width should be 157"
 
         # Read the output image
         output_np = cv2.imread(str(output_file), cv2.IMREAD_GRAYSCALE)
@@ -148,7 +148,7 @@ class TestRealImage:
         assert color_image.size > 0, "Color image should not be empty"
 
         assert color_image.shape[0] == 250, "Gray image height should be 250"
-        assert color_image.shape[1] == 154, "Gray image width should be 154"
+        assert color_image.shape[1] == 157, "Color image width should be 157"
 
         # Template matching the color and the output image
         result_color = cv2.matchTemplate(color_image, output_np, cv2.TM_CCOEFF_NORMED)

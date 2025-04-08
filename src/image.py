@@ -64,7 +64,7 @@ def _process_servant_images(
             interpolation=cv2.INTER_LANCZOS4,
         )
 
-        x = 3
+        x = 0
         y = 47
         width = 157
         height = 50
