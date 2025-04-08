@@ -79,7 +79,7 @@ def _process_servant_images(
 def _read_images(
     source_dir: Path,
 ) -> list[MatLike]:
-    """ "
+    """
     Read images from a directory and return them as a list of numpy arrays.
     This function iterates through all files in the specified directory,
     checks if they are valid image files based on their extensions,
