@@ -1,11 +1,12 @@
 import asyncio
+from collections.abc import Callable
 from pathlib import Path
+from typing import TypeVar
 
 import cv2
 from anyio import create_task_group, to_thread
 from loguru import logger
 
-import image
 from constants import (
     LOCAL_CE_DATA,
     LOCAL_SERVANT_DATA,
@@ -16,14 +17,16 @@ from constants import (
     TEMP_CE_DIR,
     TEMP_SERVANT_DIR,
 )
+from enums import SupportKind
+from image import create_support_ce_img, create_support_servant_img
 from models import (
     Assets,
-    CraftEssenceData,
-    CraftEssenceDataIndexed,
-    ServantData,
-    ServantDataIndexed,
+    BaseData,
 )
 from utils import download_file, write_json
+
+T = TypeVar("T", bound=BaseData)
+IndexedT = dict[int, T]
 
 ROOT = Path(__file__).cwd()
 
@@ -88,158 +91,141 @@ async def download_asset_files(
 
 
 async def process_servant_data(
-    servant_data: list[ServantData],
-    local_data: ServantDataIndexed,
+    servant_data: list[BaseData],
+    local_data: IndexedT,
     debug: bool = False,
     dry_run: bool = False,
 ):
-    logger.info("Processing servant data...")
-
-    debug_index = 0
-
-    for latest_data in servant_data:
-        if (debug or dry_run) and debug_index >= 5:
-            break
-
-        servant_directory_name = f"{latest_data.idx:04d}"
-
-        temp_download_dir = TEMP_SERVANT_DIR / servant_directory_name
-        temp_download_dir.mkdir(exist_ok=True, parents=True)
-
-        rename_txt_file = False
-        new_assets_found = False
-
-        local_entry = local_data.get(latest_data.idx, None)
-        if local_entry is None:
-            logger.info(f"New servant data found: {latest_data.name}")
-
-            new_assets_found = True
-            latest_data.assets = await download_asset_files(
-                latest_data.assets,
-                temp_download_dir,
-            )
-
-        else:
-            if local_entry.sanitized_name != latest_data.sanitized_name:
-                rename_txt_file = True
-
-            if len(local_entry.assets) != len(latest_data.assets):
-                logger.info(f"Updating {latest_data.name} assets...")
-                new_assets_found = True
-                latest_data.assets = await download_asset_files(
-                    latest_data.assets,
-                    temp_download_dir,
-                )
-        output_dir = OUTPUT_SERVANT_DIR / servant_directory_name
-        output_dir.mkdir(exist_ok=True, parents=True)
-
-        output_color_dir = OUTPUT_SERVANT_COLOR_DIR / servant_directory_name
-        output_color_dir.mkdir(exist_ok=True, parents=True)
-
-        txt_file_path = f"{latest_data.sanitized_name}.txt"
-
-        if rename_txt_file or new_assets_found:
-            (output_dir / txt_file_path).touch(exist_ok=True)
-            (output_color_dir / txt_file_path).touch(exist_ok=True)
-
-        if new_assets_found:
-            await to_thread.run_sync(
-                image.create_support_servant_img,
-                temp_download_dir,
-                output_dir / "support.png",
-                output_color_dir / "support.png",
-            )
-
-            logger.info(f"Servant images created for: {latest_data.sanitized_name}")
-
-        if debug or dry_run:
-            debug_index += 1
-        else:
-            # Wait for 1 second to avoid overwhelming the server
-            # with too many requests
-            await asyncio.sleep(1)
-
-    if not debug and not dry_run:
-        await write_json(
-            LOCAL_SERVANT_DATA,
-            servant_data,
-        )
+    await _process_generic_data(
+        latest_data_list=servant_data,
+        local_data=local_data,
+        kind=SupportKind.SERVANT,
+        temp_dir=TEMP_SERVANT_DIR,
+        output_dir_base=OUTPUT_SERVANT_DIR,
+        output_color_dir_base=OUTPUT_SERVANT_COLOR_DIR,
+        image_creation_func=create_support_servant_img,
+        output_image_filename="support.png",
+        local_data_path=LOCAL_SERVANT_DATA,
+        debug=debug,
+        dry_run=dry_run,
+    )
 
 
 async def process_craft_essence_data(
-    ce_data: list[CraftEssenceData],
-    local_data: CraftEssenceDataIndexed,
+    ce_data: list[BaseData],
+    local_data: IndexedT,
     debug: bool = False,
     dry_run: bool = False,
 ):
-    logger.info("Processing craft essence data...")
+    await _process_generic_data(
+        latest_data_list=ce_data,
+        local_data=local_data,
+        kind=SupportKind.CRAFT_ESSENCE,
+        temp_dir=TEMP_CE_DIR,
+        output_dir_base=OUTPUT_CE_DIR,
+        output_color_dir_base=OUTPUT_CE_COLOR_DIR,
+        image_creation_func=create_support_ce_img,
+        output_image_filename="ce.png",
+        local_data_path=LOCAL_CE_DATA,
+        debug=debug,
+        dry_run=dry_run,
+    )
 
+
+async def _process_generic_data(
+    latest_data_list: list[T],
+    local_data: IndexedT,
+    kind: SupportKind,
+    temp_dir: Path,
+    output_dir_base: Path,
+    output_color_dir_base: Path,
+    image_creation_func: Callable[[Path, Path, Path], None],
+    output_image_filename: str,
+    local_data_path: Path,
+    debug: bool = False,
+    dry_run: bool = False,
+):
+    logger.info(f"Processing {kind.value} data...")
     debug_index = 0
+    updated_data_list: list[T] = []  # Keep track of processed data
 
-    for latest_data in ce_data:
+    for latest_data in latest_data_list:
         if (debug or dry_run) and debug_index >= 5:
-            break
+            updated_data_list.append(latest_data)  # Still add to list even if skipped
+            continue  # Skip processing but keep data for potential final write
 
-        craft_essence_dir_name = f"{latest_data.idx:04d}"
-
-        temp_download_dir = TEMP_CE_DIR / craft_essence_dir_name
+        directory_name = f"{latest_data.idx:04d}"
+        temp_download_dir = temp_dir / directory_name
         temp_download_dir.mkdir(exist_ok=True, parents=True)
 
         rename_txt_file = False
         new_assets_found = False
+        assets_to_process = latest_data.assets  # Start with latest assets
 
-        local_entry = local_data.get(latest_data.idx, None)
+        local_entry = local_data.get(latest_data.idx)
+
         if local_entry is None:
-            logger.info(f"New ce data found: {latest_data.name}")
-
+            logger.info(f"New {kind.value} data found: {latest_data.name}")
             new_assets_found = True
-            latest_data.assets = await download_asset_files(
-                latest_data.assets,
-                temp_download_dir,
-            )
-
         else:
             if local_entry.sanitized_name != latest_data.sanitized_name:
                 rename_txt_file = True
-
             if len(local_entry.assets) != len(latest_data.assets):
                 logger.info(f"Updating {latest_data.name} assets...")
                 new_assets_found = True
-                latest_data.assets = await download_asset_files(
-                    latest_data.assets,
-                    temp_download_dir,
-                )
-        output_dir = OUTPUT_CE_DIR / craft_essence_dir_name
-        output_dir.mkdir(exist_ok=True, parents=True)
-
-        output_color_dir = OUTPUT_CE_COLOR_DIR / craft_essence_dir_name
-        output_color_dir.mkdir(exist_ok=True, parents=True)
-
-        txt_file_path = f"{latest_data.sanitized_name}.txt"
-
-        if rename_txt_file or new_assets_found:
-            (output_dir / txt_file_path).touch(exist_ok=True)
-            (output_color_dir / txt_file_path).touch(exist_ok=True)
+            else:
+                # If assets haven't changed in number, keep existing ones
+                # (avoids re-download if only name changed)
+                assets_to_process = local_entry.assets
 
         if new_assets_found:
-            await to_thread.run_sync(
-                image.create_support_ce_img,
+            # Download only if new or assets changed
+            downloaded_assets = await download_asset_files(
+                latest_data.assets,  # Use the latest asset list for download
                 temp_download_dir,
-                output_dir / "ce.png",
-                output_color_dir / "ce.png",
+            )
+            # Update the data object with the successfully downloaded assets
+            latest_data.assets = downloaded_assets
+            assets_to_process = downloaded_assets  # Use newly downloaded assets
+
+        output_dir = output_dir_base / directory_name
+        output_dir.mkdir(exist_ok=True, parents=True)
+        output_color_dir = output_color_dir_base / directory_name
+        output_color_dir.mkdir(exist_ok=True, parents=True)
+
+        txt_file_path = output_dir / f"{latest_data.sanitized_name}.txt"
+        color_txt_file_path = output_color_dir / f"{latest_data.sanitized_name}.txt"
+
+        if rename_txt_file or new_assets_found:
+            txt_file_path.touch(exist_ok=True)
+            color_txt_file_path.touch(exist_ok=True)
+
+        if (
+            new_assets_found and assets_to_process
+        ):  # Only process if assets were found/downloaded
+            await to_thread.run_sync(
+                image_creation_func,
+                temp_download_dir,
+                output_dir / output_image_filename,
+                output_color_dir / output_image_filename,
+            )
+            logger.info(
+                f"{kind.value.capitalize()} images created for: "
+                "{latest_data.sanitized_name}"
+            )
+        elif new_assets_found and not assets_to_process:
+            logger.warning(
+                f"No valid assets found/downloaded for {latest_data.name}, "
+                "skipping image creation."
             )
 
-            logger.info(f"CE images created for: {latest_data.sanitized_name}")
+        updated_data_list.append(latest_data)  # Add processed/updated data
 
         if debug or dry_run:
             debug_index += 1
         else:
-            # Wait for 1 second to avoid overwhelming the server
-            # with too many requests
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.5)  # Reduced sleep slightly, adjust as needed
 
     if not debug and not dry_run:
-        await write_json(
-            LOCAL_CE_DATA,
-            ce_data,
-        )
+        # Write the potentially modified list back (includes updated asset lists)
+        await write_json(local_data_path, updated_data_list)
