@@ -3,6 +3,7 @@ from anyio import create_task_group, run
 from loguru import logger
 
 import directory
+from data import process_servant_data
 from log import setup_logger
 from models import (
     CraftEssenceData,
@@ -56,6 +57,18 @@ async def main(debug: bool):
             tg.start_soon(fetch_local_ce)
             tg.start_soon(preprocess_servant)
             tg.start_soon(fetch_local_servant)
+    except Exception as e:
+        logger.error(f"An error occurred: {e}")
+        exit()
+
+    try:
+        async with create_task_group() as tg:
+            tg.start_soon(
+                process_servant_data,
+                servant_latest_data,
+                servant_local_data,
+                debug,
+            )
     except Exception as e:
         logger.error(f"An error occurred: {e}")
         exit()
