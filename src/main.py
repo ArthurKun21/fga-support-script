@@ -90,6 +90,12 @@ async def main(debug: bool):
     except Exception as e:
         logger.error(f"Error moving images to the repository: {e}")
 
+    logger.info("Removing duplicate text names...")
+    try:
+        await directory.remove_duplicate_txt_names()
+    except Exception as e:
+        logger.error(f"Error removing duplicate text names: {e}")
+
 
 @click.command()
 @click.option("--debug", is_flag=True, help="Enable debug mode.")
