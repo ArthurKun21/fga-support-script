@@ -60,8 +60,12 @@ jobs:
           echo "CE_URL=https://api.atlasacademy.io/export/JP/nice_equip_lang_en.json" >> $GITHUB_ENV
 
       - name: Run Python Script
+        env:
+          DRY_RUN_FLAG: ${{ github.event.inputs.dry_run == 'true' && '--dry_run' || '' }}
+          DELETE_FLAG: ${{ github.event.inputs.delete_repo == 'true' && '--delete' || '' }}
         run: |
-          uv run src/main.py ${{ if(github.event.inputs.dry_run == 'true', '--dry_run', '') }} ${{ if(github.event.inputs.delete_repo == 'true', '--delete', '') }}
+          uv run src/main.py $DRY_RUN_FLAG $DELETE_FLAG
+
       # Set git config once for all steps
       - name: Configure Git
         run: |
