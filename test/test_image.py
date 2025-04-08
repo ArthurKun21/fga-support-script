@@ -109,8 +109,13 @@ class TestRealImage:
         assert output_np is not None, "Output image should not be None"
         assert output_np.size > 0, "Output image should not be empty"
 
-    def test_create_support_servant_img(self, tmp_path):
-        """Test the create_support_servant_img function."""
+        assert output_np.shape[0] == 250, "Output image height should be 250"
+        assert output_np.shape[1] == 157, "Output image width should be 157"
+        assert output_np.ndim == 3, (
+            "Output image should have 3 dimensions (height, width, channels)"
+        )
+
+    def create_support_servant(self, tmp_path) -> tuple[Path, Path]:
         color_file_path = tmp_path / "color_output.png"
         gray_file_path = tmp_path / "gray_output.png"
 
@@ -119,6 +124,12 @@ class TestRealImage:
             gray_file_path,
             color_file_path,
         )
+
+        return color_file_path, gray_file_path
+
+    def test_create_support_servant_gray(self, tmp_path):
+        """Test the creation of gray image."""
+        _, gray_file_path = self.create_support_servant(tmp_path)
 
         # Read the gray
         gray_image = cv2.imread(str(gray_file_path), cv2.IMREAD_GRAYSCALE)
@@ -140,6 +151,13 @@ class TestRealImage:
 
         assert max_val > 0.8, "Template matching should have a high correlation"
         assert max_val < 1.0, "Template matching should not be perfect (due to noise)"
+
+    def test_create_support_servant_color(self, tmp_path):
+        """Test the creation of color image."""
+        color_file_path, _ = self.create_support_servant(tmp_path)
+
+        # Read the output image
+        output_np = cv2.imread(str(output_file), cv2.IMREAD_GRAYSCALE)
 
         # Read the color image as gray
         color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
