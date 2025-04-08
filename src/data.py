@@ -156,10 +156,11 @@ async def process_servant_data(
         if debug:
             debug_index += 1
 
-    await write_json(
-        LOCAL_SERVANT_DATA,
-        servant_data,
-    )
+    if not debug:
+        await write_json(
+            LOCAL_SERVANT_DATA,
+            servant_data,
+        )
 
 
 async def process_craft_essence_data(
