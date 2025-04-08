@@ -1,8 +1,11 @@
+import shutil
+
 import click
 from anyio import create_task_group, run
 from loguru import logger
 
 import directory
+from constants import OUTPUT_DIR, REPO_DIR_PATH
 from data import process_servant_data
 from log import setup_logger
 from models import (
@@ -72,6 +75,20 @@ async def main(debug: bool):
     except Exception as e:
         logger.error(f"An error occurred: {e}")
         exit()
+
+    logger.info("Copying images to the repository...")
+    try:
+        shutil.copytree(
+            OUTPUT_DIR,
+            REPO_DIR_PATH,
+            dirs_exist_ok=True,
+        )
+    except FileExistsError:
+        logger.error("The repository already has the images.")
+    except FileNotFoundError:
+        logger.error("The repository was not found.")
+    except Exception as e:
+        logger.error(f"Error moving images to the repository: {e}")
 
 
 @click.command()

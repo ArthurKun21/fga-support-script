@@ -3,18 +3,15 @@ from pathlib import Path
 
 from loguru import logger
 
+from constants import (
+    REPO_CE_COLOR_DIR,
+    REPO_CE_DIR,
+    REPO_DIR_PATH,
+    REPO_SERVANT_COLOR_DIR,
+    REPO_SERVANT_DIR,
+)
 from enums import SupportKind
 from models import SupportFolder
-
-PROJECT_ROOT = Path(__file__).cwd()
-
-SUPPORT_PREVIEW_PATH = PROJECT_ROOT / "fga-support"
-
-SERVANT_DIR = SUPPORT_PREVIEW_PATH / "servant"
-SERVANT_COLOR_DIR = SUPPORT_PREVIEW_PATH / "servant-color"
-
-CE_DIR = SUPPORT_PREVIEW_PATH / "ce"
-CE_COLOR_DIR = SUPPORT_PREVIEW_PATH / "ce-color"
 
 
 async def build_servant_index() -> None:
@@ -22,10 +19,10 @@ async def build_servant_index() -> None:
 
     # Build the index for each directory
     directories: set[tuple[Path, SupportKind]] = {
-        (SERVANT_DIR, SupportKind.SERVANT),
-        (SERVANT_COLOR_DIR, SupportKind.SERVANT),
-        (CE_DIR, SupportKind.CRAFT_ESSENCE),
-        (CE_COLOR_DIR, SupportKind.CRAFT_ESSENCE),
+        (REPO_SERVANT_DIR, SupportKind.SERVANT),
+        (REPO_SERVANT_COLOR_DIR, SupportKind.SERVANT),
+        (REPO_CE_DIR, SupportKind.CRAFT_ESSENCE),
+        (REPO_CE_COLOR_DIR, SupportKind.CRAFT_ESSENCE),
     }
 
     await _build_support_index(directories)
@@ -36,16 +33,16 @@ async def build_ce_index() -> None:
 
     # Build the index for each directory
     directories: set[tuple[Path, SupportKind]] = {
-        (CE_DIR, SupportKind.CRAFT_ESSENCE),
-        (CE_COLOR_DIR, SupportKind.CRAFT_ESSENCE),
+        (REPO_CE_DIR, SupportKind.CRAFT_ESSENCE),
+        (REPO_CE_COLOR_DIR, SupportKind.CRAFT_ESSENCE),
     }
 
     await _build_support_index(directories)
 
 
 async def _build_support_index(directories: set[tuple[Path, SupportKind]]):
-    if not SUPPORT_PREVIEW_PATH.exists():
-        logger.error(f"Support repository path does not exist: {SUPPORT_PREVIEW_PATH}")
+    if not REPO_DIR_PATH.exists():
+        logger.error(f"Support repository path does not exist: {REPO_DIR_PATH}")
         exit()
 
     for target_dir, kind in directories:
