@@ -22,8 +22,8 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
 CE_URL: str | None = os.getenv("CE_URL", None)
 
-LOCAL_CE_DATA = DATA_DIR / "local_ce.json"
-LOCAL_SERVANT_DATA = DATA_DIR / "local_servant.json"
+LOCAL_CE_DATA = PROJECT_ROOT / "ce.json"
+LOCAL_SERVANT_DATA = PROJECT_ROOT / "servant.json"
 
 
 async def fetch_local_ce_data() -> CraftEssenceDataIndexed:
