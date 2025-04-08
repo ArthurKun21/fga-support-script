@@ -79,11 +79,7 @@ async def main(debug: bool, dry_run: bool, delete: bool):
 
     await directory.copy_output_to_repo()
 
-    logger.info("Removing duplicate text names...")
-    try:
-        await directory.remove_duplicate_txt_names()
-    except Exception as e:
-        logger.error(f"Error removing duplicate text names: {e}")
+    await directory.remove_duplicate_txt_names()
 
 
 @click.command()

@@ -75,16 +75,19 @@ async def delete_repository_support():
 async def remove_duplicate_txt_names():
     """Remove duplicate text names."""
 
+    logger.info("Removing duplicate text names...")
     directories = [
         REPO_SERVANT_DIR,
         REPO_SERVANT_COLOR_DIR,
         REPO_CE_DIR,
         REPO_CE_COLOR_DIR,
     ]
-
-    async with create_task_group() as tg:
-        for directory in directories:
-            tg.start_soon(_remove_duplicate_txt_names, directory)
+    try:
+        async with create_task_group() as tg:
+            for directory in directories:
+                tg.start_soon(_remove_duplicate_txt_names, directory)
+    except Exception as e:
+        logger.error(f"Error removing duplicate text names: {e}")
 
 
 async def _remove_duplicate_txt_names(directory: Path):
