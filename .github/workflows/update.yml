@@ -50,6 +50,11 @@ jobs:
           rm -f local-servant.json
           rm -f local-ce.json
 
+      - name: Add env
+        run: |
+          echo "SERVANT_URL=https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json" >> $GITHUB_ENV
+          echo "CE_URL=https://api.atlasacademy.io/export/JP/nice_equip_lang_en.json" >> $GITHUB_ENV
+
       - name: Run Python Script
         if: ${{ github.event.inputs.dry_run == 'false' || github.event.inputs.dry_run == false }}
         run: |
