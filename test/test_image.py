@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import pytest
 
-from image import _read_images, create_support_servant_img
+from image import _read_images, create_support_ce_img, create_support_servant_img
 
 dir_path = Path(__file__).parent / "images"
 
@@ -16,6 +16,12 @@ servant_input_dir = servant_dir / "input"
 servant_output_file = servant_dir / "output.png"
 
 servant_support_file = servant_dir / "support.png"
+
+ce_dir = dir_path / "ce"
+
+ce_input_dir = ce_dir / "input"
+ce_output_file = ce_dir / "output.png"
+ce_support_file = ce_dir / "support.png"
 
 
 @pytest.fixture
@@ -223,6 +229,137 @@ class TestRealServantImage:
         color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
 
         support_img = cv2.imread(str(servant_support_file), cv2.IMREAD_GRAYSCALE)
+
+        # Template matching the support image and the gray image
+        result_color = cv2.matchTemplate(support_img, color_image, cv2.TM_CCOEFF_NORMED)
+
+        assert result_color is not None, "Template matching result should not be None"
+
+        _, max_val_color, _, _ = cv2.minMaxLoc(result_color)
+
+        assert max_val_color > 0.8, "Template matching should have a high correlation"
+        assert max_val_color < 1.0, (
+            "Template matching should not be perfect (due to noise)"
+        )
+
+
+class TestRealCEImage:
+    def test_output_np_is_valid(self):
+        output_np = cv2.imread(str(ce_output_file))
+
+        assert output_np is not None, "Output image should not be None"
+        assert output_np.size > 0, "Output image should not be empty"
+
+        assert output_np.shape[0] == 68, "Output image height should be 68"
+        assert output_np.shape[1] == 150, "Output image width should be 150"
+        assert output_np.ndim == 3, (
+            "Output image should have 3 dimensions (height, width, channels)"
+        )
+
+    def test_support_is_valid(self):
+        """Test the creation of support servant image."""
+        # Read the output image
+        support_np = cv2.imread(str(ce_support_file))
+
+        assert support_np is not None, "Output image should not be None"
+        assert support_np.size > 0, "Output image should not be empty"
+
+        assert support_np.shape[0] == 25, "Output image height should be 25"
+        assert support_np.shape[1] == 142, "Output image width should be 142"
+        assert support_np.ndim == 3, (
+            "Output image should have 3 dimensions (height, width, channels)"
+        )
+
+    def create_support_ce(self, tmp_path) -> tuple[Path, Path]:
+        color_file_path = tmp_path / "color_output.png"
+        gray_file_path = tmp_path / "gray_output.png"
+
+        create_support_ce_img(
+            ce_input_dir,
+            gray_file_path,
+            color_file_path,
+        )
+
+        return color_file_path, gray_file_path
+
+    def test_create_support_ce_gray(self, tmp_path):
+        """Test the creation of gray image."""
+        _, gray_file_path = self.create_support_ce(tmp_path)
+
+        # Read the gray
+        gray_image = cv2.imread(str(gray_file_path), cv2.IMREAD_GRAYSCALE)
+        assert gray_image is not None, "Gray image should not be None"
+        assert gray_image.size > 0, "Gray image should not be empty"
+
+        assert gray_image.shape[0] == 68, "Gray image height should be 68"
+        assert gray_image.shape[1] == 150, "Gray image width should be 150"
+
+        # Read the output image
+        output_np = cv2.imread(str(ce_output_file), cv2.IMREAD_GRAYSCALE)
+
+        # Template matching the gray and the output image
+        result = cv2.matchTemplate(gray_image, output_np, cv2.TM_CCOEFF_NORMED)
+
+        assert result is not None, "Template matching result should not be None"
+
+        _, max_val, _, _ = cv2.minMaxLoc(result)
+
+        assert max_val > 0.8, "Template matching should have a high correlation"
+        assert max_val < 1.0, "Template matching should not be perfect (due to noise)"
+
+    def test_create_support_ce_color(self, tmp_path):
+        """Test the creation of color image."""
+        color_file_path, _ = self.create_support_ce(tmp_path)
+
+        # Read the output image
+        output_np = cv2.imread(str(ce_output_file), cv2.IMREAD_GRAYSCALE)
+
+        # Read the color image as gray
+        color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
+
+        assert color_image is not None, "Color image should not be None"
+        assert color_image.size > 0, "Color image should not be empty"
+
+        assert color_image.shape[0] == 68, "Gray image height should be 68"
+        assert color_image.shape[1] == 150, "Color image width should be 150"
+
+        # Template matching the color and the output image
+        result_color = cv2.matchTemplate(color_image, output_np, cv2.TM_CCOEFF_NORMED)
+
+        assert result_color is not None, "Template matching result should not be None"
+
+        _, max_val_color, _, _ = cv2.minMaxLoc(result_color)
+
+        assert max_val_color > 0.8, "Template matching should have a high correlation"
+        assert max_val_color < 1.0, (
+            "Template matching should not be perfect (due to noise)"
+        )
+
+    def test_on_valid_support_ce_gray(self, tmp_path):
+        """Test the creation of support servant image."""
+        _, gray_file_path = self.create_support_ce(tmp_path)
+
+        gray_image = cv2.imread(str(gray_file_path), cv2.IMREAD_GRAYSCALE)
+
+        support_img = cv2.imread(str(ce_support_file), cv2.IMREAD_GRAYSCALE)
+
+        # Template matching the support image and the gray image
+        result = cv2.matchTemplate(support_img, gray_image, cv2.TM_CCOEFF_NORMED)
+
+        assert result is not None, "Template matching result should not be None"
+
+        _, max_val, _, _ = cv2.minMaxLoc(result)
+
+        assert max_val > 0.8, "Template matching should have a high correlation"
+        assert max_val < 1.0, "Template matching should not be perfect (due to noise)"
+
+    def test_on_valid_support_ce_color(self, tmp_path):
+        """Test the creation of support servant image."""
+        color_file_path, _ = self.create_support_ce(tmp_path)
+
+        color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
+
+        support_img = cv2.imread(str(ce_support_file), cv2.IMREAD_GRAYSCALE)
 
         # Template matching the support image and the gray image
         result_color = cv2.matchTemplate(support_img, color_image, cv2.TM_CCOEFF_NORMED)
