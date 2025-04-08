@@ -112,7 +112,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
 
       - name: Trigger workflow in Support repository
-        if: env.PREVIEW == 'true'
+        if: ${{ env.PREVIEW == 'true' || env.PREVIEW == true }}
         run: |
           curl -L \
             -X POST \
