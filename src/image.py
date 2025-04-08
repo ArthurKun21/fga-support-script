@@ -6,6 +6,13 @@ from loguru import logger
 
 IMG_EXT = {".jpg", ".jpeg", ".png"}
 
+SERVANT_SIZE = (157, 157)
+
+SERVANT_X = 0
+SERVANT_Y = 47
+SERVANT_WIDTH = 157
+SERVANT_HEIGHT = 50
+
 
 def create_support_servant_img(
     source_dir: Path,
@@ -60,16 +67,15 @@ def _process_servant_images(
     for image in image_np_list:
         resize_image = cv2.resize(
             image,
-            (157, 157),
+            SERVANT_SIZE,
             interpolation=cv2.INTER_LANCZOS4,
         )
 
-        x = 0
-        y = 47
-        width = 157
-        height = 50
+        cropped_image = resize_image[
+            SERVANT_Y : SERVANT_Y + SERVANT_HEIGHT,
+            SERVANT_X : SERVANT_X + SERVANT_WIDTH,
+        ]
 
-        cropped_image = resize_image[y : y + height, x : x + width]
         new_image_np_list.append(cropped_image)
 
     combined_img = cv2.vconcat(new_image_np_list)
