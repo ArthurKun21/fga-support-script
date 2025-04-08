@@ -1,7 +1,8 @@
 import sys
-from pathlib import Path
 
 from loguru import logger
+
+from constants import LOG_FILE
 
 
 def setup_logger(debug: bool = False):
@@ -14,13 +15,10 @@ def setup_logger(debug: bool = False):
         "<cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - "
         "<level>{message}</level>"
     )
-    root = Path(__file__).cwd()
-    logs_dir = root / "logs"
-    logs_dir.mkdir(parents=True, exist_ok=True)
 
     # Set up logging
     logger.add(
-        sink=logs_dir / "app.log",
+        sink=LOG_FILE,
         rotation="1 MB",
         level="DEBUG",
         format=debug_log_format,

@@ -1,40 +1,13 @@
 import re
 import unicodedata
 from dataclasses import dataclass, field
-from pathlib import Path
 from urllib.parse import unquote, urlparse
-
-from enums import SupportKind
 
 # Sanitize the 'name' to ensure it's a valid Windows directory name
 INVALID_CHARS_PATTERN = r'[<>:"/\\|?*\x00-\x1f]|\.$'
 
 type CraftEssenceDataIndexed = dict[int, CraftEssenceData]
 type ServantDataIndexed = dict[int, ServantData]
-
-
-@dataclass
-class SupportFolder:
-    """Class representing a support folder.
-    Attributes:
-        path (Path): The path to the folder.
-        idx (int): The index of the folder
-        kind (SupportKind): The type of support.
-        name (str | None): The name of the folder.
-            if None, the name will be set later
-    """
-
-    path: Path
-    idx: int
-    kind: SupportKind
-    name: str | None = None
-
-    def __post_init__(self):
-        if isinstance(self.kind, str):
-            try:
-                self.kind = SupportKind(self.kind)
-            except ValueError as err:
-                raise ValueError(f"Invalid support kind: {self.kind}") from err
 
 
 def _preprocess_name(input_str) -> str:

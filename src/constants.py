@@ -2,7 +2,16 @@ from pathlib import Path
 
 from enums import SupportKind
 
-ROOT = Path(__file__).cwd()
+ROOT = Path(__file__).parent.parent
+
+# Logs
+
+LOGS_DIR = ROOT / "logs"
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
+
+LOG_FILE = LOGS_DIR / "app.log"
+
+# TMP
 
 TMP_DIR = ROOT / "tmp"
 TMP_DIR.mkdir(exist_ok=True, parents=True)

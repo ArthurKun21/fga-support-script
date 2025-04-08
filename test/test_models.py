@@ -1,14 +1,8 @@
-from pathlib import Path
-
-import pytest
-
-from enums import SupportKind
 from models import (
     Assets,
     BaseData,
     CraftEssenceData,
     ServantData,
-    SupportFolder,
     _cleanup_name,
     _preprocess_name,
 )
@@ -49,29 +43,6 @@ class TestCleanupName:
 
     def test_empty_string(self):
         assert _cleanup_name("") == ""
-
-
-class TestSupportFolder:
-    def test_initialization(self):
-        path = Path("/test/path")
-        folder = SupportFolder(path=path, idx=1, kind=SupportKind.SERVANT, name="Test")
-        assert folder.path == path
-        assert folder.idx == 1
-        assert folder.kind == SupportKind.SERVANT
-        assert folder.name == "Test"
-
-    def test_default_name(self):
-        folder = SupportFolder(path=Path("/test/path"), idx=2, kind=SupportKind.SERVANT)
-        assert folder.name is None
-
-    def test_invalid_kind(self):
-        with pytest.raises(ValueError):
-            SupportFolder(
-                path=Path("/test/path"),
-                idx=3,
-                kind="INVALID_KIND",  # type: ignore
-                name="Test",
-            )
 
 
 class TestAssets:

@@ -6,6 +6,13 @@ from loguru import logger
 
 IMG_EXT = {".jpg", ".jpeg", ".png"}
 
+SERVANT_SIZE = (157, 157)
+
+SERVANT_X = 0
+SERVANT_Y = 47
+SERVANT_WIDTH = 157
+SERVANT_HEIGHT = 50
+
 
 def create_support_servant_img(
     source_dir: Path,
@@ -19,7 +26,7 @@ def create_support_servant_img(
 
     final_image_np = cv2.cvtColor(final_image.copy(), cv2.COLOR_BGR2GRAY)
     cv2.imwrite(str(dest_file_path), final_image_np)
-    logger.info("Images processed and saved successfully.")
+    logger.info(f"Servant {source_dir.name} - Images processed and saved successfully.")
 
 
 def create_support_ce_img(
@@ -39,7 +46,7 @@ def create_support_ce_img(
 
     image_np_gray = cv2.cvtColor(image_np.copy(), cv2.COLOR_BGR2GRAY)
     cv2.imwrite(str(dest_file_path), image_np_gray)
-    logger.info("CE Image processed and saved successfully.")
+    logger.info(f"CE {source_dir.name} - Image processed and saved successfully.")
 
 
 def _process_servant_images(
@@ -60,16 +67,15 @@ def _process_servant_images(
     for image in image_np_list:
         resize_image = cv2.resize(
             image,
-            (157, 157),
+            SERVANT_SIZE,
             interpolation=cv2.INTER_LANCZOS4,
         )
 
-        x = 0
-        y = 47
-        width = 157
-        height = 50
+        cropped_image = resize_image[
+            SERVANT_Y : SERVANT_Y + SERVANT_HEIGHT,
+            SERVANT_X : SERVANT_X + SERVANT_WIDTH,
+        ]
 
-        cropped_image = resize_image[y : y + height, x : x + width]
         new_image_np_list.append(cropped_image)
 
     combined_img = cv2.vconcat(new_image_np_list)

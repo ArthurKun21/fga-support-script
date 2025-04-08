@@ -15,11 +15,16 @@ from constants import (
 )
 
 
+class RepositoryNotFoundError(Exception):
+    pass
+
+
 async def check_if_repo_exists():
     """Check if the repository exists."""
     if not REPO_DIR_PATH.exists():
-        logger.error(f"Support repository path does not exist: {REPO_DIR_PATH}")
-        exit()
+        msg = f"Support repository path does not exist: {REPO_DIR_PATH}"
+        logger.error(msg)
+        raise RepositoryNotFoundError(msg)
 
     logger.info(f"Support repository path exists: {REPO_DIR_PATH}")
 

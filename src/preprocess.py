@@ -14,20 +14,19 @@ from constants import (
 )
 from models import (
     Assets,
+    BaseData,
     CraftEssenceData,
-    CraftEssenceDataIndexed,
     ServantData,
-    ServantDataIndexed,
 )
 
-PROJECT_ROOT = Path(__file__).cwd()
-
+type T = BaseData
+IndexedT = dict[int, T]
 
 SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
 CE_URL: str | None = os.getenv("CE_URL", None)
 
 
-async def fetch_local_ce_data() -> CraftEssenceDataIndexed:
+async def fetch_local_ce_data() -> IndexedT:
     return await _fetch_local_data(
         name="craft essence",
         local_data_path=LOCAL_CE_DATA,
@@ -35,7 +34,7 @@ async def fetch_local_ce_data() -> CraftEssenceDataIndexed:
     )
 
 
-async def fetch_local_servant_data() -> ServantDataIndexed:
+async def fetch_local_servant_data() -> IndexedT:
     return await _fetch_local_data(
         name="servant",
         local_data_path=LOCAL_SERVANT_DATA,

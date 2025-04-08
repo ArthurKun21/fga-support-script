@@ -1,3 +1,5 @@
+from typing import TypeVar
+
 import click
 from anyio import create_task_group, run
 from loguru import logger
@@ -6,10 +8,9 @@ import directory
 from data import process_craft_essence_data, process_servant_data
 from log import setup_logger
 from models import (
+    BaseData,
     CraftEssenceData,
-    CraftEssenceDataIndexed,
     ServantData,
-    ServantDataIndexed,
 )
 from preprocess import (
     fetch_local_ce_data,
@@ -17,6 +18,9 @@ from preprocess import (
     process_craft_essence,
     process_servant,
 )
+
+T = TypeVar("T", bound=BaseData)
+IndexedT = dict[int, T]
 
 
 async def main(debug: bool, dry_run: bool, delete: bool):
@@ -28,10 +32,10 @@ async def main(debug: bool, dry_run: bool, delete: bool):
         logger.debug("Debug mode is enabled.")
 
     ce_latest_data: list[CraftEssenceData] = []
-    ce_local_data: CraftEssenceDataIndexed = {}
+    ce_local_data: IndexedT = {}
 
     servant_latest_data: list[ServantData] = []
-    servant_local_data: ServantDataIndexed = {}
+    servant_local_data: IndexedT = {}
 
     async def preprocess_ce():
         nonlocal ce_latest_data
@@ -49,7 +53,11 @@ async def main(debug: bool, dry_run: bool, delete: bool):
         nonlocal servant_local_data
         servant_local_data = await fetch_local_servant_data()
 
-    await directory.check_if_repo_exists()
+    try:
+        await directory.check_if_repo_exists()
+    except directory.RepositoryNotFoundError:
+        logger.error("Repository not found. Exiting...")
+        exit()
 
     if delete:
         logger.info("Deleting the repository support files...")

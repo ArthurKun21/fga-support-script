@@ -16,3 +16,5 @@ wheels/
 /legacy/*
 /data/servant.json
 /data/ce.json
+
+/tmp/*
