@@ -59,19 +59,34 @@ async def download_file(
 
     while retry > 0:
         try:
-            client = httpx.AsyncClient()
+            async_file = await open_file(file_path, "wb")
             async with (
+                httpx.AsyncClient() as client,
                 client.stream("GET", url) as response,
-                await open_file(file_path, "wb") as f,
+                async_file as f,
             ):
                 async for chunk in response.aiter_bytes():
                     await f.write(chunk)
             return file_path
-        except Exception as e:
+        except httpx.HTTPStatusError as e:
+            logger.error(f"HTTP error occurred: {e}")
             file_path.unlink(missing_ok=True)
-            logger.error(f"Error downloading from Atlas {retry} retries left.\t{e}.")
-            await asyncio.sleep(1)
+        except httpx.ConnectError as e:
+            logger.error(f"Connection error occurred: {e}")
+            file_path.unlink(missing_ok=True)
+        except httpx.TimeoutException as e:
+            logger.error(f"Timeout error occurred: {e}")
+            file_path.unlink(missing_ok=True)
+        except httpx.NetworkError as e:
+            logger.error(f"Network error occurred: {e}")
+            file_path.unlink(missing_ok=True)
+        except Exception as e:
+            logger.error(f"An error occurred: {e}")
+            file_path.unlink(missing_ok=True)
 
-            retry -= 1
+        logger.error(f"Error downloading from Atlas {retry} retries left.")
+        await asyncio.sleep(1)
+
+        retry -= 1
 
     return None
