@@ -93,6 +93,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.UPLOAD_REPO }}
 
       - name: Update the Servant and CE Data
+        if: ${{ github.event.inputs.dry_run == 'false' || github.event.inputs.dry_run == false }}
         run: |
           # Use ISO-8601 format for consistency
           CURRENT_DATE_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
@@ -128,7 +129,7 @@ jobs:
           fi
           zip -r tmp.zip tmp
 
-      - name: Upload APK
+      - name: Upload TMP directory
         uses: actions/upload-artifact@v4
         with:
           name: tmp-${{ github.run_number }}
