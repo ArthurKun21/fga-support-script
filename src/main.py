@@ -22,7 +22,7 @@ from preprocess import (
 )
 
 
-async def main(debug: bool):
+async def main(debug: bool, dry_run: bool):
     """
     Main function to run the application.
     """
@@ -70,6 +70,7 @@ async def main(debug: bool):
                 servant_latest_data,
                 servant_local_data,
                 debug,
+                dry_run,
             )
     except Exception as e:
         logger.error(f"An error occurred: {e}")
@@ -98,10 +99,11 @@ async def main(debug: bool):
 
 @click.command()
 @click.option("--debug", is_flag=True, help="Enable debug mode.")
-def app(debug: bool):
+@click.option("--dry_run", is_flag=True, help="Enable dry run mode.")
+def app(debug: bool, dry_run: bool):
     setup_logger(debug=debug)
 
-    run(main, debug)
+    run(main, debug, dry_run)
 
 
 if __name__ == "__main__":

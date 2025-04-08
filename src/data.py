@@ -91,13 +91,14 @@ async def process_servant_data(
     servant_data: list[ServantData],
     local_data: ServantDataIndexed,
     debug: bool = False,
+    dry_run: bool = False,
 ):
     logger.info("Processing servant data...")
 
     debug_index = 0
 
     for latest_data in servant_data:
-        if debug and debug_index >= 5:
+        if (debug or dry_run) and debug_index >= 5:
             break
 
         servant_directory_name = f"{latest_data.idx:04d}"
@@ -151,14 +152,14 @@ async def process_servant_data(
 
             logger.info(f"Servant images created for: {latest_data.sanitized_name}")
 
-        if debug:
+        if debug or dry_run:
             debug_index += 1
         else:
             # Wait for 1 second to avoid overwhelming the server
             # with too many requests
             await asyncio.sleep(1)
 
-    if not debug:
+    if not debug and not dry_run:
         await write_json(
             LOCAL_SERVANT_DATA,
             servant_data,

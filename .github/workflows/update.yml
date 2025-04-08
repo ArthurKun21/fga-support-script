@@ -7,6 +7,10 @@ on:
         description: 'Delete the data files'
         required: false
         default: 'false'
+      dry_run:
+        description: 'Run the workflow without saving local data'
+        required: false
+        default: 'false'
 
 jobs:
   build:
@@ -47,8 +51,14 @@ jobs:
           rm -f local-ce.json
 
       - name: Run Python Script
+        if: ${{ github.event.inputs.dry_run == 'false' || github.event.inputs.dry_run == false }}
         run: |
           uv run src/main.py
+
+      - name: Run Python Script (Dry Run)
+        if: ${{ github.event.inputs.dry_run == 'true' || github.event.inputs.dry_run == true }}
+        run: |
+          uv run src/main.py --dry_run
 
       # Set git config once for all steps
       - name: Configure Git
