@@ -31,7 +31,7 @@ TEMP_SERVANT_DIR.mkdir(exist_ok=True, parents=True)
 TEMP_CE_DIR = TMP_DIR / CE
 TEMP_CE_DIR.mkdir(exist_ok=True, parents=True)
 
-OUTPUT_DIR = ROOT / "tmp"
+OUTPUT_DIR = ROOT / "output"
 OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
 
 OUTPUT_SERVANT_DIR = OUTPUT_DIR / SERVANT
