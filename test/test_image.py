@@ -106,7 +106,7 @@ def test_read_images_error_handling(tmp_path):
         assert len(result) == 0
 
 
-class TestRealImage:
+class TestRealServantImage:
     def test_output_np_is_valid(self):
         output_np = cv2.imread(str(servant_output_file))
 
