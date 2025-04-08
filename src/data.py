@@ -15,7 +15,7 @@ from models import (
     ServantData,
     ServantDataIndexed,
 )
-from utils import download_file
+from utils import download_file, write_json
 
 ROOT = Path(__file__).cwd()
 
@@ -182,6 +182,11 @@ async def process_servant_data(
 
         if debug:
             debug_index += 1
+
+    await write_json(
+        ROOT / "servant.json",
+        servant_data,
+    )
 
 
 async def process_craft_essence_data(
