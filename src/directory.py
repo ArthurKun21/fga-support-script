@@ -52,7 +52,7 @@ async def _remove_duplicate_txt_names(directory: Path):
 
             # Remove the old txt files
             txt_files = [f for f in dir_path.glob("*.txt")]
-            txt_files.sort(key=lambda x: x.stat().st_mtime)
+            txt_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
 
             if not txt_files:
                 logger.warning(f"No txt files found in {dir_path}")
