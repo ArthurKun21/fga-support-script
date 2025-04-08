@@ -12,9 +12,7 @@ dir_path = Path(__file__).parent / "images"
 servant_dir = dir_path / "servant"
 
 servant_input_dir = servant_dir / "input"
-
 servant_output_file = servant_dir / "output.png"
-
 servant_support_file = servant_dir / "support.png"
 
 ce_dir = dir_path / "ce"
