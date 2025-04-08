@@ -3,6 +3,10 @@ name: Update Support Repository
 on:
   workflow_dispatch:
     inputs:
+      delete_repo:
+        description: 'Delete the old support repository'
+        required: false
+        default: 'false'
       delete_data:
         description: 'Delete the data files'
         required: false
@@ -56,14 +60,8 @@ jobs:
           echo "CE_URL=https://api.atlasacademy.io/export/JP/nice_equip_lang_en.json" >> $GITHUB_ENV
 
       - name: Run Python Script
-        if: ${{ github.event.inputs.dry_run == 'false' || github.event.inputs.dry_run == false }}
         run: |
-          uv run src/main.py
-
-      - name: Run Python Script (Dry Run)
-        if: ${{ github.event.inputs.dry_run == 'true' || github.event.inputs.dry_run == true }}
-        run: |
-          uv run src/main.py --dry_run
+          uv run src/main.py ${{ github.event.inputs.dry_run == 'true' && '--dry_run' || '' }} ${{ github.event.inputs.delete_repo == 'true' && '--delete' || '' }}
 
       # Set git config once for all steps
       - name: Configure Git
