@@ -13,6 +13,8 @@ input_dir = dir_path / "input"
 
 output_file = dir_path / "output.png"
 
+support_file = dir_path / "support.png"
+
 
 @pytest.fixture
 def sample_image():
@@ -115,6 +117,20 @@ class TestRealImage:
             "Output image should have 3 dimensions (height, width, channels)"
         )
 
+    def test_support_is_valid(self):
+        """Test the creation of support servant image."""
+        # Read the output image
+        support_np = cv2.imread(str(support_file))
+
+        assert support_np is not None, "Output image should not be None"
+        assert support_np.size > 0, "Output image should not be empty"
+
+        assert support_np.shape[0] == 44, "Output image height should be 44"
+        assert support_np.shape[1] == 125, "Output image width should be 125"
+        assert support_np.ndim == 3, (
+            "Output image should have 3 dimensions (height, width, channels)"
+        )
+
     def create_support_servant(self, tmp_path) -> tuple[Path, Path]:
         color_file_path = tmp_path / "color_output.png"
         gray_file_path = tmp_path / "gray_output.png"
@@ -170,6 +186,44 @@ class TestRealImage:
 
         # Template matching the color and the output image
         result_color = cv2.matchTemplate(color_image, output_np, cv2.TM_CCOEFF_NORMED)
+
+        assert result_color is not None, "Template matching result should not be None"
+
+        _, max_val_color, _, _ = cv2.minMaxLoc(result_color)
+
+        assert max_val_color > 0.8, "Template matching should have a high correlation"
+        assert max_val_color < 1.0, (
+            "Template matching should not be perfect (due to noise)"
+        )
+
+    def test_on_valid_support_servant_gray(self, tmp_path):
+        """Test the creation of support servant image."""
+        _, gray_file_path = self.create_support_servant(tmp_path)
+
+        gray_image = cv2.imread(str(gray_file_path), cv2.IMREAD_GRAYSCALE)
+
+        support_img = cv2.imread(str(support_file), cv2.IMREAD_GRAYSCALE)
+
+        # Template matching the support image and the gray image
+        result = cv2.matchTemplate(support_img, gray_image, cv2.TM_CCOEFF_NORMED)
+
+        assert result is not None, "Template matching result should not be None"
+
+        _, max_val, _, _ = cv2.minMaxLoc(result)
+
+        assert max_val > 0.8, "Template matching should have a high correlation"
+        assert max_val < 1.0, "Template matching should not be perfect (due to noise)"
+
+    def test_on_valid_support_servant_color(self, tmp_path):
+        """Test the creation of support servant image."""
+        color_file_path, _ = self.create_support_servant(tmp_path)
+
+        color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
+
+        support_img = cv2.imread(str(support_file), cv2.IMREAD_GRAYSCALE)
+
+        # Template matching the support image and the gray image
+        result_color = cv2.matchTemplate(support_img, color_image, cv2.TM_CCOEFF_NORMED)
 
         assert result_color is not None, "Template matching result should not be None"
 
