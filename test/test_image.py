@@ -9,11 +9,13 @@ from image import _read_images, create_support_servant_img
 
 dir_path = Path(__file__).parent / "images"
 
-input_dir = dir_path / "input"
+servant_dir = dir_path / "servant"
 
-output_file = dir_path / "output.png"
+servant_input_dir = servant_dir / "input"
 
-support_file = dir_path / "support.png"
+servant_output_file = servant_dir / "output.png"
+
+servant_support_file = servant_dir / "support.png"
 
 
 @pytest.fixture
@@ -106,7 +108,7 @@ def test_read_images_error_handling(tmp_path):
 
 class TestRealImage:
     def test_output_np_is_valid(self):
-        output_np = cv2.imread(str(output_file))
+        output_np = cv2.imread(str(servant_output_file))
 
         assert output_np is not None, "Output image should not be None"
         assert output_np.size > 0, "Output image should not be empty"
@@ -120,7 +122,7 @@ class TestRealImage:
     def test_support_is_valid(self):
         """Test the creation of support servant image."""
         # Read the output image
-        support_np = cv2.imread(str(support_file))
+        support_np = cv2.imread(str(servant_support_file))
 
         assert support_np is not None, "Output image should not be None"
         assert support_np.size > 0, "Output image should not be empty"
@@ -136,7 +138,7 @@ class TestRealImage:
         gray_file_path = tmp_path / "gray_output.png"
 
         create_support_servant_img(
-            input_dir,
+            servant_input_dir,
             gray_file_path,
             color_file_path,
         )
@@ -156,7 +158,7 @@ class TestRealImage:
         assert gray_image.shape[1] == 157, "Gray image width should be 157"
 
         # Read the output image
-        output_np = cv2.imread(str(output_file), cv2.IMREAD_GRAYSCALE)
+        output_np = cv2.imread(str(servant_output_file), cv2.IMREAD_GRAYSCALE)
 
         # Template matching the gray and the output image
         result = cv2.matchTemplate(gray_image, output_np, cv2.TM_CCOEFF_NORMED)
@@ -173,7 +175,7 @@ class TestRealImage:
         color_file_path, _ = self.create_support_servant(tmp_path)
 
         # Read the output image
-        output_np = cv2.imread(str(output_file), cv2.IMREAD_GRAYSCALE)
+        output_np = cv2.imread(str(servant_output_file), cv2.IMREAD_GRAYSCALE)
 
         # Read the color image as gray
         color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
@@ -202,7 +204,7 @@ class TestRealImage:
 
         gray_image = cv2.imread(str(gray_file_path), cv2.IMREAD_GRAYSCALE)
 
-        support_img = cv2.imread(str(support_file), cv2.IMREAD_GRAYSCALE)
+        support_img = cv2.imread(str(servant_support_file), cv2.IMREAD_GRAYSCALE)
 
         # Template matching the support image and the gray image
         result = cv2.matchTemplate(support_img, gray_image, cv2.TM_CCOEFF_NORMED)
@@ -220,7 +222,7 @@ class TestRealImage:
 
         color_image = cv2.imread(str(color_file_path), cv2.IMREAD_GRAYSCALE)
 
-        support_img = cv2.imread(str(support_file), cv2.IMREAD_GRAYSCALE)
+        support_img = cv2.imread(str(servant_support_file), cv2.IMREAD_GRAYSCALE)
 
         # Template matching the support image and the gray image
         result_color = cv2.matchTemplate(support_img, color_image, cv2.TM_CCOEFF_NORMED)
