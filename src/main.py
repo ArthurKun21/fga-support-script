@@ -49,7 +49,11 @@ async def main(debug: bool, dry_run: bool, delete: bool):
         nonlocal servant_local_data
         servant_local_data = await fetch_local_servant_data()
 
-    await directory.check_if_repo_exists()
+    try:
+        await directory.check_if_repo_exists()
+    except directory.RepositoryNotFoundError:
+        logger.error("Repository not found. Exiting...")
+        exit()
 
     if delete:
         logger.info("Deleting the repository support files...")
