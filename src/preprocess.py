@@ -6,6 +6,12 @@ from typing import Any
 from loguru import logger
 
 import utils
+from constants import (
+    LOCAL_CE_DATA,
+    LOCAL_SERVANT_DATA,
+    REMOTE_CE_DATA,
+    REMOTE_SERVANT_DATA,
+)
 from models import (
     Assets,
     CraftEssenceData,
@@ -16,14 +22,9 @@ from models import (
 
 PROJECT_ROOT = Path(__file__).cwd()
 
-DATA_DIR = PROJECT_ROOT / "data"
-DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
 CE_URL: str | None = os.getenv("CE_URL", None)
-
-LOCAL_CE_DATA = PROJECT_ROOT / "ce.json"
-LOCAL_SERVANT_DATA = PROJECT_ROOT / "servant.json"
 
 
 async def fetch_local_ce_data() -> CraftEssenceDataIndexed:
@@ -91,7 +92,7 @@ async def process_craft_essence() -> list[CraftEssenceData]:
     ce_data = await _process_data(
         name="ce",
         url=CE_URL,
-        save_data_path=DATA_DIR / "craft_essence.json",
+        save_data_path=REMOTE_CE_DATA,
         preprocess_func=_preprocess_ce,
     )
     if not ce_data:
@@ -109,7 +110,7 @@ async def process_servant() -> list[ServantData]:
     servant_data = await _process_data(
         name="servant",
         url=SERVANT_URL,
-        save_data_path=DATA_DIR / "servant.json",
+        save_data_path=REMOTE_SERVANT_DATA,
         preprocess_func=_preprocess_servant,
     )
     if not servant_data:

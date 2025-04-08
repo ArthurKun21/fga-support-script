@@ -7,7 +7,12 @@ from anyio.from_thread import start_blocking_portal
 from loguru import logger
 
 import image
-from enums import SupportKind
+from constants import (
+    LOCAL_SERVANT_DATA,
+    OUTPUT_SERVANT_COLOR_DIR,
+    OUTPUT_SERVANT_DIR,
+    TEMP_SERVANT_DIR,
+)
 from models import (
     Assets,
     CraftEssenceData,
@@ -18,33 +23,6 @@ from models import (
 from utils import download_file, write_json
 
 ROOT = Path(__file__).cwd()
-
-TMP_DIR = ROOT / "tmp"
-TMP_DIR.mkdir(exist_ok=True, parents=True)
-
-SERVANT = SupportKind.SERVANT.value
-CE = SupportKind.CRAFT_ESSENCE.value
-
-TEMP_SERVANT_DIR = TMP_DIR / SERVANT
-TEMP_SERVANT_DIR.mkdir(exist_ok=True, parents=True)
-
-TEMP_CE_DIR = TMP_DIR / CE
-TEMP_CE_DIR.mkdir(exist_ok=True, parents=True)
-
-OUTPUT_DIR = ROOT / "output"
-OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
-
-OUTPUT_SERVANT_DIR = OUTPUT_DIR / SERVANT
-OUTPUT_SERVANT_DIR.mkdir(exist_ok=True, parents=True)
-
-OUTPUT_SERVANT_COLOR_DIR = OUTPUT_DIR / f"{SERVANT}-color"
-OUTPUT_SERVANT_COLOR_DIR.mkdir(exist_ok=True, parents=True)
-
-OUTPUT_CE_DIR = OUTPUT_DIR / CE
-OUTPUT_CE_DIR.mkdir(exist_ok=True, parents=True)
-
-OUTPUT_CE_COLOR_DIR = OUTPUT_DIR / f"{CE}-color"
-OUTPUT_CE_COLOR_DIR.mkdir(exist_ok=True, parents=True)
 
 
 async def _download_and_confirm_asset(
@@ -179,7 +157,7 @@ async def process_servant_data(
             debug_index += 1
 
     await write_json(
-        ROOT / "servant.json",
+        LOCAL_SERVANT_DATA,
         servant_data,
     )
 
