@@ -22,6 +22,8 @@ from image import create_support_ce_img, create_support_servant_img
 from models import (
     Assets,
     BaseData,
+    CraftEssenceData,
+    ServantData,
 )
 from utils import download_file, write_json
 
@@ -89,7 +91,7 @@ async def download_asset_files(
 
 
 async def process_servant_data(
-    servant_data: list[BaseData],
+    servant_data: list[ServantData],
     local_data: IndexedT,
     debug: bool = False,
     dry_run: bool = False,
@@ -110,7 +112,7 @@ async def process_servant_data(
 
 
 async def process_craft_essence_data(
-    ce_data: list[BaseData],
+    ce_data: list[CraftEssenceData],
     local_data: IndexedT,
     debug: bool = False,
     dry_run: bool = False,
