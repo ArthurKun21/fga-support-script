@@ -1,10 +1,8 @@
 import asyncio
-from concurrent.futures import as_completed
 from pathlib import Path
 
 import cv2
-from anyio import to_thread
-from anyio.from_thread import start_blocking_portal
+from anyio import create_task_group, to_thread
 from loguru import logger
 
 import image
@@ -71,22 +69,20 @@ async def download_asset_files(
 ) -> list[Assets]:
     logger.info("Downloading files...")
 
-    valid_assets: list[Assets] = []
+    results: list[Assets | None] = []
 
-    with start_blocking_portal() as portal:
-        futures = [
-            portal.start_task_soon(
-                _download_and_confirm_asset,
-                download_dir,
-                asset,
-            )
-            for asset in assets
-        ]
+    async def _download_task(asset: Assets):
+        result = await _download_and_confirm_asset(download_dir, asset)
+        results.append(result)
 
-        for future in as_completed(futures):
-            result = future.result()
-            if result is not None:
-                valid_assets.append(result)
+    try:
+        async with create_task_group() as tg:
+            for asset in assets:
+                tg.start_soon(_download_task, asset)
+    except Exception as e:
+        logger.error(f"Error downloading assets: {e}")
+
+    valid_assets: list[Assets] = [asset for asset in results if asset is not None]
 
     return valid_assets
 
