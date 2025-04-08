@@ -1,3 +1,4 @@
+import asyncio
 from concurrent.futures import as_completed
 from pathlib import Path
 
@@ -155,6 +156,10 @@ async def process_servant_data(
 
         if debug:
             debug_index += 1
+        else:
+            # Wait for 1 second to avoid overwhelming the server
+            # with too many requests
+            await asyncio.sleep(1)
 
     if not debug:
         await write_json(
