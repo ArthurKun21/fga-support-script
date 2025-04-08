@@ -1,6 +1,9 @@
 name: Update Support Repository
 
 on:
+  schedule:
+    # Every Wednesday or Friday 930PM JST
+    - cron: '30 12 * * 3,5'
   workflow_dispatch:
     inputs:
       delete_repo:
