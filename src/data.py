@@ -70,7 +70,7 @@ async def download_asset_files(
     assets: list[Assets],
     download_dir: Path,
 ) -> list[Assets]:
-    logger.info("Downloading files...")
+    logger.info("Downloading and verifying files...")
 
     results: list[Assets | None] = []
 
