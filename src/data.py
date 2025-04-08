@@ -121,7 +121,7 @@ async def process_servant_data(
             logger.info(f"New servant data found: {latest_data.name}")
 
             new_assets_found = True
-            await download_asset_files(
+            latest_data.assets = await download_asset_files(
                 latest_data.assets,
                 temp_download_dir,
             )
@@ -133,7 +133,7 @@ async def process_servant_data(
             if len(local_entry.assets) != len(latest_data.assets):
                 logger.info("Downloading assets...")
                 new_assets_found = True
-                await download_asset_files(
+                latest_data.assets = await download_asset_files(
                     latest_data.assets,
                     temp_download_dir,
                 )
