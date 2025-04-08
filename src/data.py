@@ -37,7 +37,7 @@ async def _download_and_confirm_asset(
     """
     file_path = await download_file(
         asset.url,
-        download_dir / asset.url_file_name,
+        download_dir / f"{asset.key}-{asset.url_file_name}",
     )
     if file_path is None:
         logger.error(f"Failed to download asset: {asset.key}")
