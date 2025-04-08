@@ -28,7 +28,7 @@ from models import (
 from utils import download_file, write_json
 
 T = TypeVar("T", bound=BaseData)
-IndexedT = dict[int, T]
+type IndexedT = dict[int, BaseData]
 
 
 async def _download_and_confirm_asset(
