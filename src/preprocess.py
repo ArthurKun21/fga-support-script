@@ -20,9 +20,6 @@ from models import (
     ServantDataIndexed,
 )
 
-PROJECT_ROOT = Path(__file__).cwd()
-
-
 SERVANT_URL: str | None = os.getenv("SERVANT_URL", None)
 CE_URL: str | None = os.getenv("CE_URL", None)
 
