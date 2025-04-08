@@ -28,8 +28,6 @@ from utils import download_file, write_json
 T = TypeVar("T", bound=BaseData)
 IndexedT = dict[int, T]
 
-ROOT = Path(__file__).cwd()
-
 
 async def _download_and_confirm_asset(
     download_dir: Path, asset: Assets
