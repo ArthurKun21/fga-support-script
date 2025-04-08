@@ -11,14 +11,7 @@ def create_support_servant_img(
     source_dir: Path,
     dest_file_path: Path,
     dest_color_file_path: Path,
-    debug: bool = False,
 ):
-    if debug:
-        logger.debug("Debug mode is enabled. Assumed to be successful.")
-        dest_file_path.touch(exist_ok=True)
-        dest_color_file_path.touch(exist_ok=True)
-        return
-
     image_np_list = _read_images(source_dir)
     final_image = _process_servant_images(image_np_list)
 
