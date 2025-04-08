@@ -78,7 +78,6 @@ dependencies = [
     { name = "click" },
     { name = "httpx" },
     { name = "loguru" },
-    { name = "numpy" },
     { name = "opencv-contrib-python" },
     { name = "orjson" },
 ]
@@ -96,7 +95,6 @@ requires-dist = [
     { name = "click", specifier = ">=8.1.8" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "loguru", specifier = ">=0.7.3" },
-    { name = "numpy", specifier = ">=2.2.4" },
     { name = "opencv-contrib-python", specifier = ">=4.11.0.86" },
     { name = "orjson", specifier = ">=3.10.15" },
 ]
