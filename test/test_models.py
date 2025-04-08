@@ -44,6 +44,9 @@ class TestCleanupName:
     def test_accented_characters(self):
         assert _cleanup_name("Sérvànt") == "Servant"
 
+    def test_mixed_characters_with_white_space(self):
+        assert _cleanup_name(" Hélló Wörld ") == "Hello World"
+
     def test_empty_string(self):
         assert _cleanup_name("") == ""
 
