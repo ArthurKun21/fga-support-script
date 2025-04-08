@@ -37,5 +37,5 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 REMOTE_CE_DATA = DATA_DIR / f"{CE}.json"
 REMOTE_SERVANT_DATA = DATA_DIR / f"{SERVANT}.json"
 
-LOCAL_CE_DATA = ROOT / f"{CE}.json"
-LOCAL_SERVANT_DATA = ROOT / f"{SERVANT}.json"
+LOCAL_CE_DATA = DATA_DIR / f"local-{CE}.json"
+LOCAL_SERVANT_DATA = DATA_DIR / f"local-{SERVANT}.json"
