@@ -9,9 +9,13 @@ from loguru import logger
 
 import image
 from constants import (
+    LOCAL_CE_DATA,
     LOCAL_SERVANT_DATA,
+    OUTPUT_CE_COLOR_DIR,
+    OUTPUT_CE_DIR,
     OUTPUT_SERVANT_COLOR_DIR,
     OUTPUT_SERVANT_DIR,
+    TEMP_CE_DIR,
     TEMP_SERVANT_DIR,
 )
 from models import (
@@ -170,21 +174,76 @@ async def process_craft_essence_data(
     ce_data: list[CraftEssenceData],
     local_data: CraftEssenceDataIndexed,
     debug: bool = False,
+    dry_run: bool = False,
 ):
     logger.info("Processing craft essence data...")
 
     debug_index = 0
 
     for latest_data in ce_data:
-        if debug and debug_index >= 5:
+        if (debug or dry_run) and debug_index >= 5:
             break
+
+        craft_essence_dir_name = f"{latest_data.idx:04d}"
+
+        temp_download_dir = TEMP_CE_DIR / craft_essence_dir_name
+        temp_download_dir.mkdir(exist_ok=True, parents=True)
+
+        rename_txt_file = False
+        new_assets_found = False
 
         local_entry = local_data.get(latest_data.idx, None)
         if local_entry is None:
-            logger.info(f"New craft essence data found: {latest_data.name}")
-            # Download the assets for the new craft essence
-        else:
-            logger.info(f"Updating craft essence data: {latest_data.name}")
+            logger.info(f"New ce data found: {latest_data.name}")
 
-        if debug:
+            new_assets_found = True
+            latest_data.assets = await download_asset_files(
+                latest_data.assets,
+                temp_download_dir,
+            )
+
+        else:
+            if local_entry.sanitized_name != latest_data.sanitized_name:
+                rename_txt_file = True
+
+            if len(local_entry.assets) != len(latest_data.assets):
+                logger.info(f"Updating {latest_data.name} assets...")
+                new_assets_found = True
+                latest_data.assets = await download_asset_files(
+                    latest_data.assets,
+                    temp_download_dir,
+                )
+        output_dir = OUTPUT_CE_DIR / craft_essence_dir_name
+        output_dir.mkdir(exist_ok=True, parents=True)
+
+        output_color_dir = OUTPUT_CE_COLOR_DIR / craft_essence_dir_name
+        output_color_dir.mkdir(exist_ok=True, parents=True)
+
+        txt_file_path = f"{latest_data.sanitized_name}.txt"
+
+        if rename_txt_file or new_assets_found:
+            (output_dir / txt_file_path).touch(exist_ok=True)
+            (output_color_dir / txt_file_path).touch(exist_ok=True)
+
+        if new_assets_found:
+            await to_thread.run_sync(
+                image.create_support_ce_img,
+                temp_download_dir,
+                output_dir / "ce.png",
+                output_color_dir / "ce.png",
+            )
+
+            logger.info(f"CE images created for: {latest_data.sanitized_name}")
+
+        if debug or dry_run:
             debug_index += 1
+        else:
+            # Wait for 1 second to avoid overwhelming the server
+            # with too many requests
+            await asyncio.sleep(1)
+
+    if not debug and not dry_run:
+        await write_json(
+            LOCAL_CE_DATA,
+            ce_data,
+        )

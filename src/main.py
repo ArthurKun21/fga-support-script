@@ -3,7 +3,7 @@ from anyio import create_task_group, run
 from loguru import logger
 
 import directory
-from data import process_servant_data
+from data import process_craft_essence_data, process_servant_data
 from log import setup_logger
 from models import (
     CraftEssenceData,
@@ -70,6 +70,13 @@ async def main(debug: bool, dry_run: bool, delete: bool):
                 process_servant_data,
                 servant_latest_data,
                 servant_local_data,
+                debug,
+                dry_run,
+            )
+            tg.start_soon(
+                process_craft_essence_data,
+                ce_latest_data,
+                ce_local_data,
                 debug,
                 dry_run,
             )

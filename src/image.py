@@ -23,24 +23,17 @@ def create_support_servant_img(
 
 
 def create_support_ce_img(
-    source_file_path: Path,
+    source_dir: Path,
     dest_file_path: Path,
     dest_color_file_path: Path,
-    debug: bool = False,
 ):
-    if debug:
-        logger.debug("Debug mode is enabled. Assumed to be successful.")
-        with open(dest_file_path, "wb"):
-            pass
-        with open(dest_color_file_path, "wb"):
-            pass
+    image_np_list = _read_images(source_dir)
+
+    if len(image_np_list) == 0:
+        logger.error(f"No images found in the directory: {source_dir}")
         return
 
-    image_np = cv2.imread(str(source_file_path))
-
-    if image_np is None or image_np.size == 0:
-        logger.error(f"Failed to read image: {source_file_path.name}")
-        return
+    image_np = image_np_list[0]
 
     cv2.imwrite(str(dest_color_file_path), image_np)
 
