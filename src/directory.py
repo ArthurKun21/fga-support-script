@@ -93,7 +93,7 @@ async def remove_duplicate_txt_names():
 async def _remove_duplicate_txt_names(directory: Path):
     """Remove duplicate text names in a directory."""
     if not directory.exists():
-        logger.error(f"Directory does not exist: {directory}")
+        logger.warning(f"Directory does not exist: {directory}")
         return
 
     try:
