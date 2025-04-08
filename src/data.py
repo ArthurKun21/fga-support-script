@@ -147,12 +147,12 @@ async def _process_generic_data(
 ):
     logger.info(f"Processing {kind.value} data...")
     debug_index = 0
-    updated_data_list: list[T] = []  # Keep track of processed data
+    updated_data_list: list[T] = []
 
     for latest_data in latest_data_list:
         if (debug or dry_run) and debug_index >= 5:
-            updated_data_list.append(latest_data)  # Still add to list even if skipped
-            continue  # Skip processing but keep data for potential final write
+            updated_data_list.append(latest_data)
+            continue
 
         directory_name = f"{latest_data.idx:04d}"
         temp_download_dir = temp_dir / directory_name
@@ -160,7 +160,6 @@ async def _process_generic_data(
 
         rename_txt_file = False
         new_assets_found = False
-        assets_to_process = latest_data.assets  # Start with latest assets
 
         local_entry = local_data.get(latest_data.idx)
 
@@ -173,10 +172,6 @@ async def _process_generic_data(
             if len(local_entry.assets) != len(latest_data.assets):
                 logger.info(f"Updating {latest_data.name} assets...")
                 new_assets_found = True
-            else:
-                # If assets haven't changed in number, keep existing ones
-                # (avoids re-download if only name changed)
-                assets_to_process = local_entry.assets
 
         if new_assets_found:
             # Download only if new or assets changed
@@ -186,7 +181,6 @@ async def _process_generic_data(
             )
             # Update the data object with the successfully downloaded assets
             latest_data.assets = downloaded_assets
-            assets_to_process = downloaded_assets  # Use newly downloaded assets
 
         output_dir = output_dir_base / directory_name
         output_dir.mkdir(exist_ok=True, parents=True)
@@ -200,9 +194,7 @@ async def _process_generic_data(
             txt_file_path.touch(exist_ok=True)
             color_txt_file_path.touch(exist_ok=True)
 
-        if (
-            new_assets_found and assets_to_process
-        ):  # Only process if assets were found/downloaded
+        if new_assets_found:
             await to_thread.run_sync(
                 image_creation_func,
                 temp_download_dir,
@@ -211,14 +203,9 @@ async def _process_generic_data(
             )
             logger.info(
                 f"{kind.value.capitalize()} images created for: "
-                "{latest_data.sanitized_name}"
+                f"{latest_data.sanitized_name}"
             )
             await asyncio.sleep(0.5)
-        elif new_assets_found and not assets_to_process:
-            logger.warning(
-                f"No valid assets found/downloaded for {latest_data.name}, "
-                "skipping image creation."
-            )
 
         updated_data_list.append(latest_data)  # Add processed/updated data
 
