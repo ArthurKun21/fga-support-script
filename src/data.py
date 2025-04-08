@@ -149,7 +149,7 @@ async def process_servant_data(
                 rename_txt_file = True
 
             if len(local_entry.assets) != len(latest_data.assets):
-                logger.info("Downloading assets...")
+                logger.info(f"Updating {latest_data.name} assets...")
                 new_assets_found = True
                 latest_data.assets = await download_asset_files(
                     latest_data.assets,
