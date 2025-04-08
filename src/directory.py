@@ -6,6 +6,7 @@ from anyio import create_task_group
 from loguru import logger
 
 from constants import (
+    OUTPUT_DIR,
     REPO_CE_COLOR_DIR,
     REPO_CE_DIR,
     REPO_DIR_PATH,
@@ -21,6 +22,24 @@ async def check_if_repo_exists():
         exit()
 
     logger.info(f"Support repository path exists: {REPO_DIR_PATH}")
+
+
+async def copy_output_to_repo():
+    """Copy output files to the repository."""
+    logger.info("Copying images to the repository...")
+    try:
+        shutil.copytree(
+            OUTPUT_DIR,
+            REPO_DIR_PATH,
+            dirs_exist_ok=True,
+        )
+        logger.info("Successfully copied output files to the repository.")
+    except FileExistsError:
+        logger.error("The repository already has the output files.")
+    except FileNotFoundError:
+        logger.error("The output directory was not found.")
+    except Exception as e:
+        logger.error(f"Error copying output files to the repository: {e}")
 
 
 async def delete_repository_support():
