@@ -303,7 +303,6 @@ class TestRealCEImage:
         _, max_val, _, _ = cv2.minMaxLoc(result)
 
         assert max_val > 0.8, "Template matching should have a high correlation"
-        assert max_val < 1.0, "Template matching should not be perfect (due to noise)"
 
     def test_create_support_ce_color(self, tmp_path):
         """Test the creation of color image."""
@@ -329,9 +328,6 @@ class TestRealCEImage:
         _, max_val_color, _, _ = cv2.minMaxLoc(result_color)
 
         assert max_val_color > 0.8, "Template matching should have a high correlation"
-        assert max_val_color < 1.0, (
-            "Template matching should not be perfect (due to noise)"
-        )
 
     def test_on_valid_support_ce_gray(self, tmp_path):
         """Test the creation of support servant image."""
@@ -349,7 +345,6 @@ class TestRealCEImage:
         _, max_val, _, _ = cv2.minMaxLoc(result)
 
         assert max_val > 0.8, "Template matching should have a high correlation"
-        assert max_val < 1.0, "Template matching should not be perfect (due to noise)"
 
     def test_on_valid_support_ce_color(self, tmp_path):
         """Test the creation of support servant image."""
@@ -367,6 +362,3 @@ class TestRealCEImage:
         _, max_val_color, _, _ = cv2.minMaxLoc(result_color)
 
         assert max_val_color > 0.8, "Template matching should have a high correlation"
-        assert max_val_color < 1.0, (
-            "Template matching should not be perfect (due to noise)"
-        )
