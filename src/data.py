@@ -211,6 +211,7 @@ async def _process_generic_data(
                 f"{kind.value.capitalize()} images created for: "
                 "{latest_data.sanitized_name}"
             )
+            await asyncio.sleep(0.5)
         elif new_assets_found and not assets_to_process:
             logger.warning(
                 f"No valid assets found/downloaded for {latest_data.name}, "
@@ -221,8 +222,6 @@ async def _process_generic_data(
 
         if debug or dry_run:
             debug_index += 1
-        else:
-            await asyncio.sleep(0.5)  # Reduced sleep slightly, adjust as needed
 
     if not debug and not dry_run:
         # Write the potentially modified list back (includes updated asset lists)
