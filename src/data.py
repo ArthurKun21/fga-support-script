@@ -129,28 +129,25 @@ async def process_servant_data(
                     latest_data.assets,
                     temp_download_dir,
                 )
+        output_dir = OUTPUT_SERVANT_DIR / servant_directory_name
+        output_dir.mkdir(exist_ok=True, parents=True)
 
-        if rename_txt_file:
-            pass
+        output_color_dir = OUTPUT_SERVANT_COLOR_DIR / servant_directory_name
+        output_color_dir.mkdir(exist_ok=True, parents=True)
+
+        txt_file_path = f"{latest_data.sanitized_name}.txt"
+
+        if rename_txt_file or new_assets_found:
+            (output_dir / txt_file_path).touch(exist_ok=True)
+            (output_color_dir / txt_file_path).touch(exist_ok=True)
 
         if new_assets_found:
-            output_dir = OUTPUT_SERVANT_DIR / servant_directory_name
-            output_dir.mkdir(exist_ok=True, parents=True)
-
-            output_color_dir = OUTPUT_SERVANT_COLOR_DIR / servant_directory_name
-            output_color_dir.mkdir(exist_ok=True, parents=True)
-
             await to_thread.run_sync(
                 image.create_support_servant_img,
                 temp_download_dir,
                 output_dir / "support.png",
                 output_color_dir / "support.png",
             )
-
-            txt_file_path = f"{latest_data.sanitized_name}.txt"
-
-            (output_dir / txt_file_path).touch(exist_ok=True)
-            (output_color_dir / txt_file_path).touch(exist_ok=True)
 
             logger.info(f"Servant images created for: {latest_data.sanitized_name}")
 
