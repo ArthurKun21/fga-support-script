@@ -61,8 +61,7 @@ jobs:
 
       - name: Run Python Script
         run: |
-          uv run src/main.py ${{ if(github.event.inputs.dry_run == true, '--dry_run', '') }} ${{ if(github.event.inputs.delete_repo == true, '--delete', '') }}
-
+          uv run src/main.py ${{ if(github.event.inputs.dry_run == 'true', '--dry_run', '') }} ${{ if(github.event.inputs.delete_repo == 'true', '--delete', '') }}
       # Set git config once for all steps
       - name: Configure Git
         run: |
