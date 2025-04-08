@@ -2,7 +2,7 @@ from pathlib import Path
 
 from enums import SupportKind
 
-ROOT = Path(__file__).cwd()
+ROOT = Path(__file__).parent.parent
 
 # Logs
 
