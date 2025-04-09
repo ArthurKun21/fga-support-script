@@ -33,10 +33,9 @@ def _cleanup_name(name: str) -> str:
     Returns:
         str: The cleaned-up name.
     """
-    sanitized_name = re.sub(INVALID_CHARS_PATTERN, " ", name)
-    sanitized_name = sanitized_name.strip()
-    sanitized_name = _preprocess_name(sanitized_name)
-    return sanitized_name
+    sanitized_name = _preprocess_name(name)
+    sanitized_name = re.sub(INVALID_CHARS_PATTERN, " ", sanitized_name)
+    return sanitized_name.strip()
 
 
 @dataclass
