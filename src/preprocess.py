@@ -274,6 +274,8 @@ async def _preprocess_servant(raw_data: list[dict]) -> list[ServantData]:
                 )
                 assets.append(new_asset)
 
+        assets = sorted(assets, key=lambda x: x.key)
+
         servant_data = ServantData(
             idx=collectionNo,
             name=name,

@@ -88,6 +88,8 @@ async def download_asset_files(
 
     valid_assets: list[Assets] = [asset for asset in results if asset is not None]
 
+    valid_assets = sorted(valid_assets, key=lambda x: x.key)
+
     return valid_assets
 
 
