@@ -33,12 +33,24 @@
         "url": "https://static.atlasacademy.io/JP/Faces/f_8001500.png"
       },
       {
+        "key": "costume_800151",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_8001510.png"
+      },
+      {
         "key": "costume_800160",
         "url": "https://static.atlasacademy.io/JP/Faces/f_8001600.png"
       },
       {
         "key": "costume_800170",
         "url": "https://static.atlasacademy.io/JP/Faces/f_8001700.png"
+      },
+      {
+        "key": "costume_800190",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_8001900.png"
+      },
+      {
+        "key": "costume_800200",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_8002000.png"
       }
     ],
     "class_name": "Shielder"
@@ -10734,5 +10746,53 @@
       }
     ],
     "class_name": "Pretender"
+  },
+  {
+    "idx": 438,
+    "name": "メタトロン・シャンヌ",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_9019000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_9019001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_9019002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_9019003.png"
+      }
+    ],
+    "class_name": "Ruler"
+  },
+  {
+    "idx": 439,
+    "name": "アショカ王",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3058000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3058001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3058002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3058003.png"
+      }
+    ],
+    "class_name": "Lancer"
   }
 ]

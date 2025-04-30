@@ -24440,5 +24440,82 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93090900.png"
       }
     ]
+  },
+  {
+    "idx": 2223,
+    "name": "固有時制御",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408490",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94084900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2224,
+    "name": "魔術師殺しの武器",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9408500",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94085000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2225,
+    "name": "オルテンシア",
+    "rarity": 3,
+    "assets": [
+      {
+        "key": "9408510",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94085100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2226,
+    "name": "203号室の演奏会",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9408520",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94085200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2227,
+    "name": "神に侍る者",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309030",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93090300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2228,
+    "name": "天の車輪",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309040",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93090400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2229,
+    "name": "いたたき貴き十字の峰",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309050",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93090500.png"
+      }
+    ]
   }
 ]
