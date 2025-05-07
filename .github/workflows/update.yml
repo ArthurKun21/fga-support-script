@@ -44,7 +44,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv sync
+          uv sync --no-dev
 
       - name: Cache directory
         uses: actions/cache@v4
