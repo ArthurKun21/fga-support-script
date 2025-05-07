@@ -24509,12 +24509,23 @@
   },
   {
     "idx": 2229,
-    "name": "The Back of the Exalted Shield",
+    "name": "The Back of the Exalted Cross",
     "rarity": 4,
     "assets": [
       {
         "key": "9309050",
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93090500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2230,
+    "name": "死、死、死",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309060",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93090600.png"
       }
     ]
   }
