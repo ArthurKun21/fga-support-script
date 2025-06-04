@@ -10818,5 +10818,21 @@
       }
     ],
     "class_name": "Berserker"
+  },
+  {
+    "idx": 441,
+    "name": "Typhon Ephemeros",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28011000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28011001.png"
+      }
+    ],
+    "class_name": "Pretender"
   }
 ]
