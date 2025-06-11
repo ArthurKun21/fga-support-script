@@ -6887,6 +6887,10 @@
       {
         "key": "costume_403840",
         "url": "https://static.atlasacademy.io/JP/Faces/f_4038400.png"
+      },
+      {
+        "key": "costume_403850",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4038500.png"
       }
     ],
     "class_name": "Rider"
@@ -10821,7 +10825,7 @@
   },
   {
     "idx": 441,
-    "name": "Typhon Ephemeros",
+    "name": "テュフォン・エフェメロス",
     "rarity": 5,
     "assets": [
       {
@@ -10831,6 +10835,18 @@
       {
         "key": "ascension_2",
         "url": "https://static.atlasacademy.io/JP/Faces/f_28011001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28011002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28011003.png"
+      },
+      {
+        "key": "costume_2801130",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28011300.png"
       }
     ],
     "class_name": "Pretender"
