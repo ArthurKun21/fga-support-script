@@ -10850,5 +10850,21 @@
       }
     ],
     "class_name": "Pretender"
+  },
+  {
+    "idx": 442,
+    "name": "イントラ",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3059000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3059001.png"
+      }
+    ],
+    "class_name": "Lancer"
   }
 ]
