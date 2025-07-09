@@ -7463,6 +7463,10 @@
       {
         "key": "ascension_4",
         "url": "https://static.atlasacademy.io/JP/Faces/f_3046003.png"
+      },
+      {
+        "key": "costume_304630",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3046300.png"
       }
     ],
     "class_name": "Lancer"
@@ -10863,6 +10867,14 @@
       {
         "key": "ascension_2",
         "url": "https://static.atlasacademy.io/JP/Faces/f_3059001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3059002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3059003.png"
       }
     ],
     "class_name": "Lancer"
