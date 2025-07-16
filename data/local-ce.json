@@ -24891,5 +24891,16 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93091200.png"
       }
     ]
+  },
+  {
+    "idx": 2264,
+    "name": "槍兵の頂に立つもの",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408650",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94086500.png"
+      }
+    ]
   }
 ]
