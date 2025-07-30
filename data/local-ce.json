@@ -20769,7 +20769,7 @@
   },
   {
     "idx": 1889,
-    "name": "Before Party",
+    "name": "Before the Party",
     "rarity": 4,
     "assets": [
       {
@@ -20791,7 +20791,7 @@
   },
   {
     "idx": 1891,
-    "name": "Sheep of Orleans",
+    "name": "The Lamb of Orleans",
     "rarity": 5,
     "assets": [
       {
@@ -20802,7 +20802,7 @@
   },
   {
     "idx": 1892,
-    "name": "Eight-Forged Bloodline",
+    "name": "Eight Bloodlines",
     "rarity": 4,
     "assets": [
       {
@@ -20813,7 +20813,7 @@
   },
   {
     "idx": 1893,
-    "name": "One Summer Castle",
+    "name": "Summer Castle",
     "rarity": 4,
     "assets": [
       {
@@ -20857,7 +20857,7 @@
   },
   {
     "idx": 1897,
-    "name": "Over the Rough Waves",
+    "name": "Beyond the Waves",
     "rarity": 3,
     "assets": [
       {
@@ -20879,7 +20879,7 @@
   },
   {
     "idx": 1899,
-    "name": "Rounds' Beach",
+    "name": "Rounds Beach",
     "rarity": 4,
     "assets": [
       {
@@ -20901,7 +20901,7 @@
   },
   {
     "idx": 1901,
-    "name": "As Thin as a Narrow Strait",
+    "name": "Apart, but Together",
     "rarity": 5,
     "assets": [
       {
@@ -20912,7 +20912,7 @@
   },
   {
     "idx": 1902,
-    "name": "The Ephemeral Ones",
+    "name": "Beyond the Bubbles",
     "rarity": 5,
     "assets": [
       {
@@ -20934,7 +20934,7 @@
   },
   {
     "idx": 1904,
-    "name": "Racing Through the Summer",
+    "name": "Dashing Through Summer",
     "rarity": 4,
     "assets": [
       {
@@ -20945,7 +20945,7 @@
   },
   {
     "idx": 1905,
-    "name": "Treat Me as a Friend Instead, Just for Today",
+    "name": "As a Friend, For Now..",
     "rarity": 4,
     "assets": [
       {
@@ -20956,7 +20956,7 @@
   },
   {
     "idx": 1906,
-    "name": "Chaldea Gaming Binge - Let's Play with Ms. Altria",
+    "name": "Chaldea Game Night - Let's Play with Altria",
     "rarity": 4,
     "assets": [
       {
@@ -20967,7 +20967,7 @@
   },
   {
     "idx": 1907,
-    "name": "Altrian Mount Liang",
+    "name": "Mount Altriang",
     "rarity": 4,
     "assets": [
       {
@@ -20978,7 +20978,7 @@
   },
   {
     "idx": 1908,
-    "name": "Phantasma  Mordred Photobook",
+    "name": "Phantasma - Mordred Photo Collection",
     "rarity": 4,
     "assets": [
       {
@@ -20989,7 +20989,7 @@
   },
   {
     "idx": 1909,
-    "name": "Tell Me! The Secrets of Health!",
+    "name": "Teach Us! Secrets to Health!",
     "rarity": 4,
     "assets": [
       {
@@ -21000,7 +21000,7 @@
   },
   {
     "idx": 1910,
-    "name": "Ex anko Photobook",
+    "name": "Ex Bean Paste Photo Collection",
     "rarity": 4,
     "assets": [
       {
@@ -21011,7 +21011,7 @@
   },
   {
     "idx": 1911,
-    "name": "Once More at Salisbury",
+    "name": "Once More in Salisbury",
     "rarity": 4,
     "assets": [
       {
@@ -21022,7 +21022,7 @@
   },
   {
     "idx": 1912,
-    "name": "A Trophy Awarded to You",
+    "name": "Trophy for You",
     "rarity": 4,
     "assets": [
       {
@@ -21033,7 +21033,7 @@
   },
   {
     "idx": 1913,
-    "name": "Recruiting for UDK Members",
+    "name": "UDK Members Wanted",
     "rarity": 4,
     "assets": [
       {
@@ -21044,7 +21044,7 @@
   },
   {
     "idx": 1914,
-    "name": "Gentle Rain in the Murky Forest",
+    "name": "Gentle Rain in a Dark Forest",
     "rarity": 4,
     "assets": [
       {
@@ -21055,7 +21055,7 @@
   },
   {
     "idx": 1915,
-    "name": "Chaldea Gaming Binge",
+    "name": "Chaldea Game Night",
     "rarity": 4,
     "assets": [
       {
@@ -21066,7 +21066,7 @@
   },
   {
     "idx": 1916,
-    "name": "Heartbeat Iron Clubs",
+    "name": "Tokimeki Iron Whip",
     "rarity": 4,
     "assets": [
       {
@@ -21088,7 +21088,7 @@
   },
   {
     "idx": 1918,
-    "name": "Kense Setsu Bishonen Roku",
+    "name": "Dog Days Bishonen Records",
     "rarity": 4,
     "assets": [
       {
@@ -21099,7 +21099,7 @@
   },
   {
     "idx": 1919,
-    "name": "EVER DARK -Evernight Battlefront-",
+    "name": "EVER DARK ~Eternal Night Frontline~",
     "rarity": 4,
     "assets": [
       {
@@ -21110,7 +21110,7 @@
   },
   {
     "idx": 1920,
-    "name": "Faerie Britain's Summer Vacation",
+    "name": "Faerie Britain's Summer Break",
     "rarity": 4,
     "assets": [
       {
@@ -21121,7 +21121,7 @@
   },
   {
     "idx": 1921,
-    "name": "Southern Island's Festival",
+    "name": "Tropical Island Festival",
     "rarity": 4,
     "assets": [
       {
@@ -24900,6 +24900,215 @@
       {
         "key": "9408650",
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94086500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2265,
+    "name": "英霊星行 アルトリア・キャスター",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310590",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2266,
+    "name": "英霊星行 ウァン・コッホ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310600",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2267,
+    "name": "英霊星行 オヘロン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310610",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2268,
+    "name": "英霊星行 カーマ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310620",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2269,
+    "name": "英霊星行 カーミラ&メティア",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310630",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2270,
+    "name": "英霊星行 葛飾北斎",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310640",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2271,
+    "name": "英霊星行 巌窟王 モンテ・クリスト",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310650",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2272,
+    "name": "英霊星行 高杉晋作",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310660",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2273,
+    "name": "英霊星行 トゥルカー",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310670",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2274,
+    "name": "英霊星行 ニトクリス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310680",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2275,
+    "name": "英霊星行 ハーソロミュー&ティーチ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310690",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93106900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2276,
+    "name": "英霊星行 ヘクトール",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310700",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93107000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2277,
+    "name": "英霊星行 紅閻魔",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310710",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93107100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2278,
+    "name": "英霊星行 マーリン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310720",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93107200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2279,
+    "name": "英霊星行 マントリカルト",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310730",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93107300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2280,
+    "name": "英霊星行 “山の翁”",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310740",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93107400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2281,
+    "name": "英霊星行 闇のコヤンスカヤ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310750",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93107500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2282,
+    "name": "英霊星行 レティ・アウァロン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310760",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93107600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2283,
+    "name": "Servant Art Chronicle",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310550",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105500.png"
       }
     ]
   }
