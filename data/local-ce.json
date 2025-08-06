@@ -25111,5 +25111,1336 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105500.png"
       }
     ]
+  },
+  {
+    "idx": 2284,
+    "name": "英霊祝装 アーキタイフ アース",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309320",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2285,
+    "name": "英霊祝装 アーラシュ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309330",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2286,
+    "name": "英霊祝装 蒼崎青子",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309340",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2287,
+    "name": "英霊祝装 アキレウス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309350",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2288,
+    "name": "英霊祝装 蘆屋道満",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309360",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2289,
+    "name": "英霊祝装 アショカ王",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309370",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2290,
+    "name": "英霊祝装 アスクレヒオス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309380",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2291,
+    "name": "英霊祝装 アナスタシア",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309390",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93093900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2292,
+    "name": "英霊祝装 アヒケイル・ウィリアムス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309400",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2293,
+    "name": "英霊祝装 アマテウス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309410",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2294,
+    "name": "英霊祝装 アルシュナ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309420",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2295,
+    "name": "英霊祝装 アルテラ・サ・サン〔タ〕",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309430",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2296,
+    "name": "英霊祝装 アルトリア・ヘントラコン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309440",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2297,
+    "name": "英霊祝装 伊吹童子",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309450",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2298,
+    "name": "英霊祝装 イントラ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309460",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2299,
+    "name": "英霊祝装 ウィリアム・テル",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309470",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2300,
+    "name": "英霊祝装 牛若丸",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309480",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2301,
+    "name": "英霊祝装 宇津見エリセ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309490",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93094900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2302,
+    "name": "英霊祝装 ウラト三世",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309500",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2303,
+    "name": "英霊祝装 ウリトラ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309510",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2304,
+    "name": "英霊祝装 エウリュアレ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309520",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2305,
+    "name": "英霊祝装 エミヤ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309530",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2306,
+    "name": "英霊祝装 エルキトゥ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309540",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2307,
+    "name": "英霊祝装 エレナ・フラウァツキー",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309550",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2308,
+    "name": "英霊祝装 沖田総司",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309560",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2309,
+    "name": "英霊祝装 小野小町",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309570",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2310,
+    "name": "英霊祝装 オヘロン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309580",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2311,
+    "name": "英霊祝装 女教皇ヨハンナ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309590",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93095900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2312,
+    "name": "英霊祝装 カーマ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309600",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2313,
+    "name": "英霊祝装 カーリー",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309610",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2314,
+    "name": "英霊祝装 カイニス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309620",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2315,
+    "name": "英霊祝装 カウェイン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309630",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2316,
+    "name": "英霊祝装 果心居士",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309640",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2317,
+    "name": "英霊祝装 加藤段蔵",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309650",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2318,
+    "name": "英霊祝装 カラミティ・シェーン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309660",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2319,
+    "name": "英霊祝装 カルナ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309670",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2320,
+    "name": "英霊祝装 カレス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309680",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2321,
+    "name": "英霊祝装 鬼一法眼",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309690",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93096900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2322,
+    "name": "英霊祝装 清姫",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309700",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2323,
+    "name": "英霊祝装 クー・フーリン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309720",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2324,
+    "name": "英霊祝装 ククルカン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309730",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2325,
+    "name": "英霊祝装 虞美人",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309710",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2326,
+    "name": "英霊祝装 クロエ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309740",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2327,
+    "name": "英霊祝装 黒姫",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309750",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2328,
+    "name": "英霊祝装 項羽",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309760",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2329,
+    "name": "英霊祝装 黄飛虎",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309770",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2330,
+    "name": "英霊祝装 呼延灼",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309780",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2331,
+    "name": "英霊祝装 駒姫",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309790",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93097900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2332,
+    "name": "英霊祝装 コロンフス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309800",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2333,
+    "name": "英霊祝装 雑賀孫一",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309810",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2334,
+    "name": "英霊祝装 斎藤一",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309820",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2335,
+    "name": "英霊祝装 サンソン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309830",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2336,
+    "name": "英霊祝装 シェームス・モリアーティ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309840",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2337,
+    "name": "英霊祝装 始皇帝",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309850",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2338,
+    "name": "英霊祝装 司馬懿",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309860",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2339,
+    "name": "英霊祝装 シハの女王",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309870",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2340,
+    "name": "英霊祝装 シャーロック・ホームス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309880",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2341,
+    "name": "英霊祝装 シャカーマン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309890",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93098900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2342,
+    "name": "英霊祝装 シャック・サ・リッハー",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309900",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2343,
+    "name": "英霊祝装 シャック・ト・モレー",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309910",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2344,
+    "name": "英霊祝装 徐福",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309920",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2345,
+    "name": "英霊祝装 スーハーハニヤン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309930",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2346,
+    "name": "英霊祝装 スカサハ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309940",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2347,
+    "name": "英霊祝装 杉谷善住坊",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309950",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2348,
+    "name": "英霊祝装 鈴鹿御前",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309960",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2349,
+    "name": "英霊祝装 ステンノ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309970",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2350,
+    "name": "英霊祝装 赤兎馬",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309980",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2351,
+    "name": "英霊祝装 セタンタ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9309990",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93099900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2352,
+    "name": "英霊祝装 セノヒア",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310000",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2353,
+    "name": "英霊祝装 太公望",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310010",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2354,
+    "name": "英霊祝装 高杉晋作",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310020",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2355,
+    "name": "英霊祝装 タンテ・アリキエーリ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310030",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2356,
+    "name": "英霊祝装 張角",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310040",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2357,
+    "name": "英霊祝装 徴姉妹",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310050",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2358,
+    "name": "英霊祝装 ツタンカーメン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310060",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2359,
+    "name": "英霊祝装 テスカトリホカ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310070",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2360,
+    "name": "英霊祝装 テノチティトラン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310080",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2361,
+    "name": "英霊祝装 トフルイニャ・ニキチッチ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310090",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93100900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2362,
+    "name": "英霊祝装 永倉新八",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310100",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2363,
+    "name": "英霊祝装 謎のヒロインXX",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310110",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2364,
+    "name": "英霊祝装 ナホレオン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310120",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2365,
+    "name": "英霊祝装 ニコラ・テスラ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310130",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2366,
+    "name": "英霊祝装 ニトクリス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310140",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2367,
+    "name": "英霊祝装 ハーウァン・シー",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310150",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2368,
+    "name": "英霊祝装 ハーケスト",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310160",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2369,
+    "name": "英霊祝装 ハーシウァル",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310170",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2370,
+    "name": "英霊祝装 ハヘトロット",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310190",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2371,
+    "name": "英霊祝装 土方歳三",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310200",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2372,
+    "name": "英霊祝装 ヒショーネ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310210",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2373,
+    "name": "英霊祝装 百貌のハサン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310220",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2374,
+    "name": "英霊祝装 フィン・マックール",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310230",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2375,
+    "name": "英霊祝装 武則天",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310240",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2376,
+    "name": "英霊祝装 フラタマンテ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310250",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2377,
+    "name": "英霊祝装 フランケンシュタイン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310260",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2378,
+    "name": "英霊祝装 ヘティウィエール",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310270",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2379,
+    "name": "英霊祝装 ヘンテシレイア",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310280",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2380,
+    "name": "英霊祝装 マーリン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310290",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93102900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2381,
+    "name": "英霊祝装 マナナン・マク・リール",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310180",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93101800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2382,
+    "name": "英霊祝装 マリー・アントワネット",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310300",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2383,
+    "name": "英霊祝装 マントリカルト",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310310",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2384,
+    "name": "英霊祝装 ミス・クレーン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310320",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2385,
+    "name": "英霊祝装 源為朝",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310330",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2386,
+    "name": "英霊祝装 宮本伊織",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310340",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2387,
+    "name": "英霊祝装 メトゥーサ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310350",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2388,
+    "name": "英霊祝装 メリュシーヌ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310360",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2389,
+    "name": "英霊祝装 望月千代女",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310370",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2390,
+    "name": "英霊祝装 山南敬助",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310380",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2391,
+    "name": "英霊祝装 蘭陵王",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310390",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93103900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2392,
+    "name": "英霊祝装 リリス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310400",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93104000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2393,
+    "name": "英霊祝装 レオナルト・タ・ウィンチ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310410",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93104100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2394,
+    "name": "英霊祝装 ロウヒ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310420",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93104200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2395,
+    "name": "英霊祝装 渡辺綱",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310430",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93104300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2396,
+    "name": "英霊祝装 ワンシナ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310540",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2397,
+    "name": "キンクタム・オフ・ユアース",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408660",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94086600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2398,
+    "name": "奏演の輪舞曲",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9408670",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94086700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2399,
+    "name": "フレサント・ストリート",
+    "rarity": 3,
+    "assets": [
+      {
+        "key": "9408680",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94086800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2400,
+    "name": "神秘の解体",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408690",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94086900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2401,
+    "name": "いまは過きし星見の証",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310440",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93104400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2402,
+    "name": "「FGO 藤丸立香はわからない」Season3",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310560",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2403,
+    "name": "此方より頂に至るもの",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408700",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94087000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2404,
+    "name": "彼方より頂に至るもの",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408710",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94087100.png"
+      }
+    ]
   }
 ]

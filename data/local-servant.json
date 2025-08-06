@@ -10878,5 +10878,29 @@
       }
     ],
     "class_name": "Lancer"
+  },
+  {
+    "idx": 444,
+    "name": "U-Olga Marie",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_40001000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_40001001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_40001002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_40001003.png"
+      }
+    ],
+    "class_name": "Unbeast"
   }
 ]
