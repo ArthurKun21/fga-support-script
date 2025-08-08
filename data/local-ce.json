@@ -26442,5 +26442,16 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94087100.png"
       }
     ]
+  },
+  {
+    "idx": 2405,
+    "name": "Fate hollow ataraxia REMASTERED",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310570",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105700.png"
+      }
+    ]
   }
 ]
