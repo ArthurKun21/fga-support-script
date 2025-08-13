@@ -991,6 +991,10 @@
       {
         "key": "ascension_4",
         "url": "https://static.atlasacademy.io/JP/Faces/f_5021003.png"
+      },
+      {
+        "key": "costume_502130",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_5021300.png"
       }
     ],
     "class_name": "Caster"
@@ -7279,6 +7283,10 @@
       {
         "key": "costume_104430",
         "url": "https://static.atlasacademy.io/JP/Faces/f_1044300.png"
+      },
+      {
+        "key": "costume_104440",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1044400.png"
       }
     ],
     "class_name": "Saber"
@@ -9215,6 +9223,10 @@
       {
         "key": "costume_604730",
         "url": "https://static.atlasacademy.io/JP/Faces/f_6047300.png"
+      },
+      {
+        "key": "costume_604740",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_6047400.png"
       }
     ],
     "class_name": "Assassin"
@@ -10902,5 +10914,77 @@
       }
     ],
     "class_name": "Unbeastolgamarie"
+  },
+  {
+    "idx": 445,
+    "name": "Passionlip (Saber)",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1063000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1063001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1063002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1063003.png"
+      }
+    ],
+    "class_name": "Saber"
+  },
+  {
+    "idx": 446,
+    "name": "Kriemhild (Rider)",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4058000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4058001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4058002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4058003.png"
+      }
+    ],
+    "class_name": "Rider"
+  },
+  {
+    "idx": 447,
+    "name": "Huyan Zhuo (Berserker)",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_7052000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_7052001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_7052002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_7052003.png"
+      }
+    ],
+    "class_name": "Berserker"
   }
 ]
