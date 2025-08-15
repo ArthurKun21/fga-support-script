@@ -26574,5 +26574,27 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93104800.png"
       }
     ]
+  },
+  {
+    "idx": 2417,
+    "name": "境界ネコ帽子",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310520",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2418,
+    "name": "夏の名残に、祈りを編む",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310510",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93105100.png"
+      }
+    ]
   }
 ]

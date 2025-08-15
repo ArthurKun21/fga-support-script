@@ -10986,5 +10986,53 @@
       }
     ],
     "class_name": "Berserker"
+  },
+  {
+    "idx": 448,
+    "name": "玉兎",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_23011000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_23011001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_23011002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_23011003.png"
+      }
+    ],
+    "class_name": "Moon Cancer"
+  },
+  {
+    "idx": 449,
+    "name": "Miyu Edelfelt (Lancer)",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3060000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3060001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3060002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3060003.png"
+      }
+    ],
+    "class_name": "Lancer"
   }
 ]
