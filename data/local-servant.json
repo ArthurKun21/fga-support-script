@@ -11007,6 +11007,10 @@
       {
         "key": "ascension_4",
         "url": "https://static.atlasacademy.io/JP/Faces/f_23011003.png"
+      },
+      {
+        "key": "costume_2301130",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_23011300.png"
       }
     ],
     "class_name": "Moon Cancer"
@@ -11034,5 +11038,53 @@
       }
     ],
     "class_name": "Lancer"
+  },
+  {
+    "idx": 450,
+    "name": "Larva Tiamat (Archer)",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_2054000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_2054001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_2054002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_2054003.png"
+      }
+    ],
+    "class_name": "Archer"
+  },
+  {
+    "idx": 451,
+    "name": "シュネス・クレーン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_10019000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_10019001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_10019002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_10019003.png"
+      }
+    ],
+    "class_name": "Alter Ego"
   }
 ]
