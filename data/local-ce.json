@@ -26794,5 +26794,16 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109100.png"
       }
     ]
+  },
+  {
+    "idx": 2437,
+    "name": "Foreign God",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408800",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088000.png"
+      }
+    ]
   }
 ]
