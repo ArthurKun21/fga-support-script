@@ -21143,7 +21143,7 @@
   },
   {
     "idx": 1923,
-    "name": "Ref-rain",
+    "name": "Ref-Rain",
     "rarity": 5,
     "assets": [
       {
@@ -21165,7 +21165,7 @@
   },
   {
     "idx": 1925,
-    "name": "Still in the Middle of the Trip",
+    "name": "Still on the Road",
     "rarity": 3,
     "assets": [
       {
@@ -21176,7 +21176,7 @@
   },
   {
     "idx": 1926,
-    "name": "The Method to Walk on the Stars",
+    "name": "How To Travel the Stars",
     "rarity": 5,
     "assets": [
       {
@@ -21187,7 +21187,7 @@
   },
   {
     "idx": 1927,
-    "name": "Wandjina-met",
+    "name": "Wandjina Helmet",
     "rarity": 4,
     "assets": [
       {
@@ -26803,6 +26803,50 @@
       {
         "key": "9408800",
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2438,
+    "name": "ヒヨント・サ・フラット",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408810",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2439,
+    "name": "魔女の憩い場",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9408820",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2440,
+    "name": "クイーンス・ホヤーシュ",
+    "rarity": 3,
+    "assets": [
+      {
+        "key": "9408830",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2441,
+    "name": "地に満ちよ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310930",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109300.png"
       }
     ]
   }

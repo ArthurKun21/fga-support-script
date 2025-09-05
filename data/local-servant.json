@@ -10989,7 +10989,7 @@
   },
   {
     "idx": 448,
-    "name": "玉兎",
+    "name": "Jade Rabbit",
     "rarity": 5,
     "assets": [
       {
@@ -11065,7 +11065,7 @@
   },
   {
     "idx": 451,
-    "name": "シュネス・クレーン",
+    "name": "Jeunesse Crane",
     "rarity": 4,
     "assets": [
       {
@@ -11086,5 +11086,29 @@
       }
     ],
     "class_name": "Alter Ego"
+  },
+  {
+    "idx": 452,
+    "name": "ネモ ノア",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4057000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4057001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4057002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_4057003.png"
+      }
+    ],
+    "class_name": "Rider"
   }
 ]
