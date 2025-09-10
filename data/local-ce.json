@@ -26849,5 +26849,16 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109300.png"
       }
     ]
+  },
+  {
+    "idx": 2442,
+    "name": "騎兵の頂に立つもの",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408840",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088400.png"
+      }
+    ]
   }
 ]
