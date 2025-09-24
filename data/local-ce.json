@@ -26860,5 +26860,280 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088400.png"
       }
     ]
+  },
+  {
+    "idx": 2443,
+    "name": "英霊星行 蘆屋道満",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310980",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2444,
+    "name": "英霊星行 アルテラ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310990",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2445,
+    "name": "英霊星行 アルトリア・ヘントラコン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311000",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2446,
+    "name": "英霊星行 宇津見エリセ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311010",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2447,
+    "name": "英霊星行 ククルカン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311020",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2448,
+    "name": "英霊星行 ケツァル・コアトル",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311040",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2449,
+    "name": "英霊星行 コロンフス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311030",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2450,
+    "name": "英霊星行 テュフォン・エフェメロス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311050",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2451,
+    "name": "英霊星行 謎のヒロインX",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311060",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2452,
+    "name": "英霊星行 フランケンシュタイン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311070",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2453,
+    "name": "英霊星行 ホール・ハニヤン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311080",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2454,
+    "name": "英霊星行 メリュシーヌ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311090",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93110900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2455,
+    "name": "英霊星行 ヤマトタケル",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311100",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2456,
+    "name": "英霊星行 ラーマ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311110",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2457,
+    "name": "英霊星行 ランスロット",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311120",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2458,
+    "name": "英霊星行 レオナルト・タ・ウィンチ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311130",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2459,
+    "name": "京乱怒濤",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408850",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2460,
+    "name": "蛍の夜に",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9408860",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2461,
+    "name": "くたくた新選組",
+    "rarity": 3,
+    "assets": [
+      {
+        "key": "9408870",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2462,
+    "name": "テュアル・ハーニンク",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408880",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2463,
+    "name": "概念礼装EXPカート もくもく彦斎",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9809570",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_98095700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2464,
+    "name": "概念礼装EXPカート 死に損ねの赤狼",
+    "rarity": 3,
+    "assets": [
+      {
+        "key": "9809580",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_98095800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2465,
+    "name": "たたの握り飯",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310940",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2466,
+    "name": "からくり義肢",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310970",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2467,
+    "name": "大陸の風",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9310950",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109500.png"
+      }
+    ]
   }
 ]
