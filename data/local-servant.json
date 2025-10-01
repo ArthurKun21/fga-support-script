@@ -4023,6 +4023,10 @@
       {
         "key": "ascension_4",
         "url": "https://static.atlasacademy.io/JP/Faces/f_7025003.png"
+      },
+      {
+        "key": "costume_702530",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_7025300.png"
       }
     ],
     "class_name": "Berserker"
@@ -11113,7 +11117,7 @@
   },
   {
     "idx": 453,
-    "name": "河上彦斎",
+    "name": "Kawakami Gensai",
     "rarity": 5,
     "assets": [
       {
@@ -11131,13 +11135,17 @@
       {
         "key": "ascension_4",
         "url": "https://static.atlasacademy.io/JP/Faces/f_6051003.png"
+      },
+      {
+        "key": "costume_605130",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_6051300.png"
       }
     ],
     "class_name": "Assassin"
   },
   {
     "idx": 454,
-    "name": "藤堂平助",
+    "name": "Todo Heisuke",
     "rarity": 4,
     "assets": [
       {
@@ -11161,7 +11169,7 @@
   },
   {
     "idx": 455,
-    "name": "原田左之助",
+    "name": "Harada Sanosuke",
     "rarity": 4,
     "assets": [
       {
@@ -11179,8 +11187,40 @@
       {
         "key": "ascension_4",
         "url": "https://static.atlasacademy.io/JP/Faces/f_3061003.png"
+      },
+      {
+        "key": "costume_306130",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3061300.png"
       }
     ],
     "class_name": "Lancer"
+  },
+  {
+    "idx": 456,
+    "name": "近藤勇",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1064000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1064001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1064002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1064003.png"
+      },
+      {
+        "key": "costume_106430",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_1064300.png"
+      }
+    ],
+    "class_name": "Saber"
   }
 ]
