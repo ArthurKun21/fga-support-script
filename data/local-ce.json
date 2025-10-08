@@ -27146,5 +27146,38 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93109600.png"
       }
     ]
+  },
+  {
+    "idx": 2469,
+    "name": "戦場の中へ",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408890",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94088900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2470,
+    "name": "花散るとき",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9408900",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2471,
+    "name": "ハンティンク",
+    "rarity": 3,
+    "assets": [
+      {
+        "key": "9408910",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089100.png"
+      }
+    ]
   }
 ]
