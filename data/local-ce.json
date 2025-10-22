@@ -27190,5 +27190,60 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089200.png"
       }
     ]
+  },
+  {
+    "idx": 2473,
+    "name": "スヘース・ミストレス",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408930",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2474,
+    "name": "アンター・スラム",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9408940",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2475,
+    "name": "マース・シューティンク",
+    "rarity": 3,
+    "assets": [
+      {
+        "key": "9408950",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2476,
+    "name": "遠い星の私へ",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408960",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2477,
+    "name": "カ星を救いし槍",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311140",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111400.png"
+      }
+    ]
   }
 ]

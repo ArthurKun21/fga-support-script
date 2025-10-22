@@ -8599,6 +8599,10 @@
       {
         "key": "ascension_4",
         "url": "https://static.atlasacademy.io/JP/Faces/f_9013003.png"
+      },
+      {
+        "key": "costume_901330",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_9013300.png"
       }
     ],
     "class_name": "Ruler"
@@ -11222,5 +11226,29 @@
       }
     ],
     "class_name": "Saber"
+  },
+  {
+    "idx": 457,
+    "name": "Elisabeth Bathory (Lancer)",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3062000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3062001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3062002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_3062003.png"
+      }
+    ],
+    "class_name": "Lancer"
   }
 ]
