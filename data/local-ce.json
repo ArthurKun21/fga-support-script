@@ -21242,7 +21242,7 @@
   },
   {
     "idx": 1932,
-    "name": "Afterimage of a Sand Table",
+    "name": "Remnants on the Sand Board",
     "rarity": 5,
     "assets": [
       {
@@ -21264,7 +21264,7 @@
   },
   {
     "idx": 1934,
-    "name": "Ready, Aim, Fire",
+    "name": "Aim, Ready, Shoot",
     "rarity": 4,
     "assets": [
       {
@@ -21275,7 +21275,7 @@
   },
   {
     "idx": 1935,
-    "name": "Red Thread of Guidance",
+    "name": "Guiding Red Thread",
     "rarity": 4,
     "assets": [
       {
@@ -27243,6 +27243,171 @@
       {
         "key": "9311140",
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2478,
+    "name": "恐るへき教団マニュアル",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311150",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2479,
+    "name": "英霊星行 アステリオス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311160",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2480,
+    "name": "英霊星行 アナスタシア",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311170",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2481,
+    "name": "英霊星行 エウリュアレ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311180",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2482,
+    "name": "英霊星行 女教皇ヨハンナ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311190",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93111900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2483,
+    "name": "英霊星行 近藤勇",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311200",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2484,
+    "name": "英霊星行 シェームス・モリアーティ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311210",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2485,
+    "name": "英霊星行 シャーロック・ホームス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311220",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2486,
+    "name": "英霊星行 シャルロット・コルテー",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311230",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2487,
+    "name": "英霊星行 鈴鹿御前",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311240",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2488,
+    "name": "英霊星行 トフルイニャ・ニキチッチ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311250",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2489,
+    "name": "英霊星行 土方歳三",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311260",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2490,
+    "name": "英霊星行 ヒショーネ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311270",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2491,
+    "name": "英霊星行 フラタマンテ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311280",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2492,
+    "name": "英霊星行 ロウヒ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311290",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93112900.png"
       }
     ]
   }

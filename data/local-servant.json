@@ -11250,5 +11250,29 @@
       }
     ],
     "class_name": "Lancer"
+  },
+  {
+    "idx": 458,
+    "name": "終わりのエリサヘート",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_11022000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_11022001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_11022002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_11022003.png"
+      }
+    ],
+    "class_name": "Avenger"
   }
 ]
