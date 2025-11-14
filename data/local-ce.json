@@ -27421,5 +27421,16 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93113000.png"
       }
     ]
+  },
+  {
+    "idx": 2494,
+    "name": "弓兵の頂に立つもの",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "9408970",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089700.png"
+      }
+    ]
   }
 ]
