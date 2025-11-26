@@ -27432,5 +27432,159 @@
         "url": "https://static.atlasacademy.io/JP/EquipFaces/f_94089700.png"
       }
     ]
+  },
+  {
+    "idx": 2495,
+    "name": "英霊星行 アヒケイル・ウィリアムス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311520",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2496,
+    "name": "英霊星行 アントロメタ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311530",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2497,
+    "name": "英霊星行 イシュタル",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311540",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2498,
+    "name": "英霊星行 イリヤスフィール",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311550",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115500.png"
+      }
+    ]
+  },
+  {
+    "idx": 2499,
+    "name": "英霊星行 エレシュキカル",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311560",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115600.png"
+      }
+    ]
+  },
+  {
+    "idx": 2500,
+    "name": "英霊星行 クリームヒルト",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311570",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115700.png"
+      }
+    ]
+  },
+  {
+    "idx": 2501,
+    "name": "英霊星行 シークフリート",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311580",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115800.png"
+      }
+    ]
+  },
+  {
+    "idx": 2502,
+    "name": "英霊星行 タンテ・アリキエーリ",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311590",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93115900.png"
+      }
+    ]
+  },
+  {
+    "idx": 2503,
+    "name": "英霊星行 ハヘトロット",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311600",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93116000.png"
+      }
+    ]
+  },
+  {
+    "idx": 2504,
+    "name": "英霊星行 卑弥呼",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311610",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93116100.png"
+      }
+    ]
+  },
+  {
+    "idx": 2505,
+    "name": "英霊星行 ミス・クレーン",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311620",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93116200.png"
+      }
+    ]
+  },
+  {
+    "idx": 2506,
+    "name": "英霊星行 宮本武蔵",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311630",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93116300.png"
+      }
+    ]
+  },
+  {
+    "idx": 2507,
+    "name": "英霊星行 柳生但馬守宗矩",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311640",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93116400.png"
+      }
+    ]
+  },
+  {
+    "idx": 2508,
+    "name": "英霊星行 リリス",
+    "rarity": 4,
+    "assets": [
+      {
+        "key": "9311650",
+        "url": "https://static.atlasacademy.io/JP/EquipFaces/f_93116500.png"
+      }
+    ]
   }
 ]
