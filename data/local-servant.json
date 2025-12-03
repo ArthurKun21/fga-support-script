@@ -11274,5 +11274,29 @@
       }
     ],
     "class_name": "Avenger"
+  },
+  {
+    "idx": 459,
+    "name": "Solomon",
+    "rarity": 5,
+    "assets": [
+      {
+        "key": "ascension_1",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28012000.png"
+      },
+      {
+        "key": "ascension_2",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28012001.png"
+      },
+      {
+        "key": "ascension_3",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28012002.png"
+      },
+      {
+        "key": "ascension_4",
+        "url": "https://static.atlasacademy.io/JP/Faces/f_28012003.png"
+      }
+    ],
+    "class_name": "Pretender"
   }
 ]
