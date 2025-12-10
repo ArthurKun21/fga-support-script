@@ -1,10 +1,4 @@
 {
-    "cSpell.words": [
-        "imread",
-        "imwrite",
-        "LANCZOS",
-        "ndarray"
-    ],
     "python.testing.pytestArgs": [
         "src"
     ],
