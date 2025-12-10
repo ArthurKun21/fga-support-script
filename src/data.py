@@ -1,12 +1,12 @@
 import asyncio
 from collections.abc import Callable
 from pathlib import Path
-from typing import TypeVar
 
 import cv2
 from anyio import create_task_group, to_thread
 from loguru import logger
 
+from config import app_config
 from constants import (
     LOCAL_CE_DATA,
     LOCAL_SERVANT_DATA,
@@ -15,7 +15,6 @@ from constants import (
     OUTPUT_SERVANT_COLOR_DIR,
     OUTPUT_SERVANT_DIR,
     TEMP_CE_DIR,
-    TEMP_SERVANT_DIR,
 )
 from enums import SupportKind
 from image import create_support_ce_img, create_support_servant_img
@@ -27,7 +26,6 @@ from models import (
 )
 from utils import download_file, write_json
 
-T = TypeVar("T", bound=BaseData)
 type IndexedT = dict[int, BaseData]
 
 
@@ -103,7 +101,7 @@ async def process_servant_data(
         latest_data_list=servant_data,
         local_data=local_data,
         kind=SupportKind.SERVANT,
-        temp_dir=TEMP_SERVANT_DIR,
+        temp_dir=app_config.directories.tmp_dir,
         output_dir_base=OUTPUT_SERVANT_DIR,
         output_color_dir_base=OUTPUT_SERVANT_COLOR_DIR,
         image_creation_func=create_support_servant_img,
@@ -136,7 +134,7 @@ async def process_craft_essence_data(
 
 
 async def _process_generic_data(
-    latest_data_list: list[T],
+    latest_data_list: list[BaseData],
     local_data: IndexedT,
     kind: SupportKind,
     temp_dir: Path,
@@ -150,7 +148,7 @@ async def _process_generic_data(
 ):
     logger.info(f"Processing {kind.value} data...")
     debug_index = 0
-    updated_data_list: list[T] = []
+    updated_data_list: list[BaseData] = []
 
     for latest_data in latest_data_list:
         if (debug or dry_run) and debug_index >= 5:
