@@ -47,7 +47,7 @@ jobs:
           uv sync --no-dev
 
       - name: Cache directory
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: tmp
           key: ${{ runner.os }}
